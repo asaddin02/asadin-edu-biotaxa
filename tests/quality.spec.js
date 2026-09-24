@@ -43,7 +43,15 @@ for (const level of ['sd', 'smp']) {
 }
 
 test('no horizontal overflow from 320px to 1440px in SD and SMP modes', async ({ page }) => {
-  test.setTimeout(180000);
+  test.setTimeout(240000);
+  // A wide font (as on the CI runner and many Android phones) finds overflow a narrow one hides.
+  await page.addInitScript(() =>
+    document.addEventListener('DOMContentLoaded', () => {
+      const style = document.createElement('style');
+      style.textContent = "* { font-family: 'DejaVu Sans', sans-serif !important; }";
+      document.head.append(style);
+    })
+  );
   await mockAPIs(page);
   for (const level of ['sd', 'smp']) {
     await page.addInitScript(l => localStorage.setItem('biotaxa-level', JSON.stringify(l)), level);
@@ -58,6 +66,10 @@ test('no horizontal overflow from 320px to 1440px in SD and SMP modes', async ({
         'compare?a=41967&b=118552',
         'purba',
         'guru',
+        'kamus',
+        'tree/1',
+        'saved?tab=passport',
+        'about',
       ]) {
         await page.goto(`/#/${route}`);
         await expect(page.locator('#main h1')).toBeVisible();
