@@ -1,0 +1,43 @@
+name: Koreksi atau usulan konten / Content correction or suggestion
+description: Fakta keliru, usulan spesies, istilah kamus, materi, kuis, atau terjemahan. / Wrong facts, new species, glossary terms, lessons, quizzes or translations.
+labels: [content]
+body:
+  - type: dropdown
+    id: kind
+    attributes:
+      label: Jenis / Kind
+      options:
+        - Koreksi fakta / Fact correction
+        - Usulan kartu spesies / New species card
+        - Istilah kamus / Glossary term
+        - Materi atau kuis / Lesson or quiz
+        - Terjemahan / Translation
+        - Lainnya / Other
+    validations:
+      required: true
+  - type: input
+    id: where
+    attributes:
+      label: Lokasi di aplikasi / Where in the app
+      placeholder: '#/learn/fotosintesis, kartu Komodo, istilah "endemik"'
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Usulan / Proposal
+      description: Tulis teks yang Anda usulkan, dalam bahasa Indonesia dan (bila bisa) Inggris. / Write the text you propose, in Indonesian and (if you can) English.
+    validations:
+      required: true
+  - type: textarea
+    id: source
+    attributes:
+      label: Sumber / Source
+      description: Buku pelajaran, jurnal, atau situs ilmiah tepercaya. Konten tanpa sumber tidak dapat diterima. / A textbook, journal or trusted scientific site. Unsourced content cannot be accepted.
+    validations:
+      required: true
+  - type: checkboxes
+    id: license
+    attributes:
+      label: Lisensi / License
+      options:
+        - label: Saya setuju kontribusi ini dilisensikan CC BY-SA 4.0. / I agree to license this contribution under CC BY-SA 4.0.
+          required: true

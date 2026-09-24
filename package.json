@@ -1,15 +1,44 @@
 {
   "name": "asadin-edu-biotaxa",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "private": true,
   "type": "module",
   "scripts": {
-    "start": "python3 -m http.server 8085 --bind 127.0.0.1",
+    "start": "node server/server.mjs",
+    "dev": "PORT=8085 HOST=127.0.0.1 LOG=1 node server/server.mjs",
+    "start:static": "python3 -m http.server 8085 --bind 127.0.0.1",
+    "build": "node scripts/build-sw.mjs",
+    "build:site": "node scripts/build-sw.mjs && node scripts/build-site.mjs",
+    "snapshot": "node scripts/build-snapshot.mjs",
+    "preview:cloudflare": "npm run build:site && npx --yes wrangler@4 pages dev dist --port 8788 --compatibility-date=2026-09-21",
+    "lint": "eslint . && prettier --check .",
+    "format": "prettier --write .",
     "test": "playwright test",
-    "smoke": "node tests/live-smoke.mjs"
+    "smoke": "node tests/live-smoke.mjs",
+    "data:check": "node scripts/check-data.mjs",
+    "check": "npm run lint && npm run data:check && npm run build:check && npm test",
+    "build:check": "node scripts/build-sw.mjs --check"
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.13.0",
+    "@eslint/js": "^9.39.5",
     "@playwright/test": "1.63.0",
-    "leaflet": "^1.9.4"
-  }
+    "eslint": "^9.39.5",
+    "globals": "^15.15.0",
+    "leaflet": "^1.9.4",
+    "prettier": "^3.9.9"
+  },
+  "description": "BioTaxa · Asadin Edu — open, bilingual atlas of life for primary school to university learners and teachers.",
+  "license": "MIT",
+  "engines": {
+    "node": ">=20"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/asaddin02/asadin-edu-biotaxa.git"
+  },
+  "bugs": {
+    "url": "https://github.com/asaddin02/asadin-edu-biotaxa/issues"
+  },
+  "homepage": "https://github.com/asaddin02/asadin-edu-biotaxa#readme"
 }

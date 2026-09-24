@@ -1,20 +1,58 @@
 <!doctype html>
-<html lang="id">
-<head>
-  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="theme-color" content="#047c64"><meta name="color-scheme" content="light">
-  <meta name="description" content="BioTaxa — Jelajahi pohon kehidupan, temukan spesies, dan belajar biologi dalam bahasa Indonesia dan Inggris.">
-  <title>BioTaxa · Atlas Kehidupan</title>
-  <link rel="icon" type="image/png" href="assets/brand/biotaxa-mark.png">
-  <link rel="apple-touch-icon" href="assets/brand/biotaxa-mark.png">
-  <link rel="stylesheet" href="css/style.css">
-  <script type="module" src="js/app.js"></script>
-</head>
-<body>
-  <a class="skip" href="#main">Lewati navigasi / Skip navigation</a>
-  <header id="header"></header>
-  <main id="main" tabindex="-1"></main>
-  <footer id="footer"></footer>
-  <div id="toast" class="toast" role="status"></div>
-</body>
+<html lang="id" data-level="smp">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https://static.inaturalist.org https://inaturalist-open-data.s3.amazonaws.com https://*.inaturalist.org https://tile.openstreetmap.org https://api.gbif.org https://upload.wikimedia.org; connect-src 'self' https://api.gbif.org https://api.inaturalist.org https://*.wikipedia.org https://paleobiodb.org; font-src 'self'; manifest-src 'self'; worker-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'"
+    />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <meta name="theme-color" content="#047c64" />
+    <meta name="color-scheme" content="light" />
+    <title>BioTaxa · Atlas Kehidupan untuk SD sampai Kuliah</title>
+    <meta
+      name="description"
+      content="BioTaxa: atlas kehidupan terbuka dan gratis dalam bahasa Indonesia dan Inggris. Jelajahi spesies, pohon kehidupan, materi biologi per jenjang, kuis, laboratorium virtual, dan alat untuk guru."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="BioTaxa · Asadin Edu" />
+    <meta property="og:title" content="BioTaxa · Atlas Kehidupan untuk SD sampai Kuliah" />
+    <meta
+      property="og:description"
+      content="Jelajahi, pelajari, dan uji pengetahuanmu tentang makhluk hidup di bumi. Gratis, terbuka, dua bahasa."
+    />
+    <meta property="og:image" content="assets/brand/og-image.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="manifest" href="manifest.webmanifest" />
+    <link rel="icon" type="image/png" sizes="48x48" href="assets/brand/favicon-48.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="assets/brand/icon-192.png" />
+    <link rel="apple-touch-icon" href="assets/brand/apple-touch-icon.png" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="modulepreload" href="js/app.js" />
+    <script type="module" src="js/app.js"></script>
+  </head>
+  <body>
+    <a class="skip" href="#main">Lewati ke konten / Skip to content</a>
+    <div id="net-status" class="net-status" role="status" hidden></div>
+    <div id="update-status" class="update-status" role="status" hidden></div>
+    <header id="header"></header>
+    <main id="main" tabindex="-1">
+      <div class="status" role="status">
+        <span class="spinner" aria-hidden="true"></span>
+        <p>Memuat BioTaxa…</p>
+      </div>
+      <noscript>
+        <div class="notice">
+          BioTaxa membutuhkan JavaScript agar dapat mengambil data makhluk hidup. Aktifkan JavaScript lalu
+          muat ulang halaman. / BioTaxa needs JavaScript to load living-world data. Please enable JavaScript
+          and reload.
+        </div>
+      </noscript>
+    </main>
+    <footer id="footer"></footer>
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  </body>
 </html>

@@ -1,81 +1,196 @@
 # BioTaxa · Asadin Edu
 
-Atlas kehidupan untuk siswa SD–SMA dan pengajar. Antarmuka Indonesia/English, penelusuran taksonomi, pencarian spesies dari API, dossier dengan sumber, dan laboratorium virtual. Dibangun dengan HTML, CSS, dan JavaScript modules dengan Leaflet lokal untuk peta, tanpa bundler, font eksternal, atau database lokal spesies.
+**Atlas makhluk hidup yang terbuka, gratis, dan dwibahasa (Indonesia/English) untuk siswa SD sampai mahasiswa, serta guru.** Jelajahi jutaan spesies dari GBIF dan iNaturalist, pelajari materi Kurikulum Merdeka, coba simulasi laboratorium, dan bawa kelas belajar di luar ruangan.
+
+![Beranda BioTaxa](docs/screenshots/preview-home.png)
+
+<p>
+  <img src="docs/screenshots/preview-sd-mobile.png" alt="Beranda mode SD di ponsel" width="240">
+  <img src="docs/screenshots/preview-sd-species.png" alt="Kartu spesies mode SD di ponsel" width="240">
+</p>
+
+English version: [see below](#english).
+
+## Satu aplikasi, lima mode
+
+Saat pertama dibuka, pengunjung memilih jenjang. Pilihan ini mengubah ukuran huruf, bahasa penjelasan, isi materi, tab yang tampil, dan urutan kegiatan. Mode bisa diganti kapan saja.
+
+| Mode                 | Untuk          | Yang disesuaikan                                                                                                                                                   |
+| -------------------- | -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **Penjelajah Cilik** | SD (Fase A–C)  | Huruf besar, nama sehari-hari lebih dulu, kartu spesies berbahasa sederhana, tombol **Bacakan**, kuis tebak foto, lencana                                          |
+| **Peneliti Muda**    | SMP (Fase D)   | Klasifikasi dengan istilah yang bisa diklik, bandingkan spesies, rantai makanan, lebih banyak simulasi                                                             |
+| **Ilmuwan**          | SMA (Fase E–F) | Materi mendalam (pewarisan sifat, evolusi, reaksi terang dan gelap fotosintesis), penjelasan lanjutan di kamus, kode status IUCN, dan deskripsi dari sumber ilmiah |
+| **Akademik**         | Kuliah         | Nama beserta author, sinonim, sitasi BibTeX, unduh data temuan (CSV), tautan ke NCBI/GenBank, IUCN, dan Open Tree of Life                                          |
+| **Guru**             | Pengajar       | Tujuan pembelajaran, langkah, asesmen, kunci jawaban, tugas lewat tautan, dan modul ajar siap cetak                                                                |
+
+## Fitur
+
+- **Pencarian yang memahami bahasa anak.** Mengetik "hiu", "sapi", atau "nyamuk" langsung menampilkan hewan yang dimaksud beserta kelompoknya. Galeri menampilkan makhluk hidup yang tercatat **di Indonesia**, dengan pilihan untuk melihat seluruh dunia.
+- **Pohon kehidupan** dari GBIF sampai tingkat famili, genus, dan spesies. Kelompok yang dikenal anak (misalnya "Hewan bertulang belakang") tampil lebih dulu dengan nama dan penjelasan yang ramah.
+- **111 kartu spesies kurasi** yang ditulis dengan bahasa sederhana: satwa endemik, hewan ternak, tanaman pangan, jamur, dan mikroba. Status konservasi dijelaskan dengan kata-kata ("Kritis, hampir punah"), bukan kode.
+- **12 topik materi** sesuai Kurikulum Merdeka, dari ciri makhluk hidup sampai evolusi dan kehidupan purba. Setiap topik punya teks per jenjang, kegiatan, catatan guru, bacaan lanjutan, dan total **76 soal kuis** dengan penjelasan.
+- **7 simulasi laboratorium**: fotosintesis, rantai makanan, osmosis, persilangan Mendel, seleksi alam, skala kehidupan, serta tuas & capit. Buku eksperimen tersimpan dan bisa dicetak.
+- **Kamus 103 istilah.** Istilah bergaris di materi dan kartu spesies bisa diklik.
+- **Bandingkan dua spesies**, lengkap dengan tingkat klasifikasi tempat keduanya mulai berbeda.
+- **Di sekitarku.** Makhluk hidup yang pernah diamati di sekitar rumah atau sekolah. Lokasi dibulatkan sekitar 1 km sebelum dikirim.
+- **Kehidupan purba.** Garis waktu geologi, 29 makhluk purba dan punah, rentang fosil langsung dari Paleobiology Database, dan filter temuan Indonesia.
+- **Paspor Penjelajah** dengan 12 lencana, koleksi, dan catatan belajar yang tidak hilang saat halaman dimuat ulang. Semua data bisa diekspor dan diimpor.
+- **Bisa dipakai offline (PWA).** Materi, kamus, dan simulasi tetap terbuka tanpa internet. Halaman yang pernah dibuka disimpan di perangkat.
+- **Aksesibel dan aman.** Diuji dengan axe (WCAG 2.1 AA), bisa dipakai dengan keyboard, menghormati pengaturan kurangi animasi, dan rapi dari lebar 320 px sampai 1440 px. Tanpa akun, tanpa iklan, tanpa analitik.
 
 ## Menjalankan
 
-```bash
-cd /home/asadin/Projects/asadin-edu-biotaxa
-python3 -m http.server 8085 --bind 127.0.0.1
-```
+### Pengembangan
 
-Buka **http://127.0.0.1:8085/**. Jika server sudah berjalan pada port itu, cukup muat ulang halaman. Alternatif: `npm start`. Koneksi internet diperlukan untuk API; beranda, panduan, dan simulasi tersedia dari berkas aplikasi. Ini bukan aplikasi PWA/offline.
-
-## Yang tersedia
-
-- Beranda edukatif: taksonomi, binomial, kekerabatan, delapan tingkat umum, dan panduan berdasarkan jenjang sekolah.
-- Tiga domain sebagai lapisan pengantar. Eukarya → kingdom GBIF Animalia/Plantae/Fungi/Chromista/Protozoa; Bacteria dan Archaea → kingdom yang sesuai pada GBIF.
-- Penelusuran **anak langsung** lewat API, termasuk famili dan genus. Tidak ada lagi pintasan ordo → seluruh spesies atau spesimen kurasi pada setiap tingkat.
-- Galeri visual iNaturalist langsung menampilkan 24 spesies per halaman tanpa mengetik kata kunci; tersedia filter hewan, burung, serangga, tumbuhan, jamur, bakteri, dan arkea. Foto berlisensi dapat diperbesar, dengan hingga delapan foto pada dossier.
-- Pagination 24 catatan pada hierarki dan indeks GBIF. Pencarian terbatas pada spesies berstatus ACCEPTED dalam GBIF Backbone. Nama umum tepat dapat diresolusikan lewat iNaturalist; hasil GBIF tetap pencarian teks dan bisa memuat kecocokan terkait.
-- Detail spesies: nama ilmiah, nama Indonesia/Inggris bila tercatat, klasifikasi, foto beratribusi, ringkasan Wikipedia, deskripsi habitat/ekologi/morfologi/reproduksi/ukuran/evolusi bila tersedia, wilayah sumber, sampel koordinat temuan, konservasi, dan tautan sumber.
-- Bahasa antarmuka dan materi ajar lokal dapat diganti pada semua halaman. **Teks sumber tidak otomatis diterjemahkan**; bahasa asal ditandai. Wikipedia Indonesia dicoba terlebih dahulu untuk mode ID, lalu Inggris sebagai fallback.
-- Koleksi favorit lokal, lembar belajar, catatan, dan cetak melalui dialog peramban (termasuk Save as PDF).
-- Laboratorium: model tuas capit dengan satuan Newton; aliran energi; osmosis. Buku eksperimen menyimpan parameter, prediksi, dan hasil selama sesi halaman. Tidak ada skor toksisitas rekaan atau adu hewan.
-- Identitas visual baru: putih/mint, tinta biru tua dan aksen lime; kartu tiga domain berwarna, logo AI lokal, navigasi bawah ponsel, fokus keyboard, pengurangan animasi, status pemuatan, kegagalan sumber yang jelas, dan pencegahan hasil permintaan lama menimpa halaman baru.
-
-## Batas data yang penting
-
-**Ini bukan ensiklopedia lengkap setiap spesies di bumi.** Aplikasi memberikan akses ke catatan yang tersedia pada sumber, bukan menjamin bahwa semua kehidupan telah ditemukan atau didokumentasikan. Angka “2,1 juta” pada versi lama tidak dipakai sebagai janji cakupan.
-
-Tidak semua organisme memiliki nama Indonesia/Inggris, foto, uraian makanan, umur, data kekuatan, atau catatan persebaran. Kolom yang belum tersedia ditandai. Peta interaktif menampilkan atlas negara/benua lokal dan hingga 300 titik GBIF, atau hingga 100 observasi iNaturalist sebagai sumber alternatif. Atlas tetap terlihat ketika koordinat tidak tersedia. Titik temuan bukan peta rentang spesies lengkap. Peta jalan daring serta lapisan kepadatan GBIF tersedia sebagai pilihan. Label wilayah dapat bersifat historis. Rincian distribusi menampilkan cuplikan 20 catatan distribusi dan 12 baris temuan, nama/deskripsi juga dibatasi agar ringan. Penelusuran turunan tetap mengikuti hierarki sumber: jika sumber melewati suatu tingkat, BioTaxa tidak menciptakan tingkat itu.
-
-API pencarian GBIF membatasi offset jauh; gunakan kata kunci atau kelompok yang lebih spesifik untuk pencarian sangat luas. Jumlah hasil bukan estimasi jumlah seluruh spesies bumi. Klasifikasi antarkatalog dapat berbeda. Model tiga domain adalah pengantar pendidikan dan disertai penjelasan tentang penelitian dua domain.
-
-GBIF menjadi sumber hierarki dan indeks luas; galeri memakai identitas asli iNaturalist. Penggabungan data kedua sumber mensyaratkan **nama ilmiah yang sama** untuk mengurangi risiko foto spesies keliru. Nama umum tetap mengikuti pencatatan sumber, yang dapat memiliki variasi dan kesalahan. Foto hanya ditampilkan bila memiliki lisensi yang diizinkan aplikasi; atribusi dan tautan lisensi/catatan dipertahankan. Lisensi konten eksternal mengikuti penyedianya, bukan otomatis lisensi kode proyek.
-
-## Struktur
-
-```text
-asadin-edu-biotaxa/
-├── index.html
-├── css/style.css
-├── js/app.js              # router, halaman, laboratorium, interaksi
-├── js/api.js              # GBIF, iNaturalist, Wikipedia; timeout dan cache
-├── js/map.js              # atlas lokal, titik temuan, pilihan lapisan daring
-├── js/media.js            # lisensi, atribusi, fallback gambar
-├── assets/                # foto beranda, atlas, Leaflet beserta lisensi
-├── js/content.js          # materi ajar dan antarmuka ID/EN
-├── tests/                 # pengujian deterministik + smoke layanan nyata
-├── docs/                  # screenshot, laporan live, contoh cetak
-├── archive/               # generator/data lama; tidak dipakai aplikasi
-├── implementation_plan.md
-└── walkthrough.md
-```
-
-Cache respons hanya di memori, maksimal 100 URL dengan TTL 5 menit. `localStorage` memuat pilihan bahasa dan maksimum 200 penanda spesies. Catatan belajar tidak dikirim ke server; cetak untuk menyimpannya. Pencarian/nama spesies dan permintaan data dikirim ke layanan sumber. Tidak ada analytics atau login.
-
-## Menguji
+Butuh Node.js 20 atau lebih baru.
 
 ```bash
 npm ci
-npm test
-# Dengan server aplikasi aktif:
-npm run smoke
+npm run dev        # http://127.0.0.1:8085
 ```
 
-Pengujian memakai Chrome pada `/usr/bin/google-chrome`; ubah dengan `CHROME_PATH=/jalur/chrome`. `BIOTAXA_URL` dapat mengubah alamat smoke test. Playwright hanya dependensi pengembangan. Lima belas uji deterministik memakai respons fixture untuk alur dan kegagalan; smoke terpisah memeriksa API nyata. Lihat [walkthrough](walkthrough.md) untuk bukti serta keterbatasan pengujian.
+### Situs publik: Cloudflare Pages (disarankan)
 
-## Identitas visual
+Cloudflare Pages menyajikan aplikasi dari jaringan CDN secara gratis tanpa batas permintaan. Sanggup melayani puluhan ribu pengguna bersamaan. Batas yang sebenarnya ada pada API iNaturalist, dan BioTaxa menanganinya dalam tiga lapis:
 
-Perombakan 24 September 2026 menggunakan logo AI transparan yang diterapkan pada header, footer, favicon, halaman, status pemuatan, dan lembar belajar. Logo produksi berukuran sekitar 38 KB; tidak membutuhkan layanan gambar saat website dibuka. Lihat [identitas dan prompt logo](assets/brand/README.md) serta [laporan desain](docs/redesign.md).
+1. **Snapshot API.** Setiap malam, GitHub Actions merekam respons API untuk halaman yang paling sering dibuka (galeri, 111 spesies kurasi, pencarian umum, pohon kehidupan) lalu menyajikannya sebagai file statis.
+2. **Edge cache.** Permintaan lain lewat [functions/api/[[path]].js](functions/api/[[path]].js), yang menyimpan respons di cache Cloudflare. Satu kelas yang membuka halaman yang sama cukup memicu satu permintaan ke iNaturalist, dan IP sekolah tidak terkena batas.
+3. **API langsung.** Jika edge cache sibuk atau kuotanya habis, aplikasi otomatis memanggil GBIF dan iNaturalist langsung dari browser.
+
+Penjelasan kapasitas dan batasnya ada di [docs/SCALING.md](docs/SCALING.md).
+
+Penyiapan (sekali saja):
+
+1. Buat akun [Cloudflare](https://dash.cloudflare.com/sign-up) (gratis).
+2. Buat API token di **My Profile → API Tokens → Create Token → Create Custom Token** dengan izin **Account · Cloudflare Pages · Edit**.
+3. Salin **Account ID** dari **Workers & Pages** (panel kanan) di dashboard Cloudflare.
+4. Di GitHub, buka **Settings → Secrets and variables → Actions**, lalu isi:
+   - _Secrets_: `CLOUDFLARE_API_TOKEN` dan `CLOUDFLARE_ACCOUNT_ID`.
+   - _Variables_: `CLOUDFLARE_PAGES_PROJECT`, misalnya `biotaxa`. Nama ini menjadi alamat `https://biotaxa.pages.dev` bila masih tersedia.
+5. Buka **Actions → Deploy → Run workflow**, centang _Record a fresh API snapshot_, lalu jalankan. Deploy pertama memakan waktu sekitar 30 menit.
+6. Jika alamat situs berbeda (misalnya memakai domain sendiri), isi variable `SITE_URL`, misalnya `https://biotaxa.id`, agar pratinjau tautan di WhatsApp dan media sosial benar.
+
+Setelah itu, setiap push ke `main` yang lulus CI otomatis diterbitkan, dan snapshot diperbarui setiap pukul 02.00 WIB. Untuk mencoba di komputer sendiri dengan runtime Cloudflare:
+
+```bash
+npm run snapshot              # opsional, sekitar 30 menit
+npm run preview:cloudflare    # http://127.0.0.1:8788
+```
+
+### Server sendiri untuk sekolah (Node.js atau Docker)
+
+Cocok untuk server di jaringan lokal sekolah. `server/server.mjs` menyajikan aplikasi, menyimpan respons GBIF dan iNaturalist di cache, dan mengatur jeda permintaan untuk seluruh sekolah. Tidak butuh paket npm saat berjalan.
+
+```bash
+npm run snapshot    # opsional: server juga menyajikan data/snapshot/
+PORT=8080 npm start
+```
+
+Atau dengan Docker:
+
+```bash
+docker build -t biotaxa .
+docker run -d --restart unless-stopped -p 8080:8080 --name biotaxa biotaxa
+```
+
+Jika server berada di belakang reverse proxy (nginx, Caddy, Cloudflare, atau router PaaS), tambahkan `TRUST_PROXY=1`. Jika proxy itu melayani HTTPS, tambahkan juga `HSTS=1`.
+
+Server ini dirancang untuk **satu sekolah**, bukan untuk situs publik. Semua pengguna berbagi satu antrean ke iNaturalist (sekitar 60 permintaan per menit), jadi untuk ribuan pengguna gunakan Cloudflare Pages.
+
+| Variabel               | Bawaan            | Fungsi                                                                                                  |
+| ---------------------- | ----------------- | ------------------------------------------------------------------------------------------------------- |
+| `PORT`, `HOST`         | `8080`, `0.0.0.0` | Alamat server                                                                                           |
+| `TRUST_PROXY`          | `0`               | Jumlah reverse proxy di depan server. Diperlukan agar batas per pengguna memakai alamat asli pengunjung |
+| `HSTS`                 | mati              | `1` untuk mengaktifkan HSTS saat diakses lewat HTTPS                                                    |
+| `CLIENT_LIMIT_PER_MIN` | `240`             | Batas permintaan API per alamat per menit                                                               |
+| `INAT_INTERVAL_MS`     | `1000`            | Jeda minimum antarpermintaan ke iNaturalist                                                             |
+| `CACHE_MAX_ENTRIES`    | `3000`            | Jumlah respons API yang disimpan di memori                                                              |
+| `USER_AGENT`           | `BioTaxa/3 …`     | Identitas ke penyedia API. Isi dengan alamat situs atau kontak Anda                                     |
+| `LOG`                  | mati              | `1` untuk mencatat setiap permintaan                                                                    |
+
+### Hosting statis lain
+
+`npm run build:site` menghasilkan folder `dist/` yang bisa diunggah ke hosting statis mana pun, misalnya GitHub Pages atau Netlify. Snapshot ikut disertakan bila sudah dibuat. Tanpa edge cache, permintaan lain langsung dari browser ke API.
+
+### Pengaturan aplikasi
+
+Ubah [js/config.js](js/config.js) bila menerbitkan salinan Anda sendiri:
+
+- `repositoryURL`, `feedbackURL`, `donateURL` menampilkan tautan repositori, formulir masukan, dan donasi. Kosongkan untuk menyembunyikannya.
+- `allowNonCommercialMedia` menentukan apakah foto berlisensi NC ditampilkan. **Ubah menjadi `false` sebelum monetisasi.** Lihat [docs/LICENSING.md](docs/LICENSING.md).
+
+Setelah mengubah berkas aplikasi, jalankan `npm run build` untuk memperbarui daftar cache offline di `sw.js`.
+
+## Pengembangan dan pengujian
+
+| Perintah                         | Fungsi                                                                                                             |
+| -------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
+| `npm run check`                  | Semua pemeriksaan: lint, validasi konten, cache offline, dan tes browser                                           |
+| `npm test`                       | 56 tes Playwright dengan data palsu, tidak butuh internet                                                          |
+| `npm run smoke`                  | Menguji aplikasi yang sedang berjalan terhadap API sungguhan, lalu membuat ulang screenshot di `docs/screenshots/` |
+| `npm run data:check`             | Memvalidasi konten kurasi. Tambahkan `-- --resolve` untuk mengisi ID dan foto spesies baru                         |
+| `npm run snapshot`               | Merekam snapshot API ke `data/snapshot/`. Tambahkan `-- --quick` untuk uji singkat                                 |
+| `npm run build:site`             | Menyusun `dist/` untuk hosting statis, termasuk snapshot dan `_headers`                                            |
+| `npm run preview:cloudflare`     | Menjalankan `dist/` dan edge cache dengan runtime Cloudflare di komputer sendiri                                   |
+| `npm run lint`, `npm run format` | ESLint dan Prettier                                                                                                |
+| `npm run build`                  | Memperbarui daftar cache offline di `sw.js`                                                                        |
+
+Tes memakai Google Chrome di `/usr/bin/google-chrome` bila ada. Atur `CHROME_PATH` untuk memakai peramban lain. Setiap push dan pull request diperiksa oleh [GitHub Actions](.github/workflows/ci.yml), termasuk build image Docker. [Deploy](.github/workflows/deploy.yml) ke Cloudflare Pages berjalan setelah CI lulus di `main`.
+
+```text
+index.html, sw.js, manifest.webmanifest
+css/style.css
+js/
+  app.js          titik masuk: event global, catatan, lencana, service worker
+  config.js       pengaturan penerbitan
+  core/           router, preferensi (bahasa, jenjang, peran), penyimpanan, data pengguna
+  components/     tata letak, kartu, kuis, saran pencarian, teks kaya dan kamus
+  pages/          satu modul per halaman, dimuat saat dibutuhkan
+  labs/           simulasi laboratorium
+  services/       GBIF, iNaturalist, Wikipedia, PBDB, peta, lisensi foto, suara
+  data/           konten kurasi (CC BY-SA 4.0): spesies, kelompok, kamus, materi, purba
+  i18n/ui.js      teks antarmuka bersama
+server/           server produksi untuk sekolah; policy.mjs = header keamanan dan aturan proxy bersama
+functions/        edge cache Cloudflare Pages untuk /api/*
+scripts/          validasi konten, pencari ID spesies, perekam snapshot, build situs, daftar cache offline
+tests/            tes Playwright dan smoke test
+assets/           logo, foto beranda, atlas dunia, Leaflet
+docs/             lisensi dan monetisasi, skala, screenshot, contoh modul ajar
+archive/          kode versi lama, tidak dipakai
+data/snapshot/    (dibuat otomatis) snapshot API, tidak masuk git
+dist/             (dibuat otomatis) situs siap terbit
+```
+
+## Sumber data dan batasannya
+
+BioTaxa menampilkan data dari [GBIF](https://www.gbif.org), [iNaturalist](https://www.inaturalist.org), [Wikipedia](https://www.wikipedia.org), dan [Paleobiology Database](https://paleobiodb.org). Setiap foto menampilkan atribusi dan lisensinya.
+
+Tidak ada satu sumber pun yang punya semua fakta tentang setiap makhluk hidup. Karena itu:
+
+- Informasi yang tidak tersedia ditandai, bukan dikarang.
+- Teks dari sumber luar tidak diterjemahkan otomatis. Pada spesies di luar 111 kartu kurasi, sebagian teks bisa berbahasa Inggris.
+- Titik di peta adalah catatan temuan, bukan peta sebaran lengkap.
+- Simulasi laboratorium adalah model untuk belajar, bukan pengukuran nyata.
+
+## Lisensi
+
+- **Kode**: [MIT](LICENSE)
+- **Konten kurasi** di `js/data/`: [CC BY-SA 4.0](LICENSE-CONTENT.md)
+- **Foto dan data dari luar** mengikuti lisensi masing-masing penyedia
+
+Rincian lisensi dan daftar periksa sebelum monetisasi ada di [docs/LICENSING.md](docs/LICENSING.md).
+
+## Berkontribusi
+
+Guru, dosen, mahasiswa biologi, penerjemah, dan pengembang sangat diharapkan ikut membantu. Mulai dari [CONTRIBUTING.md](CONTRIBUTING.md). Proyek ini mengikuti [Kode Etik](CODE_OF_CONDUCT.md). Laporkan masalah keamanan sesuai [SECURITY.md](SECURITY.md). Riwayat perubahan ada di [CHANGELOG.md](CHANGELOG.md).
 
 ## English
 
-BioTaxa is a lightweight, bilingual biodiversity learning application. Serve this folder using `python3 -m http.server 8085 --bind 127.0.0.1` and visit http://127.0.0.1:8085/. No build or runtime package installation is needed.
+BioTaxa is a free, open-source, bilingual atlas of life for learners from primary school to university, and for their teachers.
 
-Explore three educational domains, then follow GBIF parent/child relationships through families and genera to species. Search accepted species records, inspect sourced dossiers, bookmark discoveries, print worksheets, and experiment with lever mechanics, energy transfer, and osmosis.
-
-The interface and local teaching material are available in Indonesian and English. External text retains its source language when a translation is unavailable. Missing names, traits, measurements, photos, and distribution data are explicitly marked. This is an interface to available knowledge, **not a claim of complete knowledge about every species**. Simulations do not predict real venom toxicity or animal danger. Source data and images retain their original licenses and attribution.
-
-Run `npm ci && npm test` for deterministic browser tests; run `npm run smoke` with the local server running to check live services. Source failures, incomplete taxonomic ranks, API search-depth limits, and data quality differences are expected limitations rather than invented facts.
+- **Five modes.** Primary, middle school, high school, university and teacher. Each changes text size, vocabulary, lessons, visible tabs and activities.
+- **Features.** Child-friendly search and an Indonesia-first gallery (iNaturalist), a GBIF tree of life, 111 curated species cards in plain language, 12 curriculum lessons with 76 quiz questions, 7 lab simulations, a 103-term glossary, species comparison, "near me", prehistoric life with a geological timeline, badges, printable lesson plans and link-based assignments. It works offline as a PWA, is tested with axe for WCAG 2.1 AA, and has no accounts, ads or analytics.
+- **Run it.** For development, run `npm ci && npm run dev`. For a public site, use Cloudflare Pages: the [Deploy workflow](.github/workflows/deploy.yml) publishes the static app, a nightly snapshot of the most requested API responses, and an edge cache Function for everything else. It needs the `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` secrets and a `CLOUDFLARE_PAGES_PROJECT` variable. If the edge cache is busy, the app falls back to calling the APIs directly. For one school's own server, use `npm start` or Docker (`TRUST_PROXY=1` behind a reverse proxy, `HSTS=1` behind HTTPS). See [docs/SCALING.md](docs/SCALING.md).
+- **Test it.** `npm run check` runs lint, content validation, the offline precache check and 56 Playwright tests. `npm run smoke` checks a running instance against the live APIs.
+- **License.** Code is MIT and curated content is CC BY-SA 4.0. Photos and external data keep their own licenses. Before monetising, read [docs/LICENSING.md](docs/LICENSING.md).
+- **Contribute.** See [CONTRIBUTING.md](CONTRIBUTING.md).

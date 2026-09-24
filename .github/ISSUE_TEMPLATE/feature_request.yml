@@ -1,0 +1,26 @@
+name: Usulan fitur / Feature request
+description: Ide untuk membuat BioTaxa lebih berguna di kelas. / An idea that would make BioTaxa more useful in class.
+labels: [enhancement]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Kebutuhan apa yang belum terpenuhi? / What need is not met yet?
+      description: Ceritakan situasi belajar atau mengajarnya. / Describe the learning or teaching situation.
+    validations:
+      required: true
+  - type: textarea
+    id: idea
+    attributes:
+      label: Usulan Anda / Your idea
+  - type: dropdown
+    id: audience
+    attributes:
+      label: Untuk siapa? / For whom?
+      multiple: true
+      options:
+        - SD
+        - SMP
+        - SMA
+        - Kuliah / University
+        - Guru / Teacher

@@ -1,2 +1,31 @@
-import {defineConfig} from '@playwright/test';
-export default defineConfig({testDir:'./tests',timeout:45000,fullyParallel:true,use:{baseURL:'http://127.0.0.1:18765',headless:true,launchOptions:{executablePath:process.env.CHROME_PATH||'/usr/bin/google-chrome',args:['--no-sandbox']}},webServer:{command:'python3 -m http.server 18765 --bind 127.0.0.1',url:'http://127.0.0.1:18765',reuseExistingServer:true},reporter:'list'});
+import { existsSync } from 'node:fs';
+import { defineConfig } from '@playwright/test';
+
+// Uses a system Chrome when available (CHROME_PATH or /usr/bin/google-chrome); otherwise Playwright's Chromium.
+const chrome =
+  process.env.CHROME_PATH || (existsSync('/usr/bin/google-chrome') ? '/usr/bin/google-chrome' : undefined);
+
+export default defineConfig({
+  testDir: './tests',
+  testMatch: /.*\.spec\.js/,
+  timeout: 45000,
+  expect: { timeout: 10000 },
+  fullyParallel: true,
+  retries: process.env.CI ? 1 : 0,
+  reporter: process.env.CI ? [['list'], ['html', { open: 'never' }]] : 'list',
+  use: {
+    baseURL: 'http://127.0.0.1:18765',
+    headless: true,
+    // Fixture images come from a fake host; the CSP test re-enables the policy explicitly.
+    bypassCSP: true,
+    // Service workers would bypass request interception; the PWA test allows them explicitly.
+    serviceWorkers: 'block',
+    locale: 'id-ID',
+    launchOptions: { executablePath: chrome, args: ['--no-sandbox'] },
+  },
+  webServer: {
+    command: 'python3 -m http.server 18765 --bind 127.0.0.1',
+    url: 'http://127.0.0.1:18765',
+    reuseExistingServer: !process.env.CI,
+  },
+});

@@ -1,0 +1,39 @@
+name: Laporan masalah / Bug report
+description: Ada yang tidak berjalan sebagaimana mestinya. / Something does not work as expected.
+labels: [bug]
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: Apa yang terjadi? / What happened?
+      description: Sertakan tangkapan layar bila bisa. / Add a screenshot if you can.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Langkah untuk mengulang / Steps to reproduce
+      placeholder: |
+        1. Buka #/search?q=hiu
+        2. Klik ...
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Yang seharusnya terjadi / Expected result
+  - type: dropdown
+    id: level
+    attributes:
+      label: Mode jenjang / Learning level
+      options:
+        - SD
+        - SMP
+        - SMA
+        - Kuliah / University
+        - Guru / Teacher
+  - type: input
+    id: device
+    attributes:
+      label: Perangkat dan peramban / Device and browser
+      placeholder: Android 14, Chrome 140

@@ -1,0 +1,12 @@
+.git
+.github
+node_modules
+archive
+docs
+tests
+test-results
+playwright-report
+scripts
+*.log
+Dockerfile
+.dockerignore

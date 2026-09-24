@@ -1,0 +1,91 @@
+# Publishes BioTaxa to Cloudflare Pages: static files + API snapshot + the edge cache Function.
+# Setup (once): repository variable CLOUDFLARE_PAGES_PROJECT, secrets CLOUDFLARE_API_TOKEN and
+# CLOUDFLARE_ACCOUNT_ID, optional variable SITE_URL. Until the variable exists this workflow is skipped.
+name: Deploy
+
+on:
+  # After CI passes on main, so a broken commit is never published.
+  workflow_run:
+    workflows: [CI]
+    types: [completed]
+    branches: [main]
+  # Every night at 02:00 WIB: record a fresh API snapshot and redeploy.
+  schedule:
+    - cron: '0 19 * * *'
+  workflow_dispatch:
+    inputs:
+      refresh:
+        description: Record a fresh API snapshot (about 30 minutes)
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+concurrency:
+  group: deploy
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    name: Cloudflare Pages
+    # Only pushes to this repository's main branch; never code from pull requests or forks.
+    if: >-
+      vars.CLOUDFLARE_PAGES_PROJECT != '' &&
+      (github.event_name != 'workflow_run' ||
+       (github.event.workflow_run.conclusion == 'success' &&
+        github.event.workflow_run.event == 'push' &&
+        github.event.workflow_run.head_repository.full_name == github.repository))
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    env:
+      PROJECT: ${{ vars.CLOUDFLARE_PAGES_PROJECT }}
+      REFRESH: ${{ github.event_name == 'schedule' || inputs.refresh }}
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: ${{ github.event.workflow_run.head_sha || github.sha }}
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - name: Content and precache checks
+        run: npm run data:check && npm run build:check
+
+      - name: Restore the latest API snapshot
+        id: snapshot
+        uses: actions/cache/restore@v4
+        with:
+          path: data/snapshot
+          key: snapshot-${{ github.run_id }}
+          restore-keys: snapshot-
+      - name: Record a fresh API snapshot
+        id: record
+        if: env.REFRESH == 'true' || steps.snapshot.outputs.cache-matched-key == ''
+        # The recorder drives the app in the runner's Google Chrome, or Playwright's Chromium if absent.
+        run: |
+          if [ ! -x /usr/bin/google-chrome ]; then npx playwright install --with-deps chromium; fi
+          npm run snapshot
+      - name: Keep the snapshot for the next deploys
+        if: steps.record.outcome == 'success'
+        uses: actions/cache/save@v4
+        with:
+          path: data/snapshot
+          key: snapshot-${{ github.run_id }}
+
+      - name: Build the site
+        run: npm run build:site
+        env:
+          SITE_URL: ${{ vars.SITE_URL || format('https://{0}.pages.dev', vars.CLOUDFLARE_PAGES_PROJECT) }}
+      # The Cloudflare credentials are only given to the two steps that need them.
+      - name: Create the Pages project on the first deploy
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: npx --yes wrangler@4 pages project create "$PROJECT" --production-branch=main || echo "Project already exists."
+      - name: Deploy
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: npx --yes wrangler@4 pages deploy dist --project-name="$PROJECT" --branch=main --commit-hash="$(git rev-parse HEAD)" --commit-dirty=true

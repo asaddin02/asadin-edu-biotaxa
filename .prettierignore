@@ -1,0 +1,12 @@
+node_modules
+archive
+assets/vendor
+assets/maps
+docs
+test-results
+playwright-report
+package-lock.json
+
+dist
+data
+.wrangler

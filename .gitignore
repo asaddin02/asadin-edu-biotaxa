@@ -2,3 +2,8 @@ node_modules/
 test-results/
 playwright-report/
 *.log
+# Generated: API snapshot (npm run snapshot), site bundle (npm run build:site), local Cloudflare runtime
+data/snapshot/
+data/snapshot.tmp/
+dist/
+.wrangler/
