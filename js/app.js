@@ -235,7 +235,7 @@ function registerServiceWorker() {
   try {
     forced = localStorage.getItem('biotaxa-force-sw') === '1';
   } catch {
-    forced = false;
+    /* storage unavailable: not forced */
   }
   if (navigator.webdriver && !forced) return;
   navigator.serviceWorker

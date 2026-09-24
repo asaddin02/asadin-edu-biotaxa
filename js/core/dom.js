@@ -72,7 +72,7 @@ export async function copyText(text) {
     try {
       ok = document.execCommand('copy');
     } catch {
-      ok = false;
+      /* copying is not supported here */
     }
     area.remove();
     return ok;
