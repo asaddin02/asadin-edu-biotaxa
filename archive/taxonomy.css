@@ -1,0 +1,755 @@
+/* ==========================================================================
+   BioTaxa - Taxonomy Hierarchy & Trade-Off Lab Stylesheet
+   Theme: Pure Light Mode (Lush Forest Green, Earthy Bark Brown, Crisp White)
+   ========================================================================== */
+
+/* ==========================================================================
+   BREADCRUMBS BAR (LIVING CODEX BOOK RIBBON)
+   ========================================================================== */
+.breadcrumbs-bar.book-ribbon {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  background: linear-gradient(135deg, #fbf7f1 0%, #f4ede3 50%, #eff5f0 100%);
+  border: 1px solid rgba(122, 75, 42, 0.22);
+  border-radius: var(--radius-full);
+  padding: 8px 18px;
+  margin-bottom: 28px;
+  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.7), 0 3px 12px rgba(56, 31, 18, 0.05);
+}
+
+.bc-item {
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--text-secondary);
+  font-family: var(--font-heading);
+  font-size: 0.88rem;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 13px;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: var(--transition-smooth);
+}
+
+.bc-item:hover {
+  background: rgba(27, 92, 62, 0.09);
+  color: var(--green-deep);
+}
+
+.bc-item.active {
+  background: linear-gradient(135deg, #e4f3ea 0%, #d1ecd9 100%);
+  color: #0e291d;
+  border-color: rgba(27, 92, 62, 0.35);
+  font-weight: 700;
+  box-shadow: 0 2px 6px rgba(14, 41, 29, 0.1);
+}
+
+.bc-sep {
+  color: var(--brown-wood);
+  font-size: 1.1rem;
+  user-select: none;
+  font-weight: 700;
+}
+
+/* ==========================================================================
+   TAXONOMY DRILLDOWN CARDS
+   ========================================================================== */
+.drilldown-header {
+  margin-bottom: 24px;
+}
+
+.drilldown-header h3 {
+  font-size: 1.55rem;
+  color: var(--green-deep);
+  font-weight: 800;
+  margin-bottom: 6px;
+  letter-spacing: -0.4px;
+}
+
+.drilldown-header p {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.taxa-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+  gap: 22px;
+  margin-bottom: 40px;
+}
+
+.taxa-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  transition: var(--transition-smooth);
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+
+.taxa-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(180deg, var(--green-primary), var(--brown-wood));
+  opacity: 0;
+  transition: var(--transition-smooth);
+}
+
+.taxa-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(42, 122, 85, 0.4);
+  box-shadow: var(--shadow-hover);
+}
+
+.taxa-card:hover::before {
+  opacity: 1;
+}
+
+.taxa-card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.taxa-rank-badge {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--brown-wood);
+  background: var(--brown-cream);
+  border: 1px solid rgba(92, 55, 30, 0.18);
+  padding: 3px 9px;
+  border-radius: var(--radius-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.taxa-icon {
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.taxa-card-title {
+  font-family: var(--font-heading);
+  font-size: 1.38rem;
+  font-weight: 800;
+  color: var(--green-deep);
+  margin-bottom: 3px;
+  line-height: 1.25;
+  letter-spacing: -0.025em;
+}
+
+.taxa-card-sub {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--brown-wood);
+  margin-bottom: 10px;
+  letter-spacing: 0.01em;
+}
+
+.taxa-card-desc {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  line-height: 1.55;
+  margin-bottom: 18px;
+  flex: 1;
+}
+
+.taxa-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 14px;
+  border-top: 1px solid rgba(31, 92, 64, 0.08);
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--green-primary);
+}
+
+.taxa-child-count {
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+/* Drilldown Species Section */
+.drilldown-species-section {
+  background: var(--bg-card);
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-xl);
+  padding: 28px;
+  margin-top: 32px;
+  margin-bottom: 40px;
+  box-shadow: var(--shadow-sm);
+}
+
+/* ==========================================================================
+   8-LEVEL BIOLOGICAL HIERARCHY GUIDE (LADDER CARDS)
+   ========================================================================== */
+.taxa-guide-container {
+  background: var(--bg-card);
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-xl);
+  padding: 32px;
+  margin-top: 48px;
+  box-shadow: var(--shadow-sm);
+}
+
+.taxa-guide-container h3 {
+  font-size: 1.45rem;
+  color: var(--green-deep);
+  font-weight: 800;
+  margin-bottom: 4px;
+}
+
+.guide-sub {
+  font-size: 0.92rem;
+  color: var(--text-secondary);
+  margin-bottom: 24px;
+}
+
+.levels-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 12px;
+}
+
+.level-card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 16px 14px;
+  text-align: center;
+  transition: var(--transition-smooth);
+}
+
+.level-card:hover {
+  background: var(--green-light);
+  border-color: rgba(31, 92, 64, 0.25);
+  transform: translateY(-3px);
+}
+
+.level-num {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--green-primary);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.78rem;
+  font-weight: 800;
+  margin: 0 auto 10px;
+}
+
+.level-name {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--green-deep);
+  margin-bottom: 4px;
+}
+
+.level-desc {
+  font-size: 0.74rem;
+  color: var(--text-muted);
+  line-height: 1.4;
+}
+
+/* ==========================================================================
+   TRADE-OFF LAB (CAPIT VS RACUN)
+   ========================================================================== */
+.tradeoff-wrapper {
+  margin-bottom: 60px;
+}
+
+.tradeoff-intro {
+  background: linear-gradient(135deg, #fcf8f2 0%, #f7f1e7 45%, #eff6f1 100%);
+  border: 1px solid rgba(122, 75, 42, 0.2);
+  border-left: 5px solid #1b5c3e;
+  border-radius: var(--radius-xl);
+  padding: 30px 34px;
+  margin-bottom: 28px;
+  box-shadow: 0 4px 20px rgba(56, 31, 18, 0.05);
+}
+
+.tradeoff-intro h3 {
+  font-family: var(--font-heading);
+  font-size: 1.45rem;
+  color: var(--brown-deep);
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  margin-bottom: 8px;
+}
+
+.tradeoff-intro p {
+  font-size: 0.98rem;
+  color: var(--text-secondary);
+  line-height: 1.68;
+}
+
+.tradeoff-intro strong {
+  color: var(--brown-bark);
+  font-weight: 700;
+}
+
+/* Presets Bar */
+.presets-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 28px;
+  flex-wrap: wrap;
+}
+
+.presets-label {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--green-deep);
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+.presets-chips {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.preset-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 16px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-full);
+  color: var(--text-secondary);
+  font-family: var(--font-body);
+  font-size: 0.86rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+  box-shadow: var(--shadow-sm);
+}
+
+.preset-pill:hover {
+  background: var(--green-light);
+  color: var(--green-deep);
+  border-color: rgba(31, 92, 64, 0.25);
+}
+
+.preset-pill.active {
+  background: var(--green-primary);
+  color: #ffffff;
+  border-color: var(--green-primary);
+  font-weight: 700;
+  box-shadow: 0 4px 12px rgba(31, 92, 64, 0.25);
+}
+
+/* Arena Comparison Grid */
+.arena-grid {
+  display: grid;
+  grid-template-columns: 1fr 320px 1fr;
+  gap: 24px;
+  align-items: start;
+  margin-bottom: 36px;
+}
+
+.fighter-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-xl);
+  padding: 24px;
+  box-shadow: var(--shadow-md);
+  position: relative;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+  overflow: hidden;
+}
+
+.fighter-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-hover);
+  border-color: rgba(42, 122, 85, 0.35);
+}
+
+.fighter-badge {
+  position: absolute;
+  top: 18px;
+  left: 18px;
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+  font-size: 0.74rem;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  z-index: 3;
+}
+
+.fighter-badge.badge-a {
+  background: var(--green-primary);
+  color: #ffffff;
+}
+
+.fighter-badge.badge-b {
+  background: var(--brown-wood);
+  color: #ffffff;
+}
+
+.fighter-img-wrap {
+  width: 100%;
+  height: 220px;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: var(--bg-secondary);
+  margin-bottom: 18px;
+}
+
+.fighter-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.fighter-card:hover .fighter-img-wrap img {
+  transform: scale(1.05);
+}
+
+.fighter-info h3 {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--green-deep);
+  margin-bottom: 2px;
+}
+
+.fighter-sci {
+  font-family: var(--font-scientific);
+  font-style: italic;
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+  margin-bottom: 6px;
+}
+
+.fighter-order-tag {
+  display: inline-block;
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: var(--brown-wood);
+  background: var(--brown-cream);
+  border: 1px solid rgba(92, 55, 30, 0.16);
+  padding: 3px 9px;
+  border-radius: var(--radius-sm);
+  margin-bottom: 18px;
+}
+
+.stat-group {
+  margin-bottom: 16px;
+}
+
+.stat-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.86rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+
+.meter-bar-bg {
+  width: 100%;
+  height: 11px;
+  background: rgba(0, 0, 0, 0.07);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+  margin: 6px 0;
+}
+
+.meter-bar-fill {
+  height: 100%;
+  border-radius: var(--radius-full);
+  transition: width 0.8s ease-out;
+  position: relative;
+  overflow: hidden;
+}
+
+.meter-bar-fill::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.45) 50%, transparent 100%);
+  animation: barShimmer 3s infinite ease-in-out;
+}
+
+.meter-bar-fill.claw-fill {
+  background: var(--grad-claw);
+  box-shadow: 0 2px 8px rgba(27, 92, 62, 0.25);
+}
+
+.meter-bar-fill.venom-fill {
+  background: var(--grad-venom);
+  box-shadow: 0 2px 8px rgba(180, 83, 9, 0.25);
+}
+
+.stat-note {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.btn-inspect {
+  width: 100%;
+  margin-top: 14px;
+  padding: 10px 14px;
+  background: linear-gradient(135deg, #f0f5ef 0%, #f6efe6 100%);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 0.86rem;
+  color: var(--green-deep);
+  cursor: pointer;
+  transition: var(--transition-smooth);
+}
+
+.btn-inspect:hover {
+  background: linear-gradient(135deg, #1b5c3e 0%, #267953 100%);
+  color: #ffffff;
+  border-color: transparent;
+  box-shadow: 0 4px 12px rgba(27, 92, 62, 0.22);
+}
+
+/* VS Column & Verdict */
+.arena-vs-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding-top: 40px;
+}
+
+.vs-circle {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #543119 0%, #1b5c3e 100%);
+  color: #ffffff;
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 20px rgba(27, 92, 62, 0.25);
+  border: 3px solid #ffffff;
+  letter-spacing: 0.5px;
+}
+
+.verdict-box {
+  background: #ffffff;
+  border: 2px solid rgba(31, 92, 64, 0.2);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  box-shadow: var(--shadow-sm);
+  width: 100%;
+}
+
+.verdict-box h4 {
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: var(--green-deep);
+  text-align: center;
+  margin-bottom: 12px;
+  border-bottom: 1px solid rgba(31, 92, 64, 0.1);
+  padding-bottom: 8px;
+  letter-spacing: 0.4px;
+}
+
+.verdict-item {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.88rem;
+  margin-bottom: 8px;
+}
+
+.v-label {
+  color: var(--text-secondary);
+  font-weight: 600;
+}
+
+.v-val {
+  font-weight: 800;
+  color: var(--green-deep);
+}
+
+.v-val.text-amber {
+  color: var(--brown-bark);
+}
+
+.v-val.text-purple {
+  color: #7e22ce;
+}
+
+.verdict-summary {
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(31, 92, 64, 0.1);
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  line-height: 1.55;
+}
+
+.verdict-summary strong {
+  color: var(--green-deep);
+}
+
+/* Interactive Slider Card */
+.slider-interactive-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-xl);
+  padding: 32px;
+  box-shadow: var(--shadow-sm);
+}
+
+.slider-interactive-card h4 {
+  font-size: 1.35rem;
+  color: var(--green-deep);
+  font-weight: 800;
+  margin-bottom: 6px;
+}
+
+.slider-hint {
+  font-size: 0.92rem;
+  color: var(--text-secondary);
+  margin-bottom: 24px;
+}
+
+.range-slider-wrap {
+  margin-bottom: 24px;
+}
+
+.range-slider {
+  width: 100%;
+  height: 10px;
+  border-radius: var(--radius-full);
+  background: linear-gradient(90deg, #b67d51 0%, #2a7a55 100%);
+  outline: none;
+  cursor: pointer;
+  -webkit-appearance: none;
+}
+
+.range-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 3px solid var(--green-primary);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: var(--transition-smooth);
+}
+
+.range-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.15);
+  border-color: var(--green-accent);
+}
+
+.range-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--brown-wood);
+  margin-top: 10px;
+}
+
+.slider-output-desc {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 16px 20px;
+  font-size: 0.92rem;
+  color: var(--text-primary);
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.slider-species-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 16px;
+}
+
+.slider-chip {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-md);
+  padding: 10px 14px;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+  box-shadow: var(--shadow-sm);
+}
+
+.slider-chip:hover {
+  transform: translateY(-2px);
+  border-color: var(--green-primary);
+  box-shadow: var(--shadow-md);
+}
+
+.slider-chip img {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-sm);
+  object-fit: cover;
+}
+
+.chip-name {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--green-deep);
+}
+
+.chip-scores {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--brown-wood);
+}
+
+/* ==========================================================================
+   Responsive Rules
+   ========================================================================== */
+@media (max-width: 1000px) {
+  .arena-grid {
+    grid-template-columns: 1fr;
+  }
+  .arena-vs-column {
+    padding-top: 0;
+  }
+  .levels-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+

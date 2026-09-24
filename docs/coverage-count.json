@@ -1,0 +1,34 @@
+{
+  "checked_at": "2026-09-24T02:37:13.943881+00:00",
+  "source": "GBIF species/search",
+  "filter": {
+    "rank": "SPECIES",
+    "status": "ACCEPTED",
+    "datasetKey": "d7dddbf4-2cf0-4f39-9b2a-bb099caae36c",
+    "highertaxonKey": "one request per kingdom key 1\u20137",
+    "limit": 0
+  },
+  "kingdom_counts": {
+    "Animalia": 1822234,
+    "Archaea": 2820,
+    "Bacteria": 47550,
+    "Chromista": 101151,
+    "Fungi": 172327,
+    "Plantae": 446842,
+    "Protozoa": 4626
+  },
+  "domain_counts": {
+    "Eukarya": 2547180,
+    "Bacteria": 47550,
+    "Archaea": 2820
+  },
+  "total": 2597550,
+  "complete_dossier_counts": null,
+  "limitations": [
+    "Counts are accepted species records in the source, not individuals or complete dossiers.",
+    "No global audit of photographs, descriptions, names, traits and occurrence coordinates has been performed.",
+    "Completeness is unknown, not zero.",
+    "No extant-only or scientific-name-type filter was applied.",
+    "iNaturalist counts are not added because they overlap with GBIF."
+  ]
+}

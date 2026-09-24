@@ -1,0 +1,15 @@
+{
+  "name": "asadin-edu-biotaxa",
+  "version": "2.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "python3 -m http.server 8085 --bind 127.0.0.1",
+    "test": "playwright test",
+    "smoke": "node tests/live-smoke.mjs"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.63.0",
+    "leaflet": "^1.9.4"
+  }
+}

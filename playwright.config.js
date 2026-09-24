@@ -1,0 +1,2 @@
+import {defineConfig} from '@playwright/test';
+export default defineConfig({testDir:'./tests',timeout:45000,fullyParallel:true,use:{baseURL:'http://127.0.0.1:18765',headless:true,launchOptions:{executablePath:process.env.CHROME_PATH||'/usr/bin/google-chrome',args:['--no-sandbox']}},webServer:{command:'python3 -m http.server 18765 --bind 127.0.0.1',url:'http://127.0.0.1:18765',reuseExistingServer:true},reporter:'list'});

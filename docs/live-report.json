@@ -1,0 +1,132 @@
+{
+  "time": "2026-09-24T03:18:37.259Z",
+  "base": "http://127.0.0.1:8085",
+  "galleries": [
+    {
+      "group": "all",
+      "shown": 24,
+      "summary": "1.128.924 spesies terindeks di iNaturalist\nHalaman 1",
+      "photoCards": 24,
+      "loadedImages": 20,
+      "first": "#/species/inat-6930"
+    },
+    {
+      "group": "animals",
+      "shown": 24,
+      "summary": "772.826 spesies terindeks di iNaturalist\nHalaman 1",
+      "photoCards": 24,
+      "loadedImages": 22,
+      "first": "#/species/inat-6930"
+    },
+    {
+      "group": "birds",
+      "shown": 24,
+      "summary": "11.365 spesies terindeks di iNaturalist\nHalaman 1",
+      "photoCards": 24,
+      "loadedImages": 24,
+      "first": "#/species/inat-6930"
+    },
+    {
+      "group": "insects",
+      "shown": 24,
+      "summary": "515.291 spesies terindeks di iNaturalist\nHalaman 1",
+      "photoCards": 24,
+      "loadedImages": 16,
+      "first": "#/species/inat-47219"
+    },
+    {
+      "group": "plants",
+      "shown": 24,
+      "summary": "281.693 spesies terindeks di iNaturalist\nHalaman 1",
+      "photoCards": 24,
+      "loadedImages": 13,
+      "first": "#/species/inat-52821"
+    },
+    {
+      "group": "fungi",
+      "shown": 24,
+      "summary": "62.399 spesies terindeks di iNaturalist\nHalaman 1",
+      "photoCards": 24,
+      "loadedImages": 11,
+      "first": "#/species/inat-54134"
+    },
+    {
+      "group": "bacteria",
+      "shown": 24,
+      "summary": "2.062 spesies terindeks di iNaturalist\nHalaman 1",
+      "photoCards": 24,
+      "loadedImages": 10,
+      "first": "#/species/inat-319815"
+    },
+    {
+      "group": "archaea",
+      "shown": 24,
+      "summary": "86 spesies terindeks di iNaturalist\nHalaman 1",
+      "photoCards": 4,
+      "loadedImages": 4,
+      "first": "#/species/inat-939014"
+    }
+  ],
+  "dossiers": [
+    {
+      "label": "tiger",
+      "name": "Panthera tigris",
+      "photos": 8,
+      "heroLoaded": true,
+      "basemap": "ready",
+      "mapPoints": "300",
+      "mapSource": "GBIF",
+      "mapStatus": "300 titik sampel dari 5.720 catatan berkoordinat · GBIF. Bukan batas sebaran spesies."
+    },
+    {
+      "label": "plant",
+      "name": "Achillea millefolium",
+      "photos": 8,
+      "heroLoaded": true,
+      "basemap": "ready",
+      "mapPoints": "300",
+      "mapSource": "GBIF",
+      "mapStatus": "300 titik sampel dari 1.730.178 catatan berkoordinat · GBIF. Bukan batas sebaran spesies."
+    },
+    {
+      "label": "fungus",
+      "name": "Trametes versicolor",
+      "photos": 8,
+      "heroLoaded": true,
+      "basemap": "ready",
+      "mapPoints": "300",
+      "mapSource": "GBIF",
+      "mapStatus": "300 titik sampel dari 198.651 catatan berkoordinat · GBIF. Bukan batas sebaran spesies."
+    },
+    {
+      "label": "bacterium",
+      "name": "Nostoc commune",
+      "photos": 4,
+      "heroLoaded": true,
+      "basemap": "ready",
+      "mapPoints": "300",
+      "mapSource": "GBIF",
+      "mapStatus": "300 titik sampel dari 17.339 catatan berkoordinat · GBIF. Bukan batas sebaran spesies."
+    },
+    {
+      "label": "archaeon",
+      "name": "Sulfolobus solfataricus",
+      "photos": 5,
+      "heroLoaded": true,
+      "basemap": "ready",
+      "mapPoints": "159",
+      "mapSource": "GBIF",
+      "mapStatus": "159 titik sampel dari 159 catatan berkoordinat · GBIF. Bukan batas sebaran spesies."
+    }
+  ],
+  "errors": [],
+  "pagination": {
+    "page": 2,
+    "shown": 24,
+    "first": "#/species/inat-4756"
+  },
+  "gbifIndex": {
+    "shown": 24,
+    "summary": "174 hasil pada indeks GBIF · “Panthera”\nGBIF Backbone"
+  }
+}
