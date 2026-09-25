@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
-import { mockAPIs, setPrefs, noOverflow } from './helpers.js';
+import { mockAPIs, setPrefs, noOverflow, wideFont } from './helpers.js';
 
 const PAGES = [
   'home',
@@ -44,14 +44,7 @@ for (const level of ['sd', 'smp']) {
 
 test('no horizontal overflow from 320px to 1440px in SD and SMP modes', async ({ page }) => {
   test.setTimeout(240000);
-  // A wide font (as on the CI runner and many Android phones) finds overflow a narrow one hides.
-  await page.addInitScript(() =>
-    document.addEventListener('DOMContentLoaded', () => {
-      const style = document.createElement('style');
-      style.textContent = "* { font-family: 'DejaVu Sans', sans-serif !important; }";
-      document.head.append(style);
-    })
-  );
+  await wideFont(page);
   await mockAPIs(page);
   for (const level of ['sd', 'smp']) {
     await page.addInitScript(l => localStorage.setItem('biotaxa-level', JSON.stringify(l)), level);

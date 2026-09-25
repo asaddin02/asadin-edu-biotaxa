@@ -1223,6 +1223,10 @@ main[data-page='guru'] > .page-head {
 .support-ways {
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
+/* Three columns are narrow on tablets; a long link wraps instead of widening the page. */
+.support-ways .text-link {
+  white-space: normal;
+}
 .support-banner {
   display: flex;
   flex-wrap: wrap;

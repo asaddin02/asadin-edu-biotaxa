@@ -287,3 +287,13 @@ export async function setPrefs(page, { level = 'smp', lang = 'id', role = 'stude
 }
 
 export const noOverflow = page => page.evaluate(() => document.documentElement.scrollWidth <= innerWidth);
+
+/** A wide font (as on the CI runner and many Android phones) finds overflow a narrow one hides. */
+export const wideFont = page =>
+  page.addInitScript(() =>
+    document.addEventListener('DOMContentLoaded', () => {
+      const style = document.createElement('style');
+      style.textContent = "* { font-family: 'DejaVu Sans', sans-serif !important; }";
+      document.head.append(style);
+    })
+  );

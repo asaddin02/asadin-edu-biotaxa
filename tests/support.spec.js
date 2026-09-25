@@ -1,10 +1,11 @@
 import { test, expect } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
-import { mockAPIs, setPrefs, noOverflow } from './helpers.js';
+import { mockAPIs, setPrefs, noOverflow, wideFont } from './helpers.js';
 
 test('support is reachable, optional, responsive and honest when no destination is configured', async ({
   page,
 }) => {
+  await wideFont(page);
   await setPrefs(page, { level: 'sd' });
   await mockAPIs(page);
   await page.goto('/#/home');
@@ -67,6 +68,7 @@ test('invalid payment destinations never produce a donation button', async ({ pa
 });
 
 test('local and international channels remain explicit, accessible and independent', async ({ page }) => {
+  await wideFont(page);
   await setPrefs(page, { level: 'sd' });
   await mockAPIs(page);
   await page.goto('/#/home');
