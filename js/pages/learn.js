@@ -4,7 +4,7 @@ import { getProgress, trackTopic, BADGES } from '../core/userdata.js';
 import { ui } from '../i18n/ui.js';
 import { TOPICS, findTopic, PHASES } from '../data/topics/index.js';
 import { findSpecies } from '../data/species.js';
-import { pageHead, listenButton, notice, routeURL } from '../components/common.js';
+import { pageHead, listenButton, notice, routeURL, sectionNav } from '../components/common.js';
 import { rich } from '../components/richtext.js';
 import { curatedCard } from '../components/cards.js';
 import { quizMarkup, bindQuiz, questionsForLevel } from '../components/quiz.js';
@@ -95,9 +95,9 @@ function hub(ctx) {
   const earned = Object.keys(progress.badges).length;
   ctx.main.innerHTML = `${pageHead(s.heading, s.sub, 'BIOTAXA / LEARN')}
     <div class="mode-banner"><span>${s.yourMode}: <strong>${esc(modeLabel())}</strong></span><button type="button" class="btn small secondary" data-open-mode>${s.change}</button></div>
-    <section class="section"><div class="section-head"><h2>${showAll ? s.allTopics : s.forYou}</h2><a class="text-link" href="${routeURL('learn', showAll ? {} : { all: 1 })}">${showAll ? s.showMine : s.showAll} →</a></div>
+    <div class="learn-workspace"><section class="section lesson-catalog"><div class="section-head"><h2>${showAll ? s.allTopics : s.forYou}</h2><a class="text-link" href="${routeURL('learn', showAll ? {} : { all: 1 })}">${showAll ? s.showMine : s.showAll} →</a></div>
       <div class="topic-grid">${list.map(t => topicCard(t, progress)).join('')}</div></section>
-    <section class="section"><div class="section-head"><h2>${s.activities}</h2></div><div class="action-grid">
+    <section class="section learning-tools"><div class="section-head"><h2>${s.activities}</h2></div><div class="action-grid">
       ${activityCard('#/quiz', 'quiz', s.quiz, s.quizText, 'lime')}
       ${activityCard('#/compare', 'compare', s.compare, s.compareText, 'lilac')}
       ${activityCard('#/nearby', 'nearby', s.nearby, s.nearbyText, 'sky')}
@@ -106,7 +106,7 @@ function hub(ctx) {
       ${activityCard('#/lab', 'lab', s.lab, s.labText, 'blue')}
       ${activityCard('#/guru', 'teacher', s.teacher, s.teacherText, role === 'teacher' ? 'lime' : 'grey')}
       ${activityCard('#/saved?tab=passport', 'star', s.passport, s.passportText.replace('{n}', fmt(earned)).replace('{t}', fmt(BADGES.length)), 'apricot')}
-    </div></section>`;
+    </div></section></div>`;
 }
 
 function topicPage(ctx, topic) {
@@ -149,6 +149,11 @@ function topicPage(ctx, topic) {
           `<a href="${routeURL(`learn/${topic.id}`, l === level ? {} : { v: l })}" class="${l === version ? 'selected' : ''}"${l === version ? ' aria-current="true"' : ''}>${esc(ui[l])}</a>`
       )
       .join('')}</div>
+    ${sectionNav([
+      ['topic-read', s.title],
+      ['quiz', s.quizTitle],
+      ['topic-notes', s.notesTitle],
+    ])}
     <div class="topic-layout">
       <article class="topic-body" id="topic-read"><div class="topic-tools">${listenButton('#topic-text', `topic-${topic.id}`)}</div><div id="topic-text">${rich(pick(body))}</div></article>
       <aside class="topic-side">

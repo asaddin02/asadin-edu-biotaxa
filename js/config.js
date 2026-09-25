@@ -3,7 +3,7 @@ export const config = {
   version: '3.0.0',
 
   // Media licensing policy.
-  // true  → photos licensed CC BY-NC / BY-NC-SA / BY-NC-ND are shown (fine while BioTaxa stays free).
+  // true  → photos licensed CC BY-NC / BY-NC-SA / BY-NC-ND are shown (review the use context; free access alone does not guarantee NC compliance).
   // false → only CC0, CC BY and CC BY-SA photos are shown. Set this to false BEFORE adding ads,
   //         subscriptions, paid features or any other commercial use. See docs/LICENSING.md.
   allowNonCommercialMedia: true,
@@ -11,7 +11,12 @@ export const config = {
   // Optional links shown in the interface. Leave empty to hide them.
   repositoryURL: 'https://github.com/asaddin02/asadin-edu-biotaxa',
   feedbackURL: 'https://github.com/asaddin02/asadin-edu-biotaxa/issues/new/choose',
-  donateURL: '', // e.g. a Saweria, Trakteer or GitHub Sponsors page
+  // Verified HTTPS donation page owned by the project. Empty = monetary donations unavailable.
+  donateURL: '',
+  // Optional regional channels. Only configured HTTPS links appear; no geolocation required.
+  // Local: your approved Indonesian provider page. International: e.g. your Ko-fi page.
+  donateLocalURL: '',
+  donateInternationalURL: '',
 
   // iNaturalist place used for the "Indonesia" gallery scope and for Indonesian common names.
   indonesiaPlaceId: 6966,

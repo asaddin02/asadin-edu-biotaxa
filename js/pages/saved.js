@@ -159,8 +159,8 @@ export async function render(ctx) {
   const labels = { collection: s.collection, passport: s.passport, notes: s.notes, data: s.data };
   const body = { collection: collectionTab, passport: passportTab, notes: notesTab, data: dataTab }[tab]();
   ctx.main.innerHTML = `${pageHead(s.heading, s.sub, 'BIOTAXA / KOLEKSI')}
-    <nav class="segmented tabs-nav" aria-label="${s.tabs}">${TABS.map(t => `<a href="${routeURL('saved', t === 'collection' ? {} : { tab: t })}" class="${t === tab ? 'selected' : ''}"${t === tab ? ' aria-current="page"' : ''}>${labels[t]}</a>`).join('')}</nav>
-    <div id="saved-body">${body}</div>`;
+    <div class="saved-workspace"><nav class="segmented tabs-nav" aria-label="${s.tabs}">${TABS.map(t => `<a href="${routeURL('saved', t === 'collection' ? {} : { tab: t })}" class="${t === tab ? 'selected' : ''}"${t === tab ? ' aria-current="page"' : ''}>${labels[t]}</a>`).join('')}</nav>
+    <div id="saved-body">${body}</div></div>`;
   refresh(ctx.main);
 
   ctx.on('click', '[data-delete-note]', (e, b) => {

@@ -3,9 +3,9 @@ import { S, pick, level, role, LEVELS } from '../core/prefs.js';
 import { ui } from '../i18n/ui.js';
 import { TOPICS, findTopic, PHASES } from '../data/topics/index.js';
 import { findSpecies } from '../data/species.js';
-import { pageHead, notice } from '../components/common.js';
+import { pageHead, notice, sectionNav } from '../components/common.js';
 import { suggestField } from '../components/suggest.js';
-import { teacherLevelPicker } from '../components/layout.js';
+import { modeLabel } from '../components/layout.js';
 import { icon } from '../components/icons.js';
 
 const s = S({
@@ -22,6 +22,9 @@ const s = S({
   ],
   tipsTitle: ['Cara memakai BioTaxa di kelas', 'Using BioTaxa in class'],
   builder: ['Buat tugas', 'Create an assignment'],
+  taskSetup: ['Identitas tugas', 'Assignment details'],
+  taskMaterials: ['Bahan belajar', 'Learning materials'],
+  taskReview: ['Pertanyaan & bagikan', 'Questions & sharing'],
   builderIntro: [
     'Tugas disimpan di dalam tautan itu sendiri. Siswa membuka tautan, menjawab, lalu mencetak atau menyimpan PDF untuk diserahkan.',
     'The assignment lives inside the link itself. Students open it, answer, then print or save a PDF to hand in.',
@@ -172,6 +175,7 @@ const DEFAULT_QUESTIONS = {
 };
 
 let chosen = [];
+let draft = null;
 
 function speciesChips() {
   return chosen.length
@@ -184,28 +188,47 @@ function defaultQuestions(l) {
 }
 
 export async function render(ctx) {
-  chosen = [];
   const presetTopic = findTopic(ctx.params.get('topic') || '');
+  const restoreDraft = draft?.preset === (presetTopic?.id || '');
+  chosen = restoreDraft ? [...draft.chosen] : [];
   const tips = TIPS[level] || TIPS.smp;
   ctx.main.innerHTML = `${pageHead(s.heading, s.sub, 'BIOTAXA / GURU')}
     ${role === 'teacher' ? notice(`✓ ${s.activeNote}`) : `<p><button type="button" class="btn" data-set-mode="teacher">${icon('teacher')} ${s.activate}</button></p>`}
-    ${teacherLevelPicker()}
-    <section class="section"><h2>${s.tipsTitle}</h2><ul class="tip-list">${tips.map(t => `<li>${esc(pick(t))}</li>`).join('')}</ul></section>
+    ${sectionNav([
+      ['builder', s.builder],
+      ['teacher-plans', s.plans],
+    ])}
+    <div class="teacher-workspace"><aside class="teacher-context"><div class="teacher-mode"><span class="eyebrow">${ui.mode}</span><strong>${esc(modeLabel())}</strong><button type="button" class="btn secondary" data-open-mode>${s.forLevel} →</button></div>
+    <details class="teacher-tips"${matchMedia('(min-width: 801px)').matches ? ' open' : ''}><summary>${s.tipsTitle}</summary><ul class="tip-list">${tips.map(t => `<li>${esc(pick(t))}</li>`).join('')}</ul></details></aside>
     <section class="card builder" id="builder"><h2>${icon('link')} ${s.builder}</h2><p class="muted">${s.builderIntro}</p>
       <form id="assignment-form" class="form-grid">
+        <div class="form-step wide"><span>01</span><h3>${s.taskSetup}</h3></div>
         <label class="field wide"><span>${s.taskTitle}</span><input name="t" maxlength="120" value="${esc(presetTopic ? pick(presetTopic.title) : s.taskTitleDefault)}"></label>
         <label class="field"><span>${s.forLevel}</span><select name="l">${LEVELS.map(l => `<option value="${l}"${l === level ? ' selected' : ''}>${esc(ui[`${l}Long`])}</option>`).join('')}</select></label>
         <label class="field"><span>${s.topic}</span><select name="tp"><option value="">${s.none}</option>${TOPICS.map(t => `<option value="${t.id}"${presetTopic?.id === t.id ? ' selected' : ''}>${t.icon} ${esc(pick(t.title))}</option>`).join('')}</select></label>
         <label class="field"><span>${s.due}</span><input name="due" type="date"></label>
+        <div class="form-step wide"><span>02</span><h3>${s.taskMaterials}</h3></div>
         <label class="field wide"><span>${s.instructions}</span><textarea name="i" maxlength="1500" rows="3">${esc(s.instructionsDefault)}</textarea></label>
         <div class="field wide"><span id="species-label">${s.species}</span>${suggestField({ id: 'assign-species', name: 'sp', placeholder: s.addSpecies, label: s.species, mode: 'pick', rank: 'species' })}<div id="picked">${speciesChips()}</div><button type="button" class="btn ghost small" data-from-topic>${s.fromTopic}</button></div>
+        <div class="form-step wide"><span>03</span><h3>${s.taskReview}</h3></div>
         <label class="field wide"><span>${s.questions}</span><textarea name="q" rows="5" maxlength="2400">${esc(defaultQuestions(level))}</textarea></label>
         <div class="actions wide"><button type="submit" class="btn">${icon('link')} ${s.generate}</button></div>
       </form>
       <div id="assignment-output" aria-live="polite"></div>
     </section>
-    <section class="section"><h2>${s.plans}</h2><p class="muted">${s.plansIntro}</p><div class="topic-grid">${TOPICS.map(t => `<a class="topic-card" href="#/learn/${t.id}"><span class="topic-icon" aria-hidden="true">${t.icon}</span><span class="topic-text"><strong>${esc(pick(t.title))}</strong><small>${t.levels.map(l => esc(pick(PHASES[l]).split('·')[0].trim())).join(' · ')}</small></span></a>`).join('')}</div></section>
+    </div><section class="section" id="teacher-plans"><h2>${s.plans}</h2><p class="muted">${s.plansIntro}</p><div class="topic-grid">${TOPICS.map(t => `<a class="topic-card" href="#/learn/${t.id}"><span class="topic-icon" aria-hidden="true">${t.icon}</span><span class="topic-text"><strong>${esc(pick(t.title))}</strong><small>${t.levels.map(l => esc(pick(PHASES[l]).split('·')[0].trim())).join(' · ')}</small></span></a>`).join('')}</div></section>
     <section class="section">${notice(`<strong>🔒 ${s.privacy}.</strong> ${s.privacyText}`)}</section>`;
+
+  const form = $('#assignment-form');
+  if (restoreDraft) {
+    for (const [name, value] of draft.fields) {
+      const field = form.elements.namedItem(name);
+      if (field) field.value = value;
+    }
+  }
+  ctx.cleanup(() => {
+    draft = { preset: presetTopic?.id || '', fields: [...new FormData(form)], chosen: [...chosen] };
+  });
 
   const refreshChips = () => ($('#picked').innerHTML = speciesChips());
   ctx.on('suggest-pick', '#assign-species', (event, input) => {

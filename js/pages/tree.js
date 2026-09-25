@@ -202,14 +202,14 @@ export async function render(ctx) {
   const shortcuts = SHORTCUTS[name] || [];
 
   main.innerHTML = `${crumbs(path)}${pageHead(heading, subtitle, rankLabel(node.rank).toUpperCase())}
-    ${ladder(node.rank)}
+    <div class="tree-workspace"><aside class="tree-position">${ladder(node.rank)}</aside><div class="tree-children">
     <div class="actions"><a class="btn secondary" id="group-photos" href="${routeURL('search', { q: name })}">${icon('camera')} ${s.photos}</a></div>
     ${shortcuts.length ? `<section class="shortcuts"><h2 class="list-title">${s.shortcuts}</h2><div class="chips">${shortcuts.map(x => `<a class="chip big" href="${routeURL('search', { taxon: x.inat, tname: pick(x.name) })}"><span aria-hidden="true">${x.icon}</span><strong>${esc(pick(x.name))}</strong><small>${esc(pick(x.note))}</small></a>`).join('')}</div></section>` : ''}
     <h2 class="list-title">${allSpecies ? s.childSpecies : s.children}${children.results?.length ? ` <small>(${fmt(list.length)}${children.endOfRecords ? '' : '+'})</small>` : ''}</h2>
     ${primary.length ? `<div class="taxon-grid">${primary.map(childCard).join('')}</div>` : emptyState(s.noChildren, '')}
     ${others.length ? `<details class="more-groups"><summary>${s.others.replace('{n}', fmt(others.length))}</summary><p class="muted">${s.othersHint}</p><div class="taxon-grid">${others.map(childCard).join('')}</div></details>` : ''}
     ${pagination(page, !children.endOfRecords && children.results?.length > 0, p => routeURL(`tree/${id}`, { page: p }))}
-    ${notice(s.note)}`;
+    ${notice(s.note)}</div></div>`;
   refresh(main);
   hydrate(ctx, name);
 }

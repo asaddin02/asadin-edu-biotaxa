@@ -15,10 +15,10 @@ const s = S({
   heroTop: ['ATLAS KEHIDUPAN TERBUKA', 'AN OPEN ATLAS OF LIFE'],
   hero: ['Dunia hidup.<br><em>Rasa ingin tahu.</em>', 'Life on Earth.<br><em>Endless wonder.</em>'],
   heroSub: [
-    'Dari orangutan di Sumatra hingga bakteri pembuat tempe. Ensiklopedia visual untuk anak SD sampai mahasiswa, dan guru yang membimbing mereka.',
-    'From Sumatran orangutans to the bacteria behind tempeh. A visual encyclopedia for primary pupils to university students, and the teachers who guide them.',
+    'Kenali makhluk hidup, temukan hubungan di alam, dan belajar lewat eksperimen. Petualangan biologi dimulai dari rasa ingin tahumu.',
+    'Meet living things, discover connections in nature, and learn through experiments. Your biology adventure starts with curiosity.',
   ],
-  searchQuick: ['Makhluk hidup apa yang membuatmu penasaran?', 'Which living thing makes you curious?'],
+  searchQuick: ['Cari makhluk hidup…', 'Find a living thing…'],
   searchGo: ['Cari', 'Search'],
   exploreBtn: ['Jelajahi kehidupan', 'Explore life'],
   heroNote: ['3 domain · jutaan spesies · 2 bahasa', '3 domains · millions of species · 2 languages'],
@@ -75,6 +75,15 @@ const s = S({
     'Lesson plans per topic, answer keys and assignments shared by link — no account needed.',
   ],
   teacherBtn: ['Buka Mode Guru', 'Open Teacher mode'],
+  support: ['Suka belajar di BioTaxa?', 'Enjoy learning with BioTaxa?'],
+  supportText: [
+    'Bantu ruang belajar ini terus berkembang. Dukungan bersifat sukarela; belajar tetap gratis.',
+    'Help this learning space grow. Support is voluntary; learning stays free.',
+  ],
+  examples: ['Coba telusuri', 'Try exploring'],
+  ready: ['Ruang belajarmu', 'Your learning space'],
+  change: ['Ganti jenjang', 'Change level'],
+  continue: ['Mulai belajar', 'Start learning'],
   domain: ['Domain', 'Domain'],
   Eukarya: [
     'Sel dengan inti sejati: hewan, tumbuhan, jamur, dan banyak makhluk mikroskopis.',
@@ -137,6 +146,7 @@ export async function render(ctx) {
         ${suggestField({ id: 'hero-q', placeholder: s.searchQuick, label: ui.search })}
         <button type="submit" class="btn accent">${s.searchGo}</button>
       </form>
+      <div class="search-examples"><span>${s.examples}</span><a href="#/search?q=orangutan">Orangutan</a><a href="#/search?q=Rafflesia">Rafflesia</a><a href="#/search?q=jamur">${pick(['Jamur', 'Fungi'])}</a></div>
       <div class="hero-links"><a class="btn" href="#/search">${s.exploreBtn} ${icon('arrow')}</a><a class="text-link" href="#/tree">${ui.tree} →</a></div>
       <p class="hero-footnote">${s.heroNote}</p>
     </div>
@@ -145,7 +155,7 @@ export async function render(ctx) {
   </section>`;
 
   const modeStrip = levelChosen
-    ? ''
+    ? `<section class="learning-welcome"><div><span class="eyebrow">${s.ready}</span><h2>${role === 'teacher' ? ui.teacher + ' · ' : ''}${ui[`${level}Long`]}</h2><p>${ui[`${level}Hint`]}</p></div><div class="actions"><button type="button" class="btn secondary" data-open-mode>${s.change}</button><a class="btn" href="${role === 'teacher' ? '#/guru' : '#/learn'}">${s.continue} ${icon('arrow')}</a></div></section>`
     : `<section class="mode-strip" aria-labelledby="mode-strip-title"><div><span class="eyebrow">${s.modeTop}</span><h2 id="mode-strip-title">${s.modeTitle}</h2><p>${s.modeText}</p></div>${modeOptions({ compact: true })}</section>`;
 
   const today = `<section class="today-card" id="today" aria-live="polite"><div class="status inline"><span class="spinner" aria-hidden="true"></span> ${s.todayLoading}</div></section>`;
@@ -173,7 +183,9 @@ export async function render(ctx) {
   const about = `<section class="section learning-section"><div class="section-head"><h2>${s.what}</h2><p>${s.whatText}</p></div>
     <div class="discovery-strip"><span>${s.sourcesLine}</span><strong>GBIF</strong><strong>iNaturalist</strong><strong>Wikipedia</strong><strong>PBDB</strong><a href="#/about">${ui.about} →</a></div></section>`;
 
-  ctx.main.innerHTML = hero + modeStrip + today + actions + featuredSection + domains + teacher + about;
+  const support = `<section class="support-banner"><div><h2>${s.support}</h2><p>${s.supportText}</p></div><a class="btn secondary" href="#/dukung">${ui.donate} →</a></section>`;
+  ctx.main.innerHTML =
+    hero + modeStrip + actions + today + featuredSection + domains + teacher + about + support;
 
   ctx.on('submit', '#hero-search', event => {
     event.preventDefault();

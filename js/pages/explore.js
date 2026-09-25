@@ -109,7 +109,7 @@ export async function render(ctx) {
       ${source === 'index' ? `<select name="kingdom" aria-label="${ui.kingdom}"><option value="">${s.allKingdoms}</option>${kingdoms.map(([n, k]) => `<option value="${k}"${String(k) === kingdom ? ' selected' : ''}>${n}</option>`).join('')}</select>` : ''}
       <button class="btn" type="submit">${ui.search}</button>
     </form>
-    <nav class="group-pills" aria-label="${s.groups}">${pills}</nav>
+    <div class="explore-workspace"><aside class="explore-sidebar"><h2 class="small-title">${s.groups}</h2><nav class="group-pills" aria-label="${s.groups}">${pills}</nav></aside><div class="explore-content">
     <div class="catalog-tools">
       <div class="segmented" role="group" aria-label="${ui.explore}">
         <a href="${link({ source: 'visual', kingdom: '', page: '' })}" class="${source === 'visual' ? 'selected' : ''}"${source === 'visual' ? ' aria-current="true"' : ''}>▦ ${s.visual}</a>
@@ -121,7 +121,7 @@ export async function render(ctx) {
     ${taxon ? `<div class="filter-chip-row"><span class="filter-chip">${s.browsing}: <strong>${esc(tname || taxon)}</strong> <a href="${link({ taxon: '', tname: '', page: '' })}" aria-label="${s.clear}">×</a></span></div>` : ''}
     <div id="matched-groups"></div>
     <div id="results" aria-live="polite">${loading()}</div>
-    <p class="catalog-footnote">${source === 'index' ? s.indexHint : q ? s.searchHint : scope === 'id' ? s.galleryHintId : s.galleryHintWorld}</p>`;
+    <p class="catalog-footnote">${source === 'index' ? s.indexHint : q ? s.searchHint : scope === 'id' ? s.galleryHintId : s.galleryHintWorld}</p></div></div>`;
 
   ctx.on('submit', '#search-form', event => {
     event.preventDefault();

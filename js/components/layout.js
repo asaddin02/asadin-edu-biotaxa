@@ -29,7 +29,11 @@ const MODE_ICON = { sd: '🎒', smp: '🔍', sma: '🧬', kuliah: '🎓', teache
 const s = S({
   modeTitle: ['Siapa yang sedang belajar?', 'Who is learning today?'],
   current: ['Mode sekarang', 'Current mode'],
-  save: ['Simpan pilihan', 'Save choice'],
+  save: ['Selesai', 'Done'],
+  saved: [
+    'Pilihan tersimpan otomatis. Bisa diubah kapan saja.',
+    'Your choice is saved automatically. Change it anytime.',
+  ],
   footerLinks: ['Tautan', 'Links'],
   privacy: ['Privasi', 'Privacy'],
   version: ['Versi', 'Version'],
@@ -63,7 +67,7 @@ export function renderHeader(page) {
 export function renderFooter() {
   const extra = [
     config.repositoryURL ? `<li>${link(config.repositoryURL, ui.sourceCode)}</li>` : '',
-    config.donateURL ? `<li>${link(config.donateURL, ui.donate)}</li>` : '',
+    `<li><a href="#/dukung">${ui.donate}</a></li>`,
   ].join('');
   $('#footer').innerHTML = `<div class="footer-main">
       <a class="brand" href="#/home">${brandImage()}<span>BioTaxa<small>ASADIN EDU</small></span></a>
@@ -107,9 +111,10 @@ export function modeOptions({ compact = false } = {}) {
 }
 
 export function teacherLevelPicker() {
-  return `<label class="field teacher-level"><span>${ui.teachLevel}</span><select data-teacher-level>${LEVELS.map(
-    l => `<option value="${l}"${l === level ? ' selected' : ''}>${esc(ui[`${l}Long`])}</option>`
-  ).join('')}</select></label>`;
+  return `<fieldset class="teacher-level"><legend>${ui.teachLevel}</legend><div class="teacher-level-options">${LEVELS.map(
+    l =>
+      `<label class="teacher-level-choice"><input type="radio" name="teacher-level" data-teacher-level value="${l}"${l === level ? ' checked' : ''}><span><strong>${esc(ui[l])}</strong><small>${esc(ui[`${l}Long`].split(' · ')[0])}</small></span></label>`
+  ).join('')}</div></fieldset>`;
 }
 
 export function openModeDialog() {
@@ -119,16 +124,30 @@ export function openModeDialog() {
     dialog.id = 'mode-dialog';
     dialog.className = 'sheet-dialog';
     dialog.setAttribute('aria-labelledby', 'mode-title');
+    dialog.addEventListener('close', () => $('[data-open-mode]')?.focus({ preventScroll: true }));
     document.body.append(dialog);
   }
   dialog.innerHTML = `<div class="sheet-head"><h2 id="mode-title">${s.modeTitle}</h2><button type="button" class="icon-button" data-close-dialog aria-label="${ui.close}">×</button></div>
-    <p class="muted">${ui.modeIntro}</p>${modeOptions()}${role === 'teacher' ? teacherLevelPicker() : ''}`;
+    <p class="muted">${ui.modeIntro}</p>${modeOptions()}<div data-teacher-picker${role === 'teacher' ? '' : ' hidden'}>${teacherLevelPicker()}</div>
+    <div class="mode-dialog-footer"><p>${s.saved}</p><button type="button" class="btn" data-close-dialog>${s.save}</button></div>`;
   if (!dialog.open) dialog.showModal();
   dialog.querySelector('[aria-checked="true"]')?.focus();
 }
 
 export function refreshModeDialog() {
-  if ($('#mode-dialog')?.open) openModeDialog();
+  const dialog = $('#mode-dialog');
+  if (!dialog?.open) return;
+  // Keep the selected control and keyboard focus alive while preferences change.
+  dialog.querySelectorAll('[data-set-mode]').forEach(button => {
+    const checked =
+      role === 'teacher' ? button.dataset.setMode === 'teacher' : button.dataset.setMode === level;
+    button.setAttribute('aria-checked', String(checked));
+    button.classList.toggle('selected', checked);
+  });
+  dialog.querySelector('[data-teacher-picker]').hidden = role !== 'teacher';
+  dialog.querySelectorAll('[data-teacher-level]').forEach(input => {
+    input.checked = input.value === level;
+  });
 }
 
 export function setConnectivity(online) {

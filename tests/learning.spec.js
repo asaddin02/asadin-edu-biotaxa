@@ -23,8 +23,8 @@ test('first visit invites choosing a mode; the choice changes text size and pers
     .getByRole('radio', { name: /Mode Guru/ })
     .click();
   await expect(page.locator('html')).toHaveAttribute('data-role', 'teacher');
-  await expect(page.getByRole('dialog').locator('[data-teacher-level]')).toBeVisible();
-  await page.getByRole('dialog').locator('[data-teacher-level]').selectOption('sma');
+  await expect(page.getByRole('dialog').locator('[data-teacher-level]').first()).toBeVisible();
+  await page.getByRole('dialog').locator('[data-teacher-level][value=sma]').check();
   await expect(page.locator('html')).toHaveAttribute('data-level', 'sma');
 });
 

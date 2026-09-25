@@ -3,29 +3,29 @@
 /* ========== 1. Tokens ========== */
 :root {
   color-scheme: light;
-  --green: #047c64;
-  --green-dark: #03624f;
-  --ink: #112d38;
-  --muted: #4f646e;
-  --line: #d9e5e3;
-  --paper: #ffffff;
-  --soft: #f4f9f7;
-  --cream: #eaf7f0;
-  --accent: #d5f56b;
-  --mint: #d9f4e7;
-  --lilac: #e9e5fb;
-  --apricot: #ffebdb;
-  --sky: #e2f1fb;
-  --blue: #e8effd;
-  --lime: #f1fbd0;
-  --grey: #f0f3f3;
+  --green: #06715d;
+  --green-dark: #056653;
+  --ink: #153c38;
+  --muted: #496963;
+  --line: #cfe7df;
+  --paper: #f8fffc;
+  --soft: #eefaf5;
+  --cream: #ddf6eb;
+  --accent: #d4f76a;
+  --mint: #c9f4e4;
+  --lilac: #ece2ff;
+  --apricot: #ffe3cd;
+  --sky: #daf3ff;
+  --blue: #e2ecff;
+  --lime: #effacb;
+  --grey: #edf6f3;
   --focus: #1f6fd1;
   --danger: #b3261e;
-  --radius: 18px;
+  --radius: 20px;
   --radius-sm: 12px;
-  --shadow: 0 12px 32px #123e3414;
+  --shadow: 0 16px 36px #243e2812;
   --shadow-sm: 0 4px 14px #123e340d;
-  --page: 1320px;
+  --page: 1280px;
   --gutter: clamp(16px, 4vw, 48px);
   --font:
     ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Noto Sans', sans-serif;
@@ -585,7 +585,8 @@ button.tag {
 .skip:focus {
   top: 12px;
 }
-header {
+/* Only the app navigation sticks; semantic page headers scroll normally. */
+#header {
   position: sticky;
   top: 0;
   z-index: 20;
@@ -1100,7 +1101,7 @@ a.card:hover {
 }
 .action-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 1rem;
 }
 .action-card {
@@ -1323,7 +1324,7 @@ a.card:hover {
   grid-template-columns: 1.05fr 1fr;
   gap: 3rem;
   align-items: center;
-  padding: 3rem 0 2.5rem;
+  padding: 3.5rem 0 3rem;
 }
 .hero::before {
   content: '';
@@ -1331,11 +1332,13 @@ a.card:hover {
   z-index: -1;
   inset: 0 calc(-1 * var(--gutter));
   background:
-    radial-gradient(ellipse at 80% 35%, #e3f6ea 0, transparent 62%),
-    linear-gradient(115deg, #fff 25%, #f5fbf7);
+    radial-gradient(ellipse at 85% 20%, #c9f5dd 0, transparent 65%),
+    linear-gradient(115deg, #f8fffc 25%, #e8fbf2);
 }
 .hero-copy h1 {
-  font-size: clamp(2.6rem, 5.6vw, 4.8rem);
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: clamp(2.6rem, 5.4vw, 4.6rem);
   letter-spacing: -0.055em;
   line-height: 1.02;
 }
@@ -1359,7 +1362,7 @@ a.card:hover {
   background: #fff;
   border: 1px solid #b9d6cb;
   border-radius: 16px;
-  box-shadow: 0 6px 0 #e2eee7;
+  box-shadow: var(--shadow-sm);
 }
 .hero-search > span {
   color: var(--green);
@@ -1394,11 +1397,11 @@ a.card:hover {
 .hero-mosaic {
   position: relative;
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 280px 170px;
+  grid-template-columns: 1.2fr 0.8fr;
+  grid-template-rows: 220px 220px;
   gap: 0.9rem;
   padding: 0.6rem;
-  transform: rotate(1.5deg);
+  transform: none;
 }
 .atlas-grid {
   position: absolute;
@@ -1438,14 +1441,15 @@ a.card:hover {
   pointer-events: none;
 }
 .hero-primary {
-  grid-column: 1 / -1;
-  border-radius: 56px 22px 22px 22px;
+  grid-column: 1;
+  grid-row: 1 / 3;
+  border-radius: 100px 24px 24px 24px;
 }
 .hero-secondary {
-  transform: rotate(-3deg);
+  transform: none;
 }
 .hero-tertiary {
-  transform: rotate(2deg);
+  transform: none;
 }
 .hero-photo-caption {
   position: absolute;
@@ -1468,8 +1472,8 @@ a.card:hover {
 }
 .explorer-seal {
   position: absolute;
-  right: -0.6rem;
-  top: 13.5rem;
+  right: 34%;
+  top: 11rem;
   z-index: 3;
   width: 96px;
   height: 96px;
@@ -1501,8 +1505,8 @@ a.card:hover {
   margin: 1rem 0 2rem;
   padding: 1.6rem;
   border-radius: 24px;
-  background: linear-gradient(120deg, var(--lime), #fff 70%);
-  border: 1px solid #e0efb5;
+  background: var(--cream);
+  border: 1px solid var(--line);
 }
 .mode-strip h2 {
   margin-bottom: 0.3rem;
@@ -2137,7 +2141,7 @@ a.card:hover {
   display: flex;
   gap: 0.4rem;
   padding: 0.35rem;
-  background: #eef4f2f2;
+  background: #eaf0e6f2;
   backdrop-filter: blur(8px);
   border-radius: 16px;
   overflow-x: auto;
@@ -2480,7 +2484,7 @@ a.card:hover {
 }
 .photo-dialog::backdrop,
 .sheet-dialog::backdrop {
-  background: #08262cd6;
+  background: #172a25b8;
   backdrop-filter: blur(4px);
 }
 .photo-dialog img {
@@ -2507,7 +2511,10 @@ a.card:hover {
   font-size: 1.6rem;
 }
 .sheet-dialog {
-  width: min(760px, 94vw);
+  width: min(720px, 94vw);
+  max-height: calc(100dvh - 2rem);
+  padding: clamp(1.2rem, 4vw, 2rem);
+  overscroll-behavior: contain;
 }
 .sheet-head {
   display: flex;
@@ -2637,6 +2644,10 @@ a.card:hover {
 .topic-icon {
   font-size: 2rem;
   line-height: 1;
+}
+.topic-text {
+  min-width: 0;
+  overflow-wrap: anywhere;
 }
 .topic-text strong {
   display: block;
@@ -2903,8 +2914,8 @@ a.card:hover {
   gap: 1.3rem;
 }
 .lab-card {
-  background: #f4f8ff;
-  border-color: #dae4f3;
+  background: var(--soft);
+  border-color: var(--line);
 }
 .control {
   margin: 1.1rem 0;
@@ -3647,6 +3658,154 @@ html[data-level='sd'] .curated-block {
 }
 
 /* ========== 16. Responsive ========== */
+/* Shared learning surfaces */
+.topic-body {
+  background: #fff;
+  padding: clamp(1.1rem, 3vw, 2.2rem);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+.topic-icon {
+  display: grid;
+  place-items: center;
+  width: 3.3rem;
+  height: 3.3rem;
+  flex-shrink: 0;
+  background: var(--soft);
+  border-radius: 14px;
+  font-size: 1.7rem;
+}
+.mode-banner {
+  background: var(--cream);
+  border: 1px solid var(--line);
+  padding: 1rem 1.2rem;
+}
+.lab-tabs button,
+.segmented a,
+.version-switch a {
+  transition: background 0.15s;
+}
+.lab-tabs button:hover,
+.version-switch a:hover {
+  box-shadow: inset 0 0 0 1px var(--green);
+}
+
+.page-head h1,
+.explore-heading h1,
+.section-head h2,
+.learning-welcome h2 {
+  font-family: var(--serif);
+  font-weight: 500;
+  letter-spacing: -0.035em;
+}
+.page-head {
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 1.5rem;
+}
+.card,
+.discovery-card,
+.topic-card {
+  box-shadow: var(--shadow-sm);
+}
+.nav a.active {
+  box-shadow: inset 0 -2px var(--green);
+}
+.search-examples {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+.search-examples a {
+  padding: 0.4rem 0.7rem;
+  border: 1px solid var(--line);
+  border-radius: 99px;
+  background: #fff;
+  text-decoration: none;
+}
+.search-examples a:hover {
+  background: var(--cream);
+  border-color: var(--green);
+}
+.learning-welcome {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.2rem;
+  padding: clamp(1.2rem, 3vw, 2rem);
+  margin-top: 1.5rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--cream);
+}
+.learning-welcome h2 {
+  margin: 0.3rem 0;
+}
+.learning-welcome p {
+  margin: 0;
+  color: var(--muted);
+}
+.mode-dialog-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  border-top: 1px solid var(--line);
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+}
+.mode-dialog-footer p {
+  flex: 1 1 14rem;
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+.sheet-dialog .mode-options {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.sheet-dialog .mode-option:last-child {
+  grid-column: 1 / -1;
+}
+.sheet-dialog .mode-option.selected::after {
+  content: '✓';
+  position: absolute;
+  right: 0.75rem;
+  top: 0.6rem;
+  color: var(--green);
+  font-weight: bold;
+}
+.sheet-dialog .mode-option {
+  position: relative;
+  padding-right: 2rem;
+}
+.sheet-dialog .teacher-level {
+  max-width: none;
+  padding: 1rem;
+  background: var(--soft);
+  border-radius: var(--radius-sm);
+}
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  border-color: var(--green);
+}
+@media (max-width: 480px) {
+  .sheet-dialog .mode-options {
+    grid-template-columns: 1fr;
+  }
+  .learning-welcome .actions {
+    width: 100%;
+  }
+  .learning-welcome .btn {
+    flex: 1;
+  }
+}
+
 @media (max-width: 1180px) {
   .nav .nav-long {
     display: none;
@@ -3668,7 +3827,7 @@ html[data-level='sd'] .curated-block {
 /* Phones and tablets: navigation moves to a bottom bar within thumb reach. */
 @media (max-width: 1024px) {
   /* A backdrop-filter would become the containing block of the fixed bottom navigation. */
-  header {
+  #header {
     backdrop-filter: none;
     background: #fff;
   }
@@ -3820,7 +3979,7 @@ html[data-level='sd'] .curated-block {
     padding-top: 1.6rem;
   }
   .hero-mosaic {
-    grid-template-rows: 210px 130px;
+    grid-template-rows: 165px 165px;
     gap: 0.6rem;
     transform: none;
   }

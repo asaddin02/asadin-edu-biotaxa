@@ -2,7 +2,7 @@ import { config } from '../config.js';
 import { link } from '../core/dom.js';
 import { S, pick } from '../core/prefs.js';
 import { usingProxy } from '../services/api.js';
-import { pageHead, notice } from '../components/common.js';
+import { pageHead, notice, sectionNav } from '../components/common.js';
 
 const s = S({
   title: ['Sumber & metode', 'Sources & methods'],
@@ -93,15 +93,21 @@ export async function render(ctx) {
   const card = (name, text, url) =>
     `<article class="card"><h3>${name}</h3><p>${text}</p>${link(url, name)}</article>`;
   ctx.main.innerHTML = `${pageHead(s.heading, s.sub, 'BIOTAXA / SUMBER')}
-    <h2 class="list-title">${s.sources}</h2>
+    <div class="about-workspace">${sectionNav([
+      ['about-sources', s.sources],
+      ['about-curated', s.curated],
+      ['about-limits', s.limits],
+      ['privasi', s.privacy],
+      ['about-license', s.licensing],
+    ])}<div class="about-content"><h2 class="list-title" id="about-sources">${s.sources}</h2>
     <div class="grid">
       ${card('GBIF', s.gbif, 'https://www.gbif.org/')}
       ${card('iNaturalist', s.inat, 'https://www.inaturalist.org/')}
       ${card('Wikipedia', s.wiki, 'https://www.wikipedia.org/')}
       ${card('Paleobiology Database', s.pbdb, 'https://paleobiodb.org/')}
     </div>
-    <section class="section"><h2>${s.curated}</h2><p>${s.curatedText}</p>${config.feedbackURL ? `<p>${link(config.feedbackURL, s.feedback, { cls: 'btn secondary' })}</p>` : ''}</section>
-    <section class="section"><h2>${s.limits}</h2><p>${s.limitsText}</p>${notice(s.domains)}
+    <section class="section" id="about-curated"><h2>${s.curated}</h2><p>${s.curatedText}</p>${config.feedbackURL ? `<p>${link(config.feedbackURL, s.feedback, { cls: 'btn secondary' })}</p>` : ''}</section>
+    <section class="section" id="about-limits"><h2>${s.limits}</h2><p>${s.limitsText}</p>${notice(s.domains)}
       <h3>${s.references}</h3><ul class="source-list">
         <li>${link('https://doi.org/10.1073/pnas.87.12.4576', 'Woese, Kandler & Wheelis (1990) · Towards a natural system of organisms')}</li>
         <li>${link('https://doi.org/10.1038/nature12779', 'Williams et al. (2013) · An archaeal origin of eukaryotes supports only two primary domains of life')}</li>
@@ -109,6 +115,6 @@ export async function render(ctx) {
         <li>${link('https://openstax.org/details/books/biology-2e', 'OpenStax · Biology 2e (CC BY 4.0)')}</li>
       </ul></section>
     <section class="section" id="privasi"><h2>🔒 ${s.privacy}</h2><ul class="tip-list">${PRIVACY.map(p => `<li>${pick(p)}</li>`).join('')}</ul></section>
-    <section class="section"><h2>${s.licensing}</h2><p>${s.licensingText}</p><p><strong>${s.mediaPolicy}:</strong> ${config.allowNonCommercialMedia ? s.mediaNC : s.mediaSafe}</p></section>
-    <section class="section"><h2>${s.technical}</h2><dl class="kv"><div><dt>${s.version}</dt><dd>${config.version}</dd></div><div><dt>${s.proxy}</dt><dd>${usingProxy() ? s.proxyOn : s.proxyOff}</dd></div></dl>${config.repositoryURL ? `<p>${link(config.repositoryURL, s.code)}</p>` : ''}</section>`;
+    <section class="section" id="about-license"><h2>${s.licensing}</h2><p>${s.licensingText}</p><p><strong>${s.mediaPolicy}:</strong> ${config.allowNonCommercialMedia ? s.mediaNC : s.mediaSafe}</p></section>
+    <section class="section"><h2>${s.technical}</h2><dl class="kv"><div><dt>${s.version}</dt><dd>${config.version}</dd></div><div><dt>${s.proxy}</dt><dd>${usingProxy() ? s.proxyOn : s.proxyOff}</dd></div></dl>${config.repositoryURL ? `<p>${link(config.repositoryURL, s.code)}</p>` : ''}</section></div></div>`;
 }

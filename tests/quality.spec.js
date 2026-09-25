@@ -72,6 +72,7 @@ test('no horizontal overflow from 320px to 1440px in SD and SMP modes', async ({
         'about',
       ]) {
         await page.goto(`/#/${route}`);
+        await expect(page.locator('#main')).toHaveAttribute('data-page', route.split(/[/?]/)[0]);
         await expect(page.locator('#main h1')).toBeVisible();
         expect(await noOverflow(page), `${level} ${width}px ${route}`).toBe(true);
       }
@@ -156,3 +157,35 @@ test('both languages render every main page', async ({ page }) => {
     await expect(page.locator('#main h1')).toContainText(heading);
   }
 });
+
+for (const width of [390, 768, 1440]) {
+  test(`page headings scroll away without covering navigation at ${width}px`, async ({ page }) => {
+    await setPrefs(page, { level: 'sd' });
+    await mockAPIs(page);
+    await page.setViewportSize({ width, height: 844 });
+    for (const route of ['tree/1', 'learn', 'learn/ekosistem', 'lab/mendel', 'saved?tab=passport']) {
+      await page.goto(`/#/${route}`);
+      await expect(page.locator('#main')).toHaveAttribute('data-page', route.split(/[/?]/)[0]);
+      const heading = page.locator('#main .page-head');
+      await expect(heading).toBeVisible();
+      const before = await heading.boundingBox();
+      await page.evaluate(() => window.scrollTo(0, 200));
+      const scroll = await page.evaluate(() => scrollY);
+      const after = await heading.boundingBox();
+      expect(scroll).toBeGreaterThan(100);
+      expect(Math.abs(after.y - (before.y - scroll)), route).toBeLessThan(2);
+      for (const y of [200, 700, 1200]) {
+        await page.evaluate(top => window.scrollTo(0, top), y);
+        const clear = await page.locator('#header .brand').evaluate(el => {
+          const r = el.getBoundingClientRect();
+          const hit = document.elementFromPoint(r.x + r.width / 2, r.y + r.height / 2);
+          return r.y >= 0 && el.contains(hit);
+        });
+        expect(clear, `${route} at scroll ${y}`).toBe(true);
+      }
+      await page.locator('#header .mode-chip').click();
+      await expect(page.locator('#mode-dialog')).toBeVisible();
+      await page.keyboard.press('Escape');
+    }
+  });
+}

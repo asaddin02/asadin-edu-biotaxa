@@ -38,3 +38,22 @@ test('installable manifest and offline lessons through the service worker', asyn
   await expect(page.locator('.quiz-q').first()).toBeVisible();
   await context.setOffline(false);
 });
+
+test('a previously installed waiting update is offered on the next visit', async ({ page }) => {
+  await page.addInitScript(() => {
+    localStorage.setItem('biotaxa-force-sw', '1');
+    const worker = new EventTarget();
+    worker.state = 'installed';
+    worker.postMessage = data => (window.updateMessage = data);
+    const registration = new EventTarget();
+    registration.waiting = worker;
+    const serviceWorker = new EventTarget();
+    serviceWorker.controller = {};
+    serviceWorker.register = async () => registration;
+    Object.defineProperty(navigator, 'serviceWorker', { value: serviceWorker });
+  });
+  await page.goto('/#/learn');
+  await expect(page.locator('#update-status')).toBeVisible();
+  await page.locator('#update-status button').click();
+  expect(await page.evaluate(() => window.updateMessage)).toEqual({ type: 'SKIP_WAITING' });
+});

@@ -116,7 +116,7 @@ Server ini dirancang untuk **satu sekolah**, bukan untuk situs publik. Semua pen
 
 Ubah [js/config.js](js/config.js) bila menerbitkan salinan Anda sendiri:
 
-- `repositoryURL`, `feedbackURL`, `donateURL` menampilkan tautan repositori, formulir masukan, dan donasi. Kosongkan untuk menyembunyikannya.
+- `repositoryURL` dan `feedbackURL` mengatur tautan repositori dan masukan. Halaman dukungan ada di `#/dukung`, melalui footer dan beranda. Isi `donateLocalURL` untuk kanal Indonesia dan/atau `donateInternationalURL` untuk kanal internasional dengan URL HTTPS halaman milik pengelola. Hanya kanal yang diisi dan valid yang muncul. `donateURL` tetap didukung sebagai tujuan tunggal jika kedua kanal belum tersedia. Jika semuanya kosong, halaman menyatakan donasi uang belum tersedia. Pembayaran, mata uang, bukti transaksi, dan pencairan ditangani penyedia; tidak ada API key atau webhook yang diperlukan.
 - `allowNonCommercialMedia` menentukan apakah foto berlisensi NC ditampilkan. **Ubah menjadi `false` sebelum monetisasi.** Lihat [docs/LICENSING.md](docs/LICENSING.md).
 
 Setelah mengubah berkas aplikasi, jalankan `npm run build` untuk memperbarui daftar cache offline di `sw.js`.
@@ -126,7 +126,7 @@ Setelah mengubah berkas aplikasi, jalankan `npm run build` untuk memperbarui daf
 | Perintah                         | Fungsi                                                                                                             |
 | -------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
 | `npm run check`                  | Semua pemeriksaan: lint, validasi konten, cache offline, dan tes browser                                           |
-| `npm test`                       | 56 tes Playwright dengan data palsu, tidak butuh internet                                                          |
+| `npm test`                       | 72 tes Playwright dengan data palsu, tidak butuh internet                                                          |
 | `npm run smoke`                  | Menguji aplikasi yang sedang berjalan terhadap API sungguhan, lalu membuat ulang screenshot di `docs/screenshots/` |
 | `npm run data:check`             | Memvalidasi konten kurasi. Tambahkan `-- --resolve` untuk mengisi ID dan foto spesies baru                         |
 | `npm run snapshot`               | Merekam snapshot API ke `data/snapshot/`. Tambahkan `-- --quick` untuk uji singkat                                 |
@@ -139,7 +139,7 @@ Tes memakai Google Chrome di `/usr/bin/google-chrome` bila ada. Atur `CHROME_PAT
 
 ```text
 index.html, sw.js, manifest.webmanifest
-css/style.css
+css/              style.css (komponen), layouts.css (tata letak responsif)
 js/
   app.js          titik masuk: event global, catatan, lencana, service worker
   config.js       pengaturan penerbitan
@@ -155,8 +155,7 @@ functions/        edge cache Cloudflare Pages untuk /api/*
 scripts/          validasi konten, pencari ID spesies, perekam snapshot, build situs, daftar cache offline
 tests/            tes Playwright dan smoke test
 assets/           logo, foto beranda, atlas dunia, Leaflet
-docs/             lisensi dan monetisasi, skala, screenshot, contoh modul ajar
-archive/          kode versi lama, tidak dipakai
+docs/             lisensi dan monetisasi, skala, screenshot terbaru
 data/snapshot/    (dibuat otomatis) snapshot API, tidak masuk git
 dist/             (dibuat otomatis) situs siap terbit
 ```
@@ -191,6 +190,6 @@ BioTaxa is a free, open-source, bilingual atlas of life for learners from primar
 - **Five modes.** Primary, middle school, high school, university and teacher. Each changes text size, vocabulary, lessons, visible tabs and activities.
 - **Features.** Child-friendly search and an Indonesia-first gallery (iNaturalist), a GBIF tree of life, 111 curated species cards in plain language, 12 curriculum lessons with 76 quiz questions, 7 lab simulations, a 103-term glossary, species comparison, "near me", prehistoric life with a geological timeline, badges, printable lesson plans and link-based assignments. It works offline as a PWA, is tested with axe for WCAG 2.1 AA, and has no accounts, ads or analytics.
 - **Run it.** For development, run `npm ci && npm run dev`. For a public site, use Cloudflare Pages: the [Deploy workflow](.github/workflows/deploy.yml) publishes the static app, a nightly snapshot of the most requested API responses, and an edge cache Function for everything else. It needs the `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` secrets and a `CLOUDFLARE_PAGES_PROJECT` variable. If the edge cache is busy, the app falls back to calling the APIs directly. For one school's own server, use `npm start` or Docker (`TRUST_PROXY=1` behind a reverse proxy, `HSTS=1` behind HTTPS). See [docs/SCALING.md](docs/SCALING.md).
-- **Test it.** `npm run check` runs lint, content validation, the offline precache check and 56 Playwright tests. `npm run smoke` checks a running instance against the live APIs.
+- **Test it.** `npm run check` runs lint, content validation, the offline precache check and 72 Playwright tests. `npm run smoke` checks a running instance against the live APIs.
 - **License.** Code is MIT and curated content is CC BY-SA 4.0. Photos and external data keep their own licenses. Before monetising, read [docs/LICENSING.md](docs/LICENSING.md).
 - **Contribute.** See [CONTRIBUTING.md](CONTRIBUTING.md).

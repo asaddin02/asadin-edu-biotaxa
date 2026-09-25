@@ -46,6 +46,8 @@ function close(input) {
 }
 
 export function closeAllSuggestions(except) {
+  seq++;
+  clearTimeout(timer);
   document.querySelectorAll('[data-suggest]').forEach(input => input !== except && close(input));
 }
 
@@ -79,12 +81,12 @@ function render(input, results) {
 
 export function handleSuggestInput(input) {
   clearTimeout(timer);
+  const mySeq = ++seq;
   const q = input.value.trim();
   if (q.length < 2) {
     close(input);
     return;
   }
-  const mySeq = ++seq;
   timer = setTimeout(async () => {
     try {
       const data = await API.autocomplete(q, { rank: input.dataset.suggestRank || '', perPage: 8 });
@@ -145,9 +147,11 @@ export function handleSuggestKey(event) {
     highlight(input, Math.max(0, current - 1));
     return true;
   }
-  if (event.key === 'Escape' && open) {
+  if (event.key === 'Tab' || event.key === 'Escape') {
+    seq++;
+    clearTimeout(timer);
     close(input);
-    return true;
+    return event.key === 'Escape' && open;
   }
   if (event.key === 'Enter' && open && current >= 0) {
     choose(input, opts[current]);

@@ -1,6 +1,6 @@
 // Small building blocks shared by pages.
 import { esc } from '../core/dom.js';
-import { fmt } from '../core/prefs.js';
+import { fmt, pick } from '../core/prefs.js';
 import { ui } from '../i18n/ui.js';
 import { brandImage, icon } from './icons.js';
 
@@ -56,4 +56,9 @@ export const routeURL = (path, params = {}) => {
 export function validPage(value, max = 4167) {
   const n = Number(value);
   return Number.isInteger(n) && n > 0 ? Math.min(n, max) : 1;
+}
+
+/** In-page navigation never reloads the route or discards unfinished answers. */
+export function sectionNav(items) {
+  return `<nav class="section-nav" aria-label="${pick(['Di halaman ini', 'On this page'])}"><span class="eyebrow">${pick(['Di halaman ini', 'On this page'])}</span>${items.map(([id, label], i) => `<a href="${esc(location.hash.split('#').slice(0, 2).join('#'))}#${esc(id)}" data-jump="${esc(id)}"><span aria-hidden="true">${String(i + 1).padStart(2, '0')}</span>${esc(label)}</a>`).join('')}</nav>`;
 }

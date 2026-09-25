@@ -1,7 +1,6 @@
 .git
 .github
 node_modules
-archive
 docs
 tests
 test-results

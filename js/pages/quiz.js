@@ -152,11 +152,11 @@ export async function render(ctx) {
   const progress = getProgress();
   const topics = TOPICS.filter(t => t.levels.includes(level));
   main.innerHTML = `${pageHead(s.heading, s.sub, 'BIOTAXA / QUIZ')}
-    <a class="feature-card" href="#/quiz/foto"><span class="feature-emoji" aria-hidden="true">📸</span><span><strong>${s.photoTitle}</strong><small>${s.photoText}</small>${progress.quizzes.photo ? `<span class="done">⭐ ${s.best}: ${fmt(Math.round(progress.quizzes.photo.best * 100))}%</span>` : ''}</span><span class="btn">${s.start} →</span></a>
+    <div class="quiz-workspace"><a class="feature-card" href="#/quiz/foto"><span class="feature-emoji" aria-hidden="true">📸</span><span><strong>${s.photoTitle}</strong><small>${s.photoText}</small>${progress.quizzes.photo ? `<span class="done">⭐ ${s.best}: ${fmt(Math.round(progress.quizzes.photo.best * 100))}%</span>` : ''}</span><span class="btn">${s.start} →</span></a>
     <section class="section"><h2>${s.topicQuizzes}</h2><div class="topic-grid">${topics
       .map(t => {
         const best = progress.quizzes[`topic-${t.id}`]?.best;
         return `<a class="topic-card" href="#/quiz/${t.id}"><span class="topic-icon" aria-hidden="true">${t.icon}</span><span class="topic-text"><strong>${esc(pick(t.title))}</strong><small>${fmt(questionsForLevel(t.quiz).length)} ${s.questions}</small>${best != null ? `<span class="done">⭐ ${fmt(Math.round(best * 100))}%</span>` : ''}</span></a>`;
       })
-      .join('')}</div></section>`;
+      .join('')}</div></section></div>`;
 }

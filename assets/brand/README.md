@@ -1,13 +1,13 @@
 # BioTaxa identity
 
-Generated with the built-in imagegen tool on 24 September 2026. The transparent mark combines a branching lowercase b, a fern spiral, and three botanical forms. It is brand artwork, not an image used as scientific evidence.
+Generated on 25 September 2026 with the built-in imagegen tool. The new symbol combines an open book, two leaves, and a branching taxonomy stem. It is brand artwork, not scientific evidence.
 
-Production asset: `biotaxa-mark.png`, 256 × 256, transparent PNG, approximately 38 KB. Resampled for web delivery from the generated master; alpha preserved. The original master remains in the image-generation output directory.
+`biotaxa-mark.png` is the production transparent mark (256 × 256). Browser canvas resampling preserves alpha for the mark and favicon. Install icons use a warm white background; the maskable icon keeps the symbol inside its safe area. `og-image.jpg` combines the generated symbol with readable typeset text.
 
-Uses: header, footer, favicon, Apple touch icon, hero seal, search stamp, page headings, loading/empty states, laboratory and printable worksheets. Visible wordmark uses HTML text so it remains sharp and accessible. Decorative repeated marks use empty alternative text.
+The shared `brandImage()` component supplies the header, footer, hero, search stamp, page headings, empty states, laboratory, and printable worksheets. Favicon, Apple touch icon, PWA icons, and link-preview artwork also use this identity. The wordmark remains accessible HTML text.
 
-Palette: ink #112D38, emerald #047C64, lime #D5F56B, mint #D9F4E7, lilac #E9E5FB, apricot #FFEBDB, white #FFFFFF. System typography avoids a remote font dependency.
+Palette: forest #176344, ink #20382B, lime #D6EC91, paper #FBFCF7. Local system typography and Georgia require no remote fonts.
 
-## Generation prompt
+## Final generation prompt
 
-Use case: logo-brand. Create a single finished emblem for BioTaxa, a premium bilingual biodiversity learning atlas for curious students and teachers. An original compact symbol combining three rounded branching life forms into a subtle lowercase b / unfolding fern silhouette, suggesting the three domains of life and curiosity. Bold, sophisticated geometric organic curves, clean flat vector-like edges, memorable at favicon size. Palette deep ink navy #112D38 and vivid botanical emerald #047C64 with a small luminous lime #D5F56B accent. Transparent background with true alpha. Centered square composition, generous clear margins, one mark only. No letters, no wordmark, no text, no mockup, no shadows, no gradients, no fine hairlines, no stock leaf-in-circle icon. Deliver a polished production brand symbol as a PNG and save the generated file.
+Use case: logo-brand. Create a polished standalone symbol for BioTaxa, an Indonesian biodiversity learning app for students and teachers. A simple distinctive open book whose two pages grow into two rounded leaves, with a subtle branching taxonomy stem in the center. Flat graphic design, bold elegant silhouette legible at 32px, forest green with one warm lime accent. Centered square composition, generous transparent padding, genuinely transparent background. No words, no lettering, no shadows, no mockup, no gradients. Friendly scientific educational identity.

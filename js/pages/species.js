@@ -498,9 +498,9 @@ function renderPage(data, complete) {
             )}<button type="button" class="more-photos" data-panel-button="photos">${fmt(photos.length)}<small>${s.photoCount}</small></button></div>`
         : ''
     }</div>
-    <div class="species-intro">
+    <div class="species-intro"><div class="species-identity">
       <span class="eyebrow">${esc(rankLabel(x.rank).toUpperCase())} / ${esc(x.kingdom || 'LIFE')}</span>
-      ${heroTitle}
+      ${heroTitle}</div><div class="species-details">
       ${sp?.end ? `<p class="endemic-badge">🇮🇩 ${s.endemic}</p>` : ''}
       ${x.nameType === 'INFORMAL' ? notice(`${ui.informal}: ${esc(x.scientificName)}`) : ''}
       ${atLeast('smp') ? `<dl class="names"><div><dt>${s.indonesian}</dt><dd>${esc(names.id.join(' · ') || (lang === 'id' && sp ? pick(sp.name) : '') || s.namesMissing)}</dd></div><div><dt>${s.english}</dt><dd>${esc(names.en.join(' · ') || (sp ? sp.name[1] : '') || s.namesMissing)}</dd></div></dl>` : ''}
@@ -512,7 +512,7 @@ function renderPage(data, complete) {
         <button class="btn secondary" type="button" data-panel-button="map">${icon('map')} ${pick(s.tabMap)}</button>
       </div>
       <p class="source-meta">${s.accessed}: ${fmtDate(data.accessed)} · ${esc(x.authorship || x.source || 'GBIF Backbone')}</p>
-    </div>
+    </div></div>
   </section>
   <div class="dossier-tabs" role="tablist" aria-label="${s.tabs}">${tabs
     .map(

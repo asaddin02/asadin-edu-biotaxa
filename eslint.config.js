@@ -5,7 +5,6 @@ export default [
   {
     ignores: [
       'node_modules/',
-      'archive/',
       'assets/vendor/',
       'test-results/',
       'playwright-report/',

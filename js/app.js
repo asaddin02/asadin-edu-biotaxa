@@ -148,17 +148,32 @@ document.addEventListener('click', event => {
   if (termPop && !termPop.hidden && !target.closest('#term-pop') && !target.closest('.term'))
     closeTerm({ restoreFocus: false });
 
+  const jump = target.closest('[data-jump]');
+  if (jump) {
+    event.preventDefault();
+    const section = document.getElementById(jump.dataset.jump);
+    if (section) {
+      section.scrollIntoView({
+        block: 'start',
+        behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth',
+      });
+      if (!section.hasAttribute('tabindex')) section.setAttribute('tabindex', '-1');
+      section.focus({ preventScroll: true });
+    }
+    return;
+  }
   const button = target.closest('button');
   if (!button) return;
   if (button.dataset.lang) update({ lang: button.dataset.lang });
   else if (button.hasAttribute('data-open-mode')) openModeDialog();
   else if (button.dataset.setMode) {
+    const dialog = button.closest('dialog');
     const value = button.dataset.setMode;
     const changed =
       value === 'teacher' ? update({ role: 'teacher', level }) : update({ role: 'student', level: value });
     if (changed) toast(ui.modeSaved);
-    const dialog = button.closest('dialog');
     if (dialog && value !== 'teacher') dialog.close();
+    else if (!dialog && value === 'teacher') openModeDialog();
   } else if (button.hasAttribute('data-close-dialog')) button.closest('dialog')?.close();
   else if (button.hasAttribute('data-retry')) render();
   else if (button.dataset.speak) toggleSpeech(button);
@@ -239,14 +254,20 @@ function registerServiceWorker() {
   }
   if (navigator.webdriver && !forced) return;
   navigator.serviceWorker
-    .register('sw.js')
+    .register('sw.js', { updateViaCache: 'none' })
     .then(registration => {
-      registration.addEventListener('updatefound', () => {
-        const worker = registration.installing;
-        worker?.addEventListener('statechange', () => {
+      // An update can already be waiting when a returning visitor opens the app.
+      if (registration.waiting && navigator.serviceWorker.controller) showUpdate(registration.waiting);
+      const watch = worker => {
+        if (!worker) return;
+        const check = () => {
           if (worker.state === 'installed' && navigator.serviceWorker.controller) showUpdate(worker);
-        });
-      });
+        };
+        worker.addEventListener('statechange', check);
+        check();
+      };
+      watch(registration.installing);
+      registration.addEventListener('updatefound', () => watch(registration.installing));
     })
     .catch(() => {
       /* offline support is optional */

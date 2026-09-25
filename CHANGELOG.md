@@ -1,5 +1,29 @@
 # Riwayat perubahan / Changelog
 
+## Pembaruan UI/UX — 25 September 2026
+
+- Halaman dukungan menyediakan kanal Indonesia dan internasional yang dapat dikonfigurasi terpisah, beserta bantuan transaksi. Ajakan kontribusi kode diganti dengan penggunaan BioTaxa dalam kegiatan belajar.
+
+- Halaman dukungan sukarela `#/dukung`, tautan footer dan bagian dukungan beranda; pembayaran melalui URL HTTPS eksternal yang dikonfigurasi pengelola. Status belum tersedia ditampilkan jika tujuan donasi belum diisi.
+
+- Aturan sticky navbar dibatasi ke `#header` agar judul halaman tidak menutupi navigasi saat scroll; diuji pada desktop, tablet, dan ponsel.
+
+- Target mode guru kini berupa empat pilihan radio yang selalu terlihat, menggantikan dropdown agar cukup sekali klik atau tap.
+- Palet antarmuka disegarkan menjadi toska, mint, lime, dan aksen warna per halaman dengan kontras teks yang diuji.
+
+- Pembaruan PWA yang sudah menunggu tetap ditawarkan setelah halaman dimuat ulang; pemasangan cache baru mengambil aset terbaru dari jaringan.
+
+- Identitas buku-daun hasil generate AI diterapkan ke seluruh logo, favicon, ikon instalasi, dan pratinjau tautan.
+- Palet hijau hutan dan latar hangat, judul editorial, tata letak foto baru, kartu serta permukaan bacaan yang konsisten.
+- Tata letak khusus halaman: panel filter jelajah, katalog materi dan kegiatan, navigasi laboratorium, formulir guru bertahap, kamus dengan indeks alfabet, jalur taksonomi, koleksi, kuis, serta navigasi bagian. Panel desktop berubah menjadi susunan vertikal atau kontrol geser pada ponsel/tablet.
+- Detail spesies di ponsel mengurutkan nama, foto, lalu informasi dan tindakan; tabel perbandingan menyesuaikan layar sempit.
+- Draf tugas guru tetap tersimpan dalam sesi saat mode berubah; navigasi bagian tidak memuat ulang halaman.
+- Beranda memprioritaskan kegiatan belajar, menyertakan contoh pencarian dan pintasan sesuai jenjang.
+- Dialog mode mempertahankan dropdown serta fokus saat target guru berubah; memilih guru dari beranda langsung membuka pengaturan target.
+- Respons pencarian yang terlambat tidak lagi membuka saran setelah pengguna menghapus teks, menekan Escape, atau Tab.
+- Arsip implementasi versi 1/2 yang tidak digunakan dihapus; riwayatnya tetap tersedia di Git.
+- Tes regresi mencakup dropdown guru, fokus keyboard, kunjungan pertama, dan pembatalan saran pencarian.
+
 Format mengikuti [Keep a Changelog](https://keepachangelog.com/id-ID/1.1.0/). Versi mengikuti [Semantic Versioning](https://semver.org/lang/id/).
 
 ## [3.0.0] — 2026-09-24
@@ -51,4 +75,4 @@ Perombakan besar agar BioTaxa bisa dipakai siswa SD sampai mahasiswa serta guru,
 
 ## [2.0.0] — 2026-09-23
 
-Versi sebelumnya: penelusuran taksonomi GBIF, galeri iNaturalist, dossier spesies dengan peta, antarmuka dua bahasa, dan tiga simulasi laboratorium. Lihat `archive/docs-v2/`.
+Versi sebelumnya: penelusuran taksonomi GBIF, galeri iNaturalist, dossier spesies dengan peta, antarmuka dua bahasa, dan tiga simulasi laboratorium. Implementasi lama tersedia dalam riwayat Git.

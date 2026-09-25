@@ -18,6 +18,7 @@ const pages = {
   guru: () => import('../pages/teacher.js'),
   tugas: () => import('../pages/assignment.js'),
   about: () => import('../pages/about.js'),
+  dukung: () => import('../pages/support.js'),
 };
 
 let epoch = 0;
