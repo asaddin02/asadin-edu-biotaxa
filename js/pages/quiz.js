@@ -1,9 +1,10 @@
 import { $, esc, shuffle } from '../core/dom.js';
 import { S, pick, level, atLeast, fmt } from '../core/prefs.js';
 import { getProgress, trackQuiz } from '../core/userdata.js';
-import { TOPICS, findTopic } from '../data/topics/index.js';
-import { pageHead, notice } from '../components/common.js';
+import { TOPICS, findTopic, loadTopic, loadTopics } from '../data/topics/index.js';
+import { pageHead, notice, loading } from '../components/common.js';
 import { quizMarkup, bindQuiz, questionsForLevel } from '../components/quiz.js';
+import { catalogTools, catalogGroups, bindCatalog } from '../components/catalog.js';
 import { rich } from '../components/richtext.js';
 import { refresh } from '../components/cards.js';
 import { curatedPhoto, photoMarkup } from '../services/media.js';
@@ -137,10 +138,12 @@ export async function render(ctx) {
     });
     return;
   }
-  const topic = id ? findTopic(id) : null;
-  if (topic) {
+  if (id && findTopic(id)) {
+    main.innerHTML = loading();
+    const topic = await loadTopic(id);
+    if (!ctx.isCurrent()) return;
     main.innerHTML = `${pageHead(pick(topic.title), pick(topic.summary), `${s.title.toUpperCase()} / ${topic.icon}`)}
-      ${quizMarkup(`topic-${topic.id}`, questionsForLevel(topic.quiz), { seed: TOPICS.indexOf(topic) + 7 })}
+      ${quizMarkup(`topic-${topic.id}`, questionsForLevel(topic.quiz), { seed: TOPICS.findIndex(t => t.id === topic.id) + 7 })}
       <p class="actions"><a class="btn secondary" href="#/learn/${topic.id}">${s.lesson}</a><a class="btn ghost" href="#/quiz">${s.back}</a></p>`;
     bindQuiz(ctx.on);
     return;
@@ -150,13 +153,17 @@ export async function render(ctx) {
     return;
   }
   const progress = getProgress();
-  const topics = TOPICS.filter(t => t.levels.includes(level));
+  main.innerHTML = loading();
+  const topics = await loadTopics(TOPICS.filter(t => t.levels.includes(level)));
+  if (!ctx.isCurrent()) return;
   main.innerHTML = `${pageHead(s.heading, s.sub, 'BIOTAXA / QUIZ')}
     <div class="quiz-workspace"><a class="feature-card" href="#/quiz/foto"><span class="feature-emoji" aria-hidden="true">📸</span><span><strong>${s.photoTitle}</strong><small>${s.photoText}</small>${progress.quizzes.photo ? `<span class="done">⭐ ${s.best}: ${fmt(Math.round(progress.quizzes.photo.best * 100))}%</span>` : ''}</span><span class="btn">${s.start} →</span></a>
-    <section class="section"><h2>${s.topicQuizzes}</h2><div class="topic-grid">${topics
-      .map(t => {
+    <section class="section lesson-catalog"><h2>${s.topicQuizzes}</h2>${catalogTools()}${catalogGroups(
+      topics,
+      t => {
         const best = progress.quizzes[`topic-${t.id}`]?.best;
-        return `<a class="topic-card" href="#/quiz/${t.id}"><span class="topic-icon" aria-hidden="true">${t.icon}</span><span class="topic-text"><strong>${esc(pick(t.title))}</strong><small>${fmt(questionsForLevel(t.quiz).length)} ${s.questions}</small>${best != null ? `<span class="done">⭐ ${fmt(Math.round(best * 100))}%</span>` : ''}</span></a>`;
-      })
-      .join('')}</div></section></div>`;
+        return `<a class="topic-card" data-topic="${t.id}" href="#/quiz/${t.id}"><span class="topic-icon" aria-hidden="true">${t.icon}</span><span class="topic-text"><strong>${esc(pick(t.title))}</strong><small>${fmt(questionsForLevel(t.quiz).length)} ${s.questions}</small>${best != null ? `<span class="done">⭐ ${fmt(Math.round(best * 100))}%</span>` : ''}</span></a>`;
+      }
+    )}</section></div>`;
+  bindCatalog(ctx, topics);
 }

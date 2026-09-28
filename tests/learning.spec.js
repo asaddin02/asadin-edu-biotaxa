@@ -1,5 +1,6 @@
 import { test, expect } from '@playwright/test';
 import { mockAPIs, setPrefs } from './helpers.js';
+import { TOPICS } from '../js/data/topics/index.js';
 
 test('first visit invites choosing a mode; the choice changes text size and persists', async ({ page }) => {
   await mockAPIs(page);
@@ -36,13 +37,14 @@ test('lessons adapt to the level; quizzes score and award a badge', async ({ pag
   await expect(cards.first()).toBeVisible();
   const sdCount = await cards.count();
   await page.getByRole('link', { name: /Tampilkan semua materi/ }).click();
-  await expect(page.locator('.topic-grid .topic-card')).toHaveCount(12);
-  expect(sdCount).toBeLessThan(12);
+  await expect(page.locator('.topic-grid .topic-card')).toHaveCount(TOPICS.length);
+  expect(sdCount).toBe(TOPICS.filter(t => t.levels.includes('sd')).length);
+  expect(sdCount).toBeLessThan(TOPICS.length);
 
   await page.goto('/#/learn/ekosistem');
   await expect(page.locator('h1')).toHaveText('Ekosistem & rantai makanan');
   await expect(page.locator('#topic-text')).toContainText('padi → belalang → katak → ular → elang');
-  await page.getByRole('link', { name: 'SMA', exact: true }).click();
+  await page.getByRole('link', { name: 'SMA Lanjutan', exact: true }).click();
   await expect(page.locator('#topic-text')).toContainText('Produktivitas primer');
   const quiz = page.locator('.quiz');
   const total = await quiz.locator('.quiz-q').count();

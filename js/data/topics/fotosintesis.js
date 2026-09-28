@@ -1,12 +1,5 @@
 export default {
   id: 'fotosintesis',
-  icon: '☀️',
-  levels: ['sd', 'smp', 'sma'],
-  title: ['Tumbuhan & fotosintesis', 'Plants & photosynthesis'],
-  summary: [
-    'Bagaimana tumbuhan “memasak” makanannya sendiri dengan cahaya matahari?',
-    'How do plants “cook” their own food with sunlight?',
-  ],
   body: {
     sd: [
       `Tumbuhan tidak perlu mencari makanan. Mereka membuat makanannya sendiri di daun! Proses ini disebut [[fotosintesis]].
@@ -57,14 +50,68 @@ Tumbuhan C₃ (padi, kedelai) kehilangan efisiensi saat panas karena fotorespira
 
 Faktor pembatas saling berinteraksi: menambah CO₂ tidak menaikkan laju bila cahaya sangat rendah. Suhu terlalu tinggi menurunkan kerja enzim. Konsep ini dipakai dalam pertanian rumah kaca.
 
-Fotosintesis global menyimpan karbon dalam biomassa, sehingga hutan dan [[lamun]] berperan penting dalam mengurangi [[efek rumah kaca]].`,
+Fotosintesis global menyimpan karbon dalam biomassa, sehingga hutan dan [[lamun]] berperan penting dalam menahan peningkatan [[efek rumah kaca]].`,
       `Photosynthesis has two stages. **Light reactions** in the thylakoid membranes: chlorophyll in photosystems II and I absorbs light, water is split (photolysis) releasing O₂, and electron flow makes ATP (via ATP synthase) and NADPH. **The Calvin cycle** in the stroma: rubisco fixes CO₂ onto RuBP, and ATP and NADPH are used to make three-carbon sugar (G3P).
 
 C₃ plants (rice, soybean) lose efficiency in heat due to photorespiration. C₄ plants (maize, sugarcane) concentrate CO₂ in bundle-sheath cells, while CAM plants (pineapple, cacti, many orchids) open their [[stomata]] at night to save water.
 
 Limiting factors interact: adding CO₂ does nothing if light is very low, and too much heat slows enzymes. Greenhouse farming uses these ideas.
 
-Global photosynthesis locks carbon into biomass, so forests and [[lamun|seagrass]] meadows help reduce the [[efek rumah kaca|greenhouse effect]].`,
+Global photosynthesis locks carbon into biomass, so forests and [[lamun|seagrass]] meadows help limit the build-up of the [[efek rumah kaca|greenhouse effect]].`,
+    ],
+    kuliah: [
+      `**Reaksi terang** berlangsung melalui “skema Z”: fotosistem II (pusat reaksi P680) menyerap cahaya dan mengambil elektron dari air melalui kompleks pemecah air yang mengandung gugus mangan–kalsium, sehingga O₂ dilepaskan. Elektron mengalir lewat rantai transpor ke fotosistem I (P700), yang kembali tereksitasi cahaya dan akhirnya mereduksi NADP⁺ menjadi NADPH. Aliran elektron memompa proton ke lumen tilakoid, dan ATP sintase membuat ATP (fotofosforilasi). Aliran elektron siklik di sekitar fotosistem I menambah ATP tanpa NADPH. Percobaan isotop ¹⁸O pada 1940-an menunjukkan bahwa O₂ hasil fotosintesis berasal dari air, bukan dari CO₂.
+
+**Siklus Calvin** memerlukan 3 ATP dan 2 NADPH untuk setiap CO₂ yang diikat. Enzim **rubisco** bekerja lambat dan juga dapat mengikat O₂, memicu **fotorespirasi** yang membuang karbon dan energi, terutama saat panas dan stomata menutup. Tumbuhan **C₄** memisahkan pengikatan CO₂ secara ruang: PEP karboksilase di sel mesofil, lalu CO₂ dipekatkan di sel seludang pembuluh (anatomi Kranz). Tumbuhan **CAM** memisahkannya secara waktu: CO₂ diikat pada malam hari. Proyek penelitian internasional berupaya memasukkan jalur C₄ ke padi untuk menaikkan hasil panen.
+
+**Spektrum aksi** fotosintesis (laju terhadap panjang gelombang) mengikuti penyerapan klorofil dan pigmen tambahan. Engelmann (1882) menunjukkannya dengan bakteri aerob yang berkumpul di bagian alga berfilamen yang disinari cahaya biru dan merah. Saat cahaya berlebihan, tumbuhan melindungi diri dengan melepaskan energi sebagai panas (pemadaman nonfotokimia).
+
+**Evolusi**: fotosintesis penghasil oksigen berasal dari sianobakteri dan mengubah atmosfer bumi sekitar 2,4 miliar tahun lalu (Peristiwa Oksidasi Besar). Kloroplas adalah keturunan sianobakteri endosimbion. Bakteri lain, seperti bakteri belerang ungu dan hijau, melakukan fotosintesis tanpa menghasilkan oksigen dengan memakai donor elektron seperti H₂S. Di tingkat global, fitoplankton laut menyumbang sekitar separuh produksi primer bumi.`,
+      `**The light reactions** follow the “Z scheme”: photosystem II (reaction centre P680) absorbs light and takes electrons from water through a water-splitting complex containing a manganese–calcium cluster, releasing O₂. Electrons flow through a transport chain to photosystem I (P700), which is excited by light again and finally reduces NADP⁺ to NADPH. Electron flow pumps protons into the thylakoid lumen, and ATP synthase makes ATP (photophosphorylation). Cyclic electron flow around photosystem I adds ATP without NADPH. ¹⁸O isotope experiments in the 1940s showed that photosynthetic O₂ comes from water, not CO₂.
+
+**The Calvin cycle** needs 3 ATP and 2 NADPH for each CO₂ fixed. The enzyme **rubisco** is slow and can also bind O₂, triggering **photorespiration**, which wastes carbon and energy, especially when it is hot and stomata close. **C₄** plants separate CO₂ capture in space: PEP carboxylase in mesophyll cells, then CO₂ concentrated in bundle-sheath cells (Kranz anatomy). **CAM** plants separate it in time: CO₂ is captured at night. International research projects are trying to engineer C₄ photosynthesis into rice to raise yields.
+
+The **action spectrum** of photosynthesis (rate against wavelength) follows absorption by chlorophyll and accessory pigments. Engelmann (1882) showed this with aerobic bacteria that gathered along the parts of a filamentous alga lit by blue and red light. Under excess light, plants protect themselves by releasing energy as heat (non-photochemical quenching).
+
+**Evolution**: oxygen-producing photosynthesis arose in cyanobacteria and transformed Earth’s atmosphere about 2.4 billion years ago (the Great Oxidation Event). Chloroplasts descend from endosymbiotic cyanobacteria. Other bacteria, such as purple and green sulfur bacteria, carry out photosynthesis without producing oxygen, using electron donors such as H₂S. Globally, marine phytoplankton contribute about half of Earth’s primary production.`,
+    ],
+  },
+  key: {
+    sd: [
+      `- Tumbuhan membuat makanan sendiri di daun dengan cahaya matahari.
+- Bahannya air, karbon dioksida, dan cahaya.
+- Hasilnya gula dan oksigen yang kita hirup.`,
+      `- Plants make their own food in leaves using sunlight.
+- The ingredients are water, carbon dioxide and light.
+- The products are sugar and the oxygen we breathe.`,
+    ],
+    smp: [
+      `- 6CO₂ + 6H₂O + cahaya → C₆H₁₂O₆ + 6O₂, di kloroplas.
+- Tumbuhan adalah produsen; gula juga dipakai untuk respirasinya sendiri.
+- Faktor pembatas: cahaya, CO₂, suhu, dan air.`,
+      `- 6CO₂ + 6H₂O + light → C₆H₁₂O₆ + 6O₂, in chloroplasts.
+- Plants are producers; they also use the sugar for their own respiration.
+- Limiting factors: light, CO₂, temperature and water.`,
+    ],
+    sma: [
+      `- Reaksi terang (tilakoid) menghasilkan ATP, NADPH, dan O₂ dari air.
+- Siklus Calvin (stroma) memakai rubisco untuk mengikat CO₂.
+- Tumbuhan C₄ dan CAM mengurangi fotorespirasi.
+- Faktor pembatas saling berinteraksi.`,
+      `- Light reactions (thylakoids) make ATP, NADPH and O₂ from water.
+- The Calvin cycle (stroma) uses rubisco to fix CO₂.
+- C₄ and CAM plants reduce photorespiration.
+- Limiting factors interact.`,
+    ],
+    kuliah: [
+      `- Skema Z: PSII (P680) → rantai transpor → PSI (P700) → NADPH.
+- Siklus Calvin: 3 ATP dan 2 NADPH per CO₂.
+- Rubisco lambat dan juga mengikat O₂ (fotorespirasi).
+- Fotosintesis oksigenik berasal dari sianobakteri, sekitar 2,4 miliar tahun lalu mengubah atmosfer.`,
+      `- Z scheme: PSII (P680) → transport chain → PSI (P700) → NADPH.
+- Calvin cycle: 3 ATP and 2 NADPH per CO₂.
+- Rubisco is slow and also binds O₂ (photorespiration).
+- Oxygenic photosynthesis came from cyanobacteria and changed the atmosphere about 2.4 billion years ago.`,
     ],
   },
   activity: {
@@ -80,6 +127,10 @@ Global photosynthesis locks carbon into biomass, so forests and [[lamun|seagrass
       'Gunakan simulasi Fotosintesis BioTaxa untuk membuat grafik laju terhadap intensitas cahaya pada dua kadar CO₂. Jelaskan titik ketika grafik mendatar.',
       'Use the BioTaxa Photosynthesis simulation to graph rate against light intensity at two CO₂ levels. Explain where the curve levels off.',
     ],
+    kuliah: [
+      'Ekstrak pigmen daun dengan pelarut dan pisahkan dengan kromatografi kertas. Hitung nilai Rf setiap pita, lalu hubungkan warna pigmen dengan spektrum serapan dan spektrum aksi fotosintesis.',
+      'Extract leaf pigments with a solvent and separate them by paper chromatography. Calculate the Rf value of each band, then relate pigment colours to absorption spectra and the photosynthetic action spectrum.',
+    ],
   },
   species: [
     'Oryza sativa',
@@ -89,6 +140,7 @@ Global photosynthesis locks carbon into biomass, so forests and [[lamun|seagrass
     'Nostoc commune',
     'Euglena gracilis',
   ],
+  related: ['tumbuhan', 'metabolisme', 'ekosistem', 'laut'],
   lab: 'photosynthesis',
   quiz: [
     {
@@ -199,6 +251,103 @@ Global photosynthesis locks carbon into biomass, so forests and [[lamun|seagrass
         'C₄ plants concentrate CO₂, reducing photorespiration.',
       ],
     },
+    {
+      lv: [
+        'kuliah',
+      ],
+      q: [
+        'O₂ yang dilepaskan fotosintesis berasal dari…',
+        'The O₂ released by photosynthesis comes from…',
+      ],
+      a: [
+        [
+          'CO₂',
+          'CO₂',
+        ],
+        [
+          'Air (H₂O)',
+          'Water (H₂O)',
+        ],
+        [
+          'Glukosa',
+          'Glucose',
+        ],
+        [
+          'Klorofil',
+          'Chlorophyll',
+        ],
+      ],
+      c: 1,
+      why: [
+        'Dibuktikan dengan isotop ¹⁸O pada 1940-an.',
+        'Shown with ¹⁸O isotopes in the 1940s.',
+      ],
+    },
+    {
+      lv: [
+        'kuliah',
+      ],
+      q: [
+        'Untuk setiap CO₂ yang diikat, siklus Calvin memerlukan…',
+        'For each CO₂ fixed, the Calvin cycle needs…',
+      ],
+      a: [
+        [
+          '1 ATP dan 1 NADPH',
+          '1 ATP and 1 NADPH',
+        ],
+        [
+          '3 ATP dan 2 NADPH',
+          '3 ATP and 2 NADPH',
+        ],
+        [
+          '2 ATP dan 3 NADPH',
+          '2 ATP and 3 NADPH',
+        ],
+        [
+          'Tidak memerlukan energi',
+          'No energy',
+        ],
+      ],
+      c: 1,
+      why: [
+        'Kebutuhan ATP yang lebih tinggi sebagian dipenuhi aliran elektron siklik.',
+        'The extra ATP demand is partly met by cyclic electron flow.',
+      ],
+    },
+    {
+      lv: [
+        'kuliah',
+        'sma',
+      ],
+      q: [
+        'Fotorespirasi terjadi karena rubisco…',
+        'Photorespiration happens because rubisco…',
+      ],
+      a: [
+        [
+          'Juga dapat mengikat O₂',
+          'Can also bind O₂',
+        ],
+        [
+          'Tidak bekerja pada siang hari',
+          'Stops working in daylight',
+        ],
+        [
+          'Terdapat di mitokondria',
+          'Is found in mitochondria',
+        ],
+        [
+          'Menghasilkan ATP',
+          'Makes ATP',
+        ],
+      ],
+      c: 0,
+      why: [
+        'Fotorespirasi meningkat saat panas dan stomata menutup sehingga O₂ di daun tinggi.',
+        'Photorespiration rises in heat when stomata close and leaf O₂ builds up.',
+      ],
+    },
   ],
   teacher: {
     goals: {
@@ -213,6 +362,10 @@ Global photosynthesis locks carbon into biomass, so forests and [[lamun|seagrass
       sma: [
         'Peserta didik dapat menjelaskan reaksi terang, siklus Calvin, dan perbedaan C₃/C₄/CAM.',
         'Learners can explain light reactions, the Calvin cycle and C₃/C₄/CAM differences.',
+      ],
+      kuliah: [
+        'Mahasiswa dapat menjelaskan skema Z, kebutuhan energi siklus Calvin, strategi C₄ dan CAM, serta evolusi fotosintesis.',
+        'Students can explain the Z scheme, the energy needs of the Calvin cycle, C₄ and CAM strategies and the evolution of photosynthesis.',
       ],
     },
     time: ['2–3 × 40 menit', '2–3 × 40 minutes'],
@@ -239,12 +392,59 @@ Global photosynthesis locks carbon into biomass, so forests and [[lamun|seagrass
       ['Grafik laju fotosintesis dan interpretasinya.', 'A photosynthesis-rate graph with interpretation.'],
       ['Kuis BioTaxa.', 'BioTaxa quiz.'],
     ],
+    misconceptions: [
+      {
+        wrong: [
+          'Tumbuhan mendapat makanan dari tanah.',
+          'Plants get their food from the soil.',
+        ],
+        right: [
+          'Sebagian besar massa kering tumbuhan berasal dari CO₂ udara yang diikat saat fotosintesis; dari tanah tumbuhan mengambil air dan mineral.',
+          'Most of a plant’s dry mass comes from CO₂ in the air fixed by photosynthesis; from the soil it takes water and minerals.',
+        ],
+      },
+      {
+        wrong: [
+          'Tumbuhan berfotosintesis pada siang hari dan hanya berespirasi pada malam hari.',
+          'Plants photosynthesise by day and only respire at night.',
+        ],
+        right: [
+          'Tumbuhan berespirasi sepanjang waktu; pada siang hari fotosintesis biasanya lebih besar daripada respirasi.',
+          'Plants respire all the time; in daylight photosynthesis is usually greater than respiration.',
+        ],
+      },
+      {
+        wrong: [
+          'Oksigen hasil fotosintesis berasal dari karbon dioksida.',
+          'The oxygen from photosynthesis comes from carbon dioxide.',
+        ],
+        right: [
+          'Oksigen berasal dari pemecahan air pada reaksi terang.',
+          'The oxygen comes from splitting water in the light reactions.',
+        ],
+      },
+      {
+        wrong: [
+          'Daun berwarna hijau karena menyerap cahaya hijau.',
+          'Leaves are green because they absorb green light.',
+        ],
+        right: [
+          'Klorofil menyerap terutama cahaya biru dan merah serta memantulkan sebagian besar cahaya hijau.',
+          'Chlorophyll mainly absorbs blue and red light and reflects most green light.',
+        ],
+      },
+    ],
   },
   read: [
     {
       label: 'OpenStax Biology 2e · 8.1 Overview of Photosynthesis',
       url: 'https://openstax.org/books/biology-2e/pages/8-1-overview-of-photosynthesis',
       lv: 'sma',
+    },
+    {
+      label: 'OpenStax Biology 2e · Ch. 8 Photosynthesis',
+      url: 'https://openstax.org/books/biology-2e/pages/8-introduction',
+      lv: 'kuliah',
     },
     {
       label: 'OpenStax Biology 2e · Ch. 8 Photosynthesis',

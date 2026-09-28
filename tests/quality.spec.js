@@ -9,7 +9,11 @@ const PAGES = [
   'species/inat-39449',
   'learn',
   'learn/ekosistem',
+  'learn/pencernaan',
+  'peta',
   'lab/photosynthesis',
+  'lab/genetic',
+  'lab/enzyme',
   'quiz',
   'purba',
   'kamus',
@@ -55,7 +59,10 @@ test('no horizontal overflow from 320px to 1440px in SD and SMP modes', async ({
         'search',
         'species/inat-39449',
         'learn/klasifikasi',
+        'learn/dna-protein',
+        'peta',
         'lab/mendel',
+        'lab/genetic',
         'compare?a=41967&b=118552',
         'purba',
         'guru',
@@ -100,7 +107,16 @@ test.describe('with the Content Security Policy enforced', () => {
       m => m.type() === 'error' && m.text().includes('Content Security Policy') && violations.push(m.text())
     );
     await setPrefs(page);
-    for (const route of ['home', 'learn/fotosintesis', 'lab/selection', 'kamus', 'purba', 'guru']) {
+    for (const route of [
+      'home',
+      'learn/fotosintesis',
+      'peta',
+      'lab/selection',
+      'lab/enzyme',
+      'kamus',
+      'purba',
+      'guru',
+    ]) {
       await page.goto(`/#/${route}`);
       await expect(page.locator('#main h1')).toBeVisible();
       violations.push(
@@ -140,6 +156,8 @@ test('both languages render every main page', async ({ page }) => {
   for (const [route, heading] of [
     ['home', 'Life on Earth.'],
     ['learn', 'Learn your way.'],
+    ['peta', 'Map of Biology'],
+    ['learn/imun', 'The immune system: body defences'],
     ['lab', 'Where curiosity meets experiments.'],
     ['kamus', 'Biology glossary'],
     ['purba', 'Explore 3.5 billion years of life.'],

@@ -15,16 +15,50 @@ function inline(text) {
     });
 }
 
+const BULLET = /^\s*-\s+/;
+const NUMBERED = /^\s*(\d+)[.)]\s+/;
+
+/**
+ * A block may mix a lead-in line with list lines ("Signs of life:\n- Breathing\n- Growing"):
+ * consecutive "- " lines become a list, "1. " lines a numbered list, other lines a paragraph.
+ */
 export function rich(text, { cls = 'prose' } = {}) {
   const blocks = String(text || '')
     .trim()
     .split(/\n{2,}/);
   return blocks
     .map(block => {
-      const lines = block.split('\n');
-      if (lines.every(l => /^\s*-\s+/.test(l)))
-        return `<ul class="${cls}-list">${lines.map(l => `<li>${inline(l.replace(/^\s*-\s+/, ''))}</li>`).join('')}</ul>`;
-      return `<p class="${cls}">${inline(lines.join(' '))}</p>`;
+      const out = [];
+      let para = [];
+      let list = null;
+      const flushPara = () => {
+        if (para.length) out.push(`<p class="${cls}">${inline(para.join(' '))}</p>`);
+        para = [];
+      };
+      const flushList = () => {
+        if (!list) return;
+        const start = list.start > 1 ? ` start="${list.start}"` : '';
+        out.push(
+          `<${list.tag} class="${cls}-list"${start}>${list.items.map(i => `<li>${inline(i)}</li>`).join('')}</${list.tag}>`
+        );
+        list = null;
+      };
+      for (const line of block.split('\n')) {
+        const numbered = line.match(NUMBERED);
+        const tag = BULLET.test(line) ? 'ul' : numbered ? 'ol' : null;
+        if (!tag) {
+          flushList();
+          para.push(line);
+          continue;
+        }
+        flushPara();
+        if (list && list.tag !== tag) flushList();
+        list ||= { tag, items: [], start: numbered ? Number(numbered[1]) : 1 };
+        list.items.push(line.replace(tag === 'ul' ? BULLET : NUMBERED, ''));
+      }
+      flushPara();
+      flushList();
+      return out.join('');
     })
     .join('');
 }

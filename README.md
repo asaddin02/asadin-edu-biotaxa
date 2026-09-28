@@ -27,10 +27,13 @@ Saat pertama dibuka, pengunjung memilih jenjang. Pilihan ini mengubah ukuran hur
 
 - **Pencarian yang memahami bahasa anak.** Mengetik "hiu", "sapi", atau "nyamuk" langsung menampilkan hewan yang dimaksud beserta kelompoknya. Galeri menampilkan makhluk hidup yang tercatat **di Indonesia**, dengan pilihan untuk melihat seluruh dunia.
 - **Pohon kehidupan** dari GBIF sampai tingkat famili, genus, dan spesies. Kelompok yang dikenal anak (misalnya "Hewan bertulang belakang") tampil lebih dulu dengan nama dan penjelasan yang ramah.
-- **111 kartu spesies kurasi** yang ditulis dengan bahasa sederhana: satwa endemik, hewan ternak, tanaman pangan, jamur, dan mikroba. Status konservasi dijelaskan dengan kata-kata ("Kritis, hampir punah"), bukan kode.
-- **12 topik materi** sesuai Kurikulum Merdeka, dari ciri makhluk hidup sampai evolusi dan kehidupan purba. Setiap topik punya teks per jenjang, kegiatan, catatan guru, bacaan lanjutan, dan total **76 soal kuis** dengan penjelasan.
-- **7 simulasi laboratorium**: fotosintesis, rantai makanan, osmosis, persilangan Mendel, seleksi alam, skala kehidupan, serta tuas & capit. Buku eksperimen tersimpan dan bisa dicetak.
-- **Kamus 103 istilah.** Istilah bergaris di materi dan kartu spesies bisa diklik.
+- **160 kartu spesies kurasi** yang ditulis dengan bahasa sederhana: satwa endemik, hewan ternak, tanaman pangan, artropoda, invertebrata laut, lumut, paku, tumbuhan berbiji terbuka, alga, jamur, protista, mikroba, parasit, dan organisme model laboratorium. Status konservasi dijelaskan dengan kata-kata ("Kritis, hampir punah"), bukan kode. Kartu hewan menampilkan umur terpanjang yang tercatat bila tersedia di database AnAge.
+- **41 topik materi dalam 8 bidang biologi**: dasar-dasar biologi, sel & molekul, pertumbuhan-reproduksi-pewarisan-evolusi, keanekaragaman makhluk hidup, biologi tumbuhan, tubuh manusia & hewan, ekologi & lingkungan, serta biologi terapan. Setiap topik ditulis dalam **empat lapisan** (SD Sederhana, SMP Standar, SMA Lanjutan, Kuliah Mendalam) dengan poin kunci, kegiatan, bacaan lanjutan, dan total **476 soal kuis** berpenjelasan.
+- **Mode Guru** di setiap topik: tujuan pembelajaran per jenjang, langkah kegiatan, asesmen, daftar miskonsepsi beserta konsep yang benar, tabel diferensiasi per jenjang, kunci jawaban, dan modul ajar yang bisa dicetak.
+- **Peta Biologi** (`#/peta`): tingkat organisasi kehidupan dari molekul sampai biosfer, cabang-cabang ilmu biologi, dan tautannya ke materi, beserta cakupan konten yang dihitung langsung dari data.
+- **9 simulasi laboratorium**: fotosintesis, rantai makanan, osmosis, persilangan Mendel, kode genetik (transkripsi dan translasi gen β-globin manusia), kerja enzim, seleksi alam, skala kehidupan, serta tuas & capit. Buku eksperimen tersimpan dan bisa dicetak.
+- **Kamus 213 istilah.** Istilah bergaris di materi dan kartu spesies bisa diklik.
+- **Pencarian materi dan konsep.** Kotak pencarian juga menemukan topik, istilah kamus, dan tingkat organisasi, termasuk saat API organisme tidak dapat dihubungi.
 - **Bandingkan dua spesies**, lengkap dengan tingkat klasifikasi tempat keduanya mulai berbeda.
 - **Di sekitarku.** Makhluk hidup yang pernah diamati di sekitar rumah atau sekolah. Lokasi dibulatkan sekitar 1 km sebelum dikirim.
 - **Kehidupan purba.** Garis waktu geologi, 29 makhluk purba dan punah, rentang fosil langsung dari Paleobiology Database, dan filter temuan Indonesia.
@@ -53,7 +56,7 @@ npm run dev        # http://127.0.0.1:8085
 
 Cloudflare Pages menyajikan aplikasi dari jaringan CDN secara gratis tanpa batas permintaan. Sanggup melayani puluhan ribu pengguna bersamaan. Batas yang sebenarnya ada pada API iNaturalist, dan BioTaxa menanganinya dalam tiga lapis:
 
-1. **Snapshot API.** Setiap malam, GitHub Actions merekam respons API untuk halaman yang paling sering dibuka (galeri, 111 spesies kurasi, pencarian umum, pohon kehidupan) lalu menyajikannya sebagai file statis.
+1. **Snapshot API.** Setiap malam, GitHub Actions merekam respons API untuk halaman yang paling sering dibuka (galeri, spesies kurasi, pencarian umum, pohon kehidupan) lalu menyajikannya sebagai file statis.
 2. **Edge cache.** Permintaan lain lewat [functions/api/[[path]].js](functions/api/[[path]].js), yang menyimpan respons di cache Cloudflare. Satu kelas yang membuka halaman yang sama cukup memicu satu permintaan ke iNaturalist, dan IP sekolah tidak terkena batas.
 3. **API langsung.** Jika edge cache sibuk atau kuotanya habis, aplikasi otomatis memanggil GBIF dan iNaturalist langsung dari browser.
 
@@ -126,7 +129,7 @@ Setelah mengubah berkas aplikasi, jalankan `npm run build` untuk memperbarui daf
 | Perintah                         | Fungsi                                                                                                             |
 | -------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
 | `npm run check`                  | Semua pemeriksaan: lint, validasi konten, cache offline, dan tes browser                                           |
-| `npm test`                       | 72 tes Playwright dengan data palsu, tidak butuh internet                                                          |
+| `npm test`                       | 86 tes Playwright dengan data palsu, tidak butuh internet                                                          |
 | `npm run smoke`                  | Menguji aplikasi yang sedang berjalan terhadap API sungguhan, lalu membuat ulang screenshot di `docs/screenshots/` |
 | `npm run data:check`             | Memvalidasi konten kurasi. Tambahkan `-- --resolve` untuk mengisi ID dan foto spesies baru                         |
 | `npm run snapshot`               | Merekam snapshot API ke `data/snapshot/`. Tambahkan `-- --quick` untuk uji singkat                                 |
@@ -167,7 +170,7 @@ BioTaxa menampilkan data dari [GBIF](https://www.gbif.org), [iNaturalist](https:
 Tidak ada satu sumber pun yang punya semua fakta tentang setiap makhluk hidup. Karena itu:
 
 - Informasi yang tidak tersedia ditandai, bukan dikarang.
-- Teks dari sumber luar tidak diterjemahkan otomatis. Pada spesies di luar 111 kartu kurasi, sebagian teks bisa berbahasa Inggris.
+- Teks dari sumber luar tidak diterjemahkan otomatis. Pada spesies di luar kartu kurasi, sebagian teks bisa berbahasa Inggris.
 - Titik di peta adalah catatan temuan, bukan peta sebaran lengkap.
 - Simulasi laboratorium adalah model untuk belajar, bukan pengukuran nyata.
 
@@ -188,8 +191,8 @@ Guru, dosen, mahasiswa biologi, penerjemah, dan pengembang sangat diharapkan iku
 BioTaxa is a free, open-source, bilingual atlas of life for learners from primary school to university, and for their teachers.
 
 - **Five modes.** Primary, middle school, high school, university and teacher. Each changes text size, vocabulary, lessons, visible tabs and activities.
-- **Features.** Child-friendly search and an Indonesia-first gallery (iNaturalist), a GBIF tree of life, 111 curated species cards in plain language, 12 curriculum lessons with 76 quiz questions, 7 lab simulations, a 103-term glossary, species comparison, "near me", prehistoric life with a geological timeline, badges, printable lesson plans and link-based assignments. It works offline as a PWA, is tested with axe for WCAG 2.1 AA, and has no accounts, ads or analytics.
+- **Features.** Child-friendly search and an Indonesia-first gallery (iNaturalist), a GBIF tree of life, 160 curated species cards in plain language, 41 lessons in 8 fields of biology written in four layers (primary to university) with 476 quiz questions and teacher notes, a Map of Biology, 9 lab simulations, a 213-term glossary, lesson and concept search, species comparison, "near me", prehistoric life with a geological timeline, badges, printable lesson plans and link-based assignments. It works offline as a PWA, is tested with axe for WCAG 2.1 AA, and has no accounts, ads or analytics.
 - **Run it.** For development, run `npm ci && npm run dev`. For a public site, use Cloudflare Pages: the [Deploy workflow](.github/workflows/deploy.yml) publishes the static app, a nightly snapshot of the most requested API responses, and an edge cache Function for everything else. It needs the `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` secrets and a `CLOUDFLARE_PAGES_PROJECT` variable. If the edge cache is busy, the app falls back to calling the APIs directly. For one school's own server, use `npm start` or Docker (`TRUST_PROXY=1` behind a reverse proxy, `HSTS=1` behind HTTPS). See [docs/SCALING.md](docs/SCALING.md).
-- **Test it.** `npm run check` runs lint, content validation, the offline precache check and 72 Playwright tests. `npm run smoke` checks a running instance against the live APIs.
+- **Test it.** `npm run check` runs lint, content validation, the offline precache check and 86 Playwright tests. `npm run smoke` checks a running instance against the live APIs.
 - **License.** Code is MIT and curated content is CC BY-SA 4.0. Photos and external data keep their own licenses. Before monetising, read [docs/LICENSING.md](docs/LICENSING.md).
 - **Contribute.** See [CONTRIBUTING.md](CONTRIBUTING.md).

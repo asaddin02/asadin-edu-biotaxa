@@ -15,6 +15,8 @@ Dokumen ini menjelaskan apa yang boleh dilakukan dengan setiap bagian BioTaxa, d
 | Data iNaturalist (observasi) | Per observasi; API tunduk pada ketentuan iNaturalist | Tampilkan dengan atribusi |
 | Wikipedia | CC BY-SA 4.0 | Ya, dengan atribusi dan share-alike |
 | Paleobiology Database | CC BY 4.0 | Ya, dengan atribusi |
+| Umur terpanjang tercatat pada kartu kurasi (`life`), dari AnAge / Human Ageing Genomic Resources | CC BY 3.0 | Ya, dengan menyebut HAGR (de Magalhães dkk., 2024, *Nucleic Acids Research* 52:D900–D908) |
+| Tiga foto mikroba dalam kartu kurasi dari Wikimedia Commons | CC BY 4.0 / CC BY-SA 4.0 (atribusi di `photo.attribution`, tautan di `photo.source`) | Ya, dengan atribusi |
 | Peta dasar Natural Earth | Domain publik | Ya |
 | Ubin OpenStreetMap | ODbL; ikuti kebijakan penggunaan ubin OSM | Ya, dengan atribusi; hindari lalu lintas berat |
 | Leaflet | BSD-2-Clause | Ya |

@@ -1,6 +1,7 @@
 import { esc, dayNumber } from '../core/dom.js';
 import { S, pick, levelChosen, level, role } from '../core/prefs.js';
 import { ui } from '../i18n/ui.js';
+import { TOPICS, FIELDS } from '../data/topics/index.js';
 import { featured } from '../data/featured.js';
 import { icon, brandImage } from '../components/icons.js';
 import { modeOptions } from '../components/layout.js';
@@ -18,7 +19,7 @@ const s = S({
     'Kenali makhluk hidup, temukan hubungan di alam, dan belajar lewat eksperimen. Petualangan biologi dimulai dari rasa ingin tahumu.',
     'Meet living things, discover connections in nature, and learn through experiments. Your biology adventure starts with curiosity.',
   ],
-  searchQuick: ['Cari makhluk hidup…', 'Find a living thing…'],
+  searchQuick: ['Cari makhluk hidup atau materi…', 'Find an organism or lesson…'],
   searchGo: ['Cari', 'Search'],
   exploreBtn: ['Jelajahi kehidupan', 'Explore life'],
   heroNote: ['3 domain · jutaan spesies · 2 bahasa', '3 domains · millions of species · 2 languages'],
@@ -42,7 +43,11 @@ const s = S({
   doTop: ['MAU BELAJAR APA HARI INI?', 'WHAT WILL YOU LEARN TODAY?'],
   doTitle: ['Belajar dengan mencoba', 'Learn by doing'],
   lessons: ['Materi pelajaran', 'Lessons'],
-  lessonsText: ['12 topik biologi, disesuaikan untuk jenjangmu.', '12 biology topics adapted to your level.'],
+  lessonsText: [
+    '{n} materi dalam {fields} bidang, sesuai jenjangmu.',
+    '{n} lessons across {fields} fields, adapted to your level.',
+  ],
+  biomap: ['Peta Biologi', 'Map of Biology'],
   quiz: ['Kuis & tebak foto', 'Quizzes & photo game'],
   quizText: ['Uji dirimu dan kumpulkan lencana.', 'Test yourself and earn badges.'],
   compare: ['Bandingkan dua spesies', 'Compare two species'],
@@ -147,7 +152,7 @@ export async function render(ctx) {
         <button type="submit" class="btn accent">${s.searchGo}</button>
       </form>
       <div class="search-examples"><span>${s.examples}</span><a href="#/search?q=orangutan">Orangutan</a><a href="#/search?q=Rafflesia">Rafflesia</a><a href="#/search?q=jamur">${pick(['Jamur', 'Fungi'])}</a></div>
-      <div class="hero-links"><a class="btn" href="#/search">${s.exploreBtn} ${icon('arrow')}</a><a class="text-link" href="#/tree">${ui.tree} →</a></div>
+      <div class="hero-links"><a class="btn" href="#/search">${s.exploreBtn} ${icon('arrow')}</a><a class="text-link" href="#/tree">${ui.tree} →</a><a class="text-link" href="#/peta">${s.biomap} →</a></div>
       <p class="hero-footnote">${s.heroNote}</p>
     </div>
     <div class="hero-mosaic"><div class="atlas-grid" aria-hidden="true"></div>${heroTile(main1, 'hero-primary')}${heroTile(bird, 'hero-secondary')}${heroTile(moth, 'hero-tertiary')}
@@ -162,7 +167,7 @@ export async function render(ctx) {
 
   const actions = `<section class="section"><div class="section-head"><div><span class="eyebrow">${s.doTop}</span><h2>${s.doTitle}</h2></div></div>
     <div class="action-grid">
-      ${actionCard('#/learn', 'book', s.lessons, s.lessonsText, 'mint')}
+      ${actionCard('#/learn', 'book', s.lessons, s.lessonsText.replace('{n}', TOPICS.length).replace('{fields}', FIELDS.length), 'mint')}
       ${actionCard('#/quiz', 'quiz', s.quiz, s.quizText, 'lime')}
       ${actionCard('#/compare', 'compare', s.compare, s.compareText, 'lilac')}
       ${actionCard('#/nearby', 'nearby', s.nearby, s.nearbyText, 'sky')}

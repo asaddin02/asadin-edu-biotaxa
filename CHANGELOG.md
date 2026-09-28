@@ -1,5 +1,43 @@
 # Riwayat perubahan / Changelog
 
+## Penyesuaian UI/UX setelah perluasan materi — 28 September 2026
+
+- Katalog materi dan kuis memiliki pencarian, filter delapan bidang, jumlah hasil, serta keadaan kosong dengan tombol atur ulang. Filter tetap tersimpan saat memuat ulang, kembali dari materi, dan berganti bahasa.
+- Kartu materi lebih ringkas; pintasan kegiatan dapat dijangkau langsung dari banner mode belajar.
+- Peta Biologi mengikuti tata letak atlas dengan navigasi samping di desktop, kartu bidang dan cabang yang konsisten, serta tautan materi tambahan yang dapat dibuka sesuai kebutuhan.
+- Menu simulasi dapat digeser pada ponsel dan tablet; pilihan aktif tetap terlihat. Simulasi kode genetik memakai ruang hasil selebar panel agar urutan DNA, RNA, dan protein lebih mudah dibaca.
+- Beranda menghitung jumlah materi dan bidang langsung dari data, memperkenalkan pencarian materi, dan menyediakan pintasan Peta Biologi.
+- Palet toska–mint–lime, tipografi editorial, dukungan dua bahasa, ukuran teks per jenjang, dan akses keyboard mengikuti antarmuka sebelumnya.
+
+## Audit dan perluasan cakupan Biologi — 28 September 2026
+
+Audit lengkap cakupan dan akurasi materi dicatat di [`docs/AUDIT-BIOLOGY.md`](docs/AUDIT-BIOLOGY.md) (audit awal dan audit akhir).
+
+### Ditambahkan
+
+- **29 topik baru**, sehingga menjadi 41 topik dalam 8 bidang biologi: metode ilmiah, tingkat organisasi kehidupan, molekul kehidupan & enzim, metabolisme & respirasi sel, pembelahan sel, DNA-gen-protein, pertumbuhan & perkembangan, virus, protista, jamur, dunia hewan, serangga & artropoda, hewan bertulang belakang, dunia tumbuhan, struktur & fungsi tumbuhan, sistem pencernaan, pernapasan, peredaran darah, ekskresi & homeostasis, gerak, koordinasi (saraf, hormon, indra), imun, reproduksi manusia, perilaku hewan, kehidupan laut, perubahan lingkungan, bioteknologi, parasit & penyakit tropis, serta bioinformatika & data biologi.
+- Setiap topik ditulis dalam empat lapisan (SD Sederhana, SMP Standar, SMA Lanjutan, Kuliah Mendalam) dengan poin kunci per jenjang. Catatan guru memuat tujuan untuk keempat jenjang, daftar miskonsepsi beserta konsep yang benar, dan tabel diferensiasi per jenjang.
+- **Peta Biologi** (`#/peta`): 12 tingkat organisasi kehidupan, 30 cabang ilmu biologi, tautan ke materi, dan cakupan konten yang dihitung langsung dari data. Hanya neurosains yang masih ditandai "baru dasar-dasarnya".
+- **Pencarian materi dan konsep**: kotak saran dan halaman hasil kini juga menemukan topik, istilah kamus, dan tingkat organisasi, termasuk saat API organisme tidak dapat dihubungi.
+- **Dua simulasi baru**: kode genetik (transkripsi dan translasi urutan gen β-globin manusia dari NCBI, termasuk mutasi sel sabit) dan kerja enzim (suhu, pH, denaturasi).
+- **49 kartu spesies baru** (total 160) untuk kelompok yang sebelumnya kosong atau tipis: amfibi, spons, karang, ubur-ubur, bulu babi, teripang, cacing pipih, cacing gilig, pacet, kalajengking, tungau, lipan, kaki seribu, belangkas, rayap, belalang, kupu-kupu sayap burung, kutu rambut, udang windu, kepiting bakau, keong mas, gurita, ekidna dan kuskus Papua, gimnosperma, lumut, paku air, lamun, alga hijau dan merah, protista (jamur lendir, _Toxoplasma_, _Phytophthora_, _Volvox_), kapang, bakteri, serta organisme model (_Drosophila_, _C. elegans_, _Arabidopsis_). Kelompok baru "Alga".
+- **Umur terpanjang yang tercatat** ditambahkan pada 36 kartu hewan (kini 39 kartu memiliki data umur), dari database AnAge (Human Ageing Genomic Resources, CC BY 3.0), hanya untuk catatan berkualitas "acceptable" atau "high".
+- **110 istilah kamus baru** (total 213) untuk fisiologi, biologi molekuler, taksonomi, ekologi, perilaku, parasitologi, dan bioteknologi.
+- **400 soal kuis baru** (total 476), termasuk soal tingkat kuliah untuk semua topik.
+
+### Diperluas
+
+- Enam topik lama yang paling ringkas (sel, pewarisan, evolusi, klasifikasi, ekosistem, keanekaragaman) diperluas di keempat jenjang: organel lengkap, endositosis/eksositosis, gen terpaut dan pewarisan terpaut X, seleksi seksual, isolasi reproduksi, penulis nama, sinonim dan subspesies, ekologi populasi dan komunitas, serta indeks keanekaragaman.
+- Topik lama mendapat versi kuliah, poin kunci, miskonsepsi, dan daftar materi terkait yang dikurasi.
+
+### Diperbaiki
+
+- Teks materi yang diawali kalimat pengantar lalu daftar (misalnya "Tanda-tandanya:" diikuti "- Bernapas") sebelumnya tampil menyatu dalam satu paragraf dengan tanda "-". Kini tampil sebagai daftar; daftar bernomor juga didukung.
+- Halaman spesies memakai foto kartu kurasi bila iNaturalist tidak memiliki foto berlisensi terbuka. Tiga mikroba (_Mycobacterium tuberculosis_, _Methanobrevibacter smithii_, _Toxoplasma gondii_) mendapat foto berlisensi terbuka dari Wikimedia Commons.
+- Koreksi ilmiah: contoh _Biston betularia_ (batang pucat berlumut kerak atau liken, bukan berlumut), "mengurangi peningkatan efek rumah kaca", dan pembentuk stromatolit tertua yang belum dapat dipastikan sianobakteri. Definisi istilah gen dan mitokondria diperjelas.
+- Tabel diferensiasi guru tampil bertumpuk di ponsel, bukan terpotong ke samping.
+- Tabel kodon pada simulasi kode genetik dapat difokus dan digeser dengan keyboard.
+
 ## Pembaruan UI/UX — 25 September 2026
 
 - Halaman dukungan menyediakan kanal Indonesia dan internasional yang dapat dikonfigurasi terpisah, beserta bantuan transaksi. Ajakan kontribusi kode diganti dengan penggunaan BioTaxa dalam kegiatan belajar.

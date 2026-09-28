@@ -1,12 +1,5 @@
 export default {
   id: 'ciri',
-  icon: '🌱',
-  levels: ['sd', 'smp'],
-  title: ['Ciri-ciri makhluk hidup', 'What makes something alive?'],
-  summary: [
-    'Apa bedanya kucing, pohon, dan batu? Kenali tanda-tanda kehidupan.',
-    'How is a cat different from a tree or a rock? Discover the signs of life.',
-  ],
   body: {
     sd: [
       `Makhluk hidup adalah semua yang hidup: manusia, hewan, tumbuhan, jamur, bahkan makhluk sangat kecil seperti bakteri. Batu dan air bukan makhluk hidup.
@@ -62,6 +55,60 @@ Some cases test this definition. Dry seeds or bacterial [[spora|spores]] can sta
 
 So the characteristics of life are best understood as properties of living systems, not a checklist every part must satisfy.`,
     ],
+    kuliah: [
+      `Tidak ada definisi kehidupan yang diterima semua ilmuwan. Definisi kerja yang sering dipakai dalam astrobiologi menyebut kehidupan sebagai **sistem kimia yang menopang dirinya sendiri dan mampu mengalami evolusi Darwin**. Definisi seperti ini adalah alat kerja, bukan kebenaran mutlak: tujuannya membantu merancang pengamatan, misalnya mencari tanda kehidupan (biosignature) di planet lain.
+
+Dari sudut termodinamika, makhluk hidup adalah **sistem terbuka** yang menjaga keteraturannya dengan terus mengambil energi dan materi dari lingkungan lalu melepaskan panas dan zat sisa. Homeostasis, metabolisme, dan reproduksi dapat dipandang sebagai cara mempertahankan keadaan jauh dari kesetimbangan.
+
+**Asal-usul kehidupan** diteliti melalui kimia prebiotik. Percobaan Miller–Urey (1953) menunjukkan asam amino dapat terbentuk dari molekul sederhana. Hipotesis **dunia RNA** menyatakan bahwa RNA pernah berperan ganda sebagai penyimpan informasi dan katalis (ribozim), sebelum tugas itu dibagi dengan DNA dan protein. Semua kehidupan kini diduga berasal dari satu nenek moyang universal terakhir (LUCA), yang ciri-cirinya direkonstruksi dari gen yang dimiliki bersama oleh bakteri, arkea, dan eukariota.
+
+**Kasus batas** menguji definisi: virus dan prion, bakteri endosimbion obligat dengan genom sangat kecil yang tidak dapat hidup di luar sel inang, serta **sel minimal** buatan (JCVI-syn3.0, sekitar 473 gen) yang dipakai untuk menanyakan gen apa saja yang benar-benar diperlukan untuk hidup. Pertanyaan “apakah ini hidup?” sering lebih bermanfaat bila diganti dengan “sifat hidup mana yang dimiliki sistem ini?”.`,
+      `No definition of life is accepted by all scientists. A working definition often used in astrobiology describes life as **a self-sustaining chemical system capable of Darwinian evolution**. Such definitions are working tools, not absolute truths: they help design observations, for example searching for biosignatures on other planets.
+
+Thermodynamically, living things are **open systems** that keep their order by constantly taking in energy and matter and releasing heat and wastes. Homeostasis, metabolism and reproduction can be seen as ways of staying far from equilibrium.
+
+**The origin of life** is studied through prebiotic chemistry. The Miller–Urey experiment (1953) showed that amino acids can form from simple molecules. The **RNA world** hypothesis proposes that RNA once served both as information store and catalyst (ribozymes), before these jobs were shared with DNA and proteins. All life today is thought to descend from a last universal common ancestor (LUCA), whose features are reconstructed from genes shared by bacteria, archaea and eukaryotes.
+
+**Boundary cases** test definitions: viruses and prions, obligate endosymbiotic bacteria with tiny genomes that cannot live outside a host cell, and the synthetic **minimal cell** (JCVI-syn3.0, about 473 genes) used to ask which genes are truly needed for life. The question “is this alive?” is often more useful when replaced by “which properties of life does this system have?”.`,
+    ],
+  },
+  key: {
+    sd: [
+      `- Makhluk hidup bernapas, makan, tumbuh, berkembang biak, bergerak, peka rangsang, dan mengeluarkan zat sisa.
+- Satu tanda saja tidak cukup untuk menyebut sesuatu hidup.
+- Tumbuhan dan bakteri juga makhluk hidup.`,
+      `- Living things breathe, feed, grow, reproduce, move, respond and remove wastes.
+- One sign alone is not enough to call something alive.
+- Plants and bacteria are living things too.`,
+    ],
+    smp: [
+      `- Semua makhluk hidup tersusun atas sel.
+- Ciri kehidupan muncul dengan cara berbeda pada tiap kelompok.
+- Hipotesis diuji dengan mengubah satu variabel.
+- Virus berada di batas hidup dan tak hidup.`,
+      `- All living things are made of cells.
+- The signs of life show up differently in different groups.
+- Hypotheses are tested by changing one variable.
+- Viruses sit on the border of living and non-living.`,
+    ],
+    sma: [
+      `- Sifat inti kehidupan: organisasi seluler, metabolisme, homeostasis, reproduksi dengan pewarisan, respons, dan evolusi.
+- Biji dorman dan spora tetap hidup walau metabolismenya sangat rendah.
+- Ciri kehidupan adalah kumpulan sifat sistem, bukan daftar centang untuk setiap bagian.`,
+      `- Core properties of life: cellular organisation, metabolism, homeostasis, reproduction with inheritance, response and evolution.
+- Dormant seeds and spores are alive despite very low metabolism.
+- The properties of life describe systems, not a checklist for every part.`,
+    ],
+    kuliah: [
+      `- Definisi kerja: sistem kimia yang menopang diri dan mampu berevolusi Darwin.
+- Makhluk hidup adalah sistem terbuka jauh dari kesetimbangan.
+- Hipotesis dunia RNA dan LUCA menjelaskan asal-usul kehidupan.
+- Kasus batas (virus, endosimbion, sel minimal) menguji definisi.`,
+      `- Working definition: a self-sustaining chemical system capable of Darwinian evolution.
+- Living things are open systems far from equilibrium.
+- The RNA world and LUCA frame the origin of life.
+- Boundary cases (viruses, endosymbionts, minimal cells) test definitions.`,
+    ],
   },
   activity: {
     sd: [
@@ -76,8 +123,13 @@ So the characteristics of life are best understood as properties of living syste
       'Diskusikan dalam kelompok: apakah api, kristal garam yang “tumbuh”, dan virus termasuk makhluk hidup? Gunakan ciri-ciri kehidupan sebagai argumen dan tuliskan kesimpulan kelompok.',
       'Discuss in groups: are fire, “growing” salt crystals and viruses alive? Use the properties of life as evidence and write a group conclusion.',
     ],
+    kuliah: [
+      'Susun tabel yang menilai virus, prion, biji dorman, sel darah merah mamalia, endosimbion obligat, dan sel minimal JCVI-syn3.0 terhadap tujuh sifat kehidupan. Diskusikan definisi mana yang paling berguna untuk mencari kehidupan di luar bumi.',
+      'Build a table scoring viruses, prions, dormant seeds, mammalian red blood cells, obligate endosymbionts and the JCVI-syn3.0 minimal cell against seven properties of life. Discuss which definition is most useful for searching for life beyond Earth.',
+    ],
   },
   species: ['Mimosa pudica', 'Felis catus', 'Escherichia coli', 'Saccharomyces cerevisiae', 'Oryza sativa'],
+  related: ['metode-ilmiah', 'organisasi', 'sel', 'virus'],
   lab: 'photosynthesis',
   quiz: [
     {
@@ -200,6 +252,103 @@ So the characteristics of life are best understood as properties of living syste
         'Viruses carry genes and evolve but need host cells to multiply.',
       ],
     },
+    {
+      lv: [
+        'kuliah',
+      ],
+      q: [
+        'Definisi kerja kehidupan yang sering dipakai astrobiologi adalah…',
+        'The working definition of life often used in astrobiology is…',
+      ],
+      a: [
+        [
+          'Sesuatu yang bergerak sendiri',
+          'Something that moves by itself',
+        ],
+        [
+          'Sistem kimia yang menopang dirinya sendiri dan mampu berevolusi Darwin',
+          'A self-sustaining chemical system capable of Darwinian evolution',
+        ],
+        [
+          'Segala sesuatu yang mengandung air',
+          'Anything that contains water',
+        ],
+        [
+          'Sesuatu yang memiliki DNA',
+          'Anything with DNA',
+        ],
+      ],
+      c: 1,
+      why: [
+        'Definisi ini menekankan metabolisme dan evolusi, bukan satu ciri tunggal.',
+        'It stresses metabolism and evolution rather than a single trait.',
+      ],
+    },
+    {
+      lv: [
+        'kuliah',
+      ],
+      q: [
+        'Hipotesis dunia RNA menyatakan bahwa RNA dahulu…',
+        'The RNA world hypothesis proposes that RNA once…',
+      ],
+      a: [
+        [
+          'Berperan sebagai penyimpan informasi sekaligus katalis',
+          'Served as both information store and catalyst',
+        ],
+        [
+          'Tidak ada sama sekali',
+          'Did not exist at all',
+        ],
+        [
+          'Hanya berfungsi sebagai membran',
+          'Only formed membranes',
+        ],
+        [
+          'Terbentuk setelah protein modern',
+          'Formed after modern proteins',
+        ],
+      ],
+      c: 0,
+      why: [
+        'Ribozim, RNA yang dapat mengkatalisis reaksi, mendukung gagasan ini.',
+        'Ribozymes, RNAs that catalyse reactions, support this idea.',
+      ],
+    },
+    {
+      lv: [
+        'kuliah',
+        'sma',
+      ],
+      q: [
+        'Dari sudut termodinamika, makhluk hidup paling tepat disebut…',
+        'Thermodynamically, living things are best described as…',
+      ],
+      a: [
+        [
+          'Sistem tertutup dalam kesetimbangan',
+          'Closed systems at equilibrium',
+        ],
+        [
+          'Sistem terbuka yang menjaga keteraturan dengan aliran energi',
+          'Open systems that keep order through energy flow',
+        ],
+        [
+          'Sistem yang menciptakan energi',
+          'Systems that create energy',
+        ],
+        [
+          'Sistem tanpa pertukaran materi',
+          'Systems with no exchange of matter',
+        ],
+      ],
+      c: 1,
+      why: [
+        'Makhluk hidup terus mengambil energi dan melepaskan panas serta zat sisa.',
+        'Living things constantly take in energy and release heat and wastes.',
+      ],
+    },
   ],
   teacher: {
     goals: {
@@ -214,6 +363,10 @@ So the characteristics of life are best understood as properties of living syste
       sma: [
         'Peserta didik dapat mengevaluasi kasus batas (virus, spora) memakai sifat-sifat sistem hidup.',
         'Learners can evaluate borderline cases (viruses, spores) using the properties of living systems.',
+      ],
+      kuliah: [
+        'Mahasiswa dapat mengevaluasi berbagai definisi kehidupan dan menerapkannya pada kasus batas serta astrobiologi.',
+        'Students can evaluate definitions of life and apply them to boundary cases and astrobiology.',
       ],
     },
     time: ['2 × 35–45 menit', '2 × 35–45 minutes'],
@@ -246,12 +399,49 @@ So the characteristics of life are best understood as properties of living syste
       ],
       ['Kuis BioTaxa dengan target minimal 80%.', 'BioTaxa quiz with a target of at least 80%.'],
     ],
+    misconceptions: [
+      {
+        wrong: [
+          'Tumbuhan tidak bergerak sehingga kurang “hidup” dibanding hewan.',
+          'Plants do not move, so they are less “alive” than animals.',
+        ],
+        right: [
+          'Tumbuhan bergerak dengan cara tumbuh ke arah rangsang, dan menjalankan semua ciri kehidupan lain.',
+          'Plants move by growing towards stimuli and show every other property of life.',
+        ],
+      },
+      {
+        wrong: [
+          'Sesuatu yang bergerak pasti hidup.',
+          'Anything that moves must be alive.',
+        ],
+        right: [
+          'Mobil, awan, dan api bergerak tetapi tidak memiliki ciri kehidupan lain seperti sel, metabolisme, dan reproduksi.',
+          'Cars, clouds and fire move but lack other properties of life such as cells, metabolism and reproduction.',
+        ],
+      },
+      {
+        wrong: [
+          'Biji kering adalah benda mati.',
+          'Dry seeds are dead objects.',
+        ],
+        right: [
+          'Biji kering berada dalam keadaan dorman dengan metabolisme sangat rendah dan tetap hidup; ia dapat berkecambah bila kondisinya sesuai.',
+          'Dry seeds are dormant with very low metabolism and are still alive; they sprout when conditions are right.',
+        ],
+      },
+    ],
   },
   read: [
     {
       label: 'OpenStax Biology 2e · 1.2 Themes and Concepts of Biology',
       url: 'https://openstax.org/books/biology-2e/pages/1-2-themes-and-concepts-of-biology',
       lv: 'sma',
+    },
+    {
+      label: 'OpenStax Biology 2e · Ch. 1 The Study of Life',
+      url: 'https://openstax.org/books/biology-2e/pages/1-introduction',
+      lv: 'kuliah',
     },
   ],
 };

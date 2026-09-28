@@ -17,6 +17,7 @@ const NAV = [
 const PARENT = {
   species: 'search',
   nearby: 'learn',
+  peta: 'learn',
   compare: 'learn',
   quiz: 'learn',
   purba: 'learn',

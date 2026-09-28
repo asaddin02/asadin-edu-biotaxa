@@ -28,6 +28,10 @@ const s = S({
     'Rentang umur catatan fosil untuk halaman Kehidupan purba.',
     'Fossil-record age ranges for the Prehistoric life page.',
   ],
+  anage: [
+    'Umur terpanjang yang pernah tercatat pada kartu hewan kurasi (Human Ageing Genomic Resources, CC BY 3.0).',
+    'Longest recorded lifespans on curated animal cards (Human Ageing Genomic Resources, CC BY 3.0).',
+  ],
   curated: ['Konten kurasi BioTaxa', 'BioTaxa curated content'],
   curatedText: [
     '111 kartu spesies, 12 materi dengan kuis dan catatan guru, lebih dari 100 istilah kamus, dan 29 makhluk purba ditulis dalam bahasa sederhana dari sumber terbuka. Konten ini berlisensi CC BY-SA 4.0 dan terbuka untuk koreksi.',
@@ -105,6 +109,7 @@ export async function render(ctx) {
       ${card('iNaturalist', s.inat, 'https://www.inaturalist.org/')}
       ${card('Wikipedia', s.wiki, 'https://www.wikipedia.org/')}
       ${card('Paleobiology Database', s.pbdb, 'https://paleobiodb.org/')}
+      ${card('AnAge', s.anage, 'https://genomics.senescence.info/species/')}
     </div>
     <section class="section" id="about-curated"><h2>${s.curated}</h2><p>${s.curatedText}</p>${config.feedbackURL ? `<p>${link(config.feedbackURL, s.feedback, { cls: 'btn secondary' })}</p>` : ''}</section>
     <section class="section" id="about-limits"><h2>${s.limits}</h2><p>${s.limitsText}</p>${notice(s.domains)}

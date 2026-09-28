@@ -1,7 +1,7 @@
 import { $, esc, copyText, toast, encodeData } from '../core/dom.js';
 import { S, pick, level, role, LEVELS } from '../core/prefs.js';
 import { ui } from '../i18n/ui.js';
-import { TOPICS, findTopic, PHASES } from '../data/topics/index.js';
+import { TOPICS, FIELDS, findTopic, loadTopic, PHASES } from '../data/topics/index.js';
 import { findSpecies } from '../data/species.js';
 import { pageHead, notice, sectionNav } from '../components/common.js';
 import { suggestField } from '../components/suggest.js';
@@ -205,7 +205,15 @@ export async function render(ctx) {
         <div class="form-step wide"><span>01</span><h3>${s.taskSetup}</h3></div>
         <label class="field wide"><span>${s.taskTitle}</span><input name="t" maxlength="120" value="${esc(presetTopic ? pick(presetTopic.title) : s.taskTitleDefault)}"></label>
         <label class="field"><span>${s.forLevel}</span><select name="l">${LEVELS.map(l => `<option value="${l}"${l === level ? ' selected' : ''}>${esc(ui[`${l}Long`])}</option>`).join('')}</select></label>
-        <label class="field"><span>${s.topic}</span><select name="tp"><option value="">${s.none}</option>${TOPICS.map(t => `<option value="${t.id}"${presetTopic?.id === t.id ? ' selected' : ''}>${t.icon} ${esc(pick(t.title))}</option>`).join('')}</select></label>
+        <label class="field"><span>${s.topic}</span><select name="tp"><option value="">${s.none}</option>${FIELDS.map(
+          f =>
+            `<optgroup label="${esc(pick(f.name))}">${TOPICS.filter(t => t.field === f.id)
+              .map(
+                t =>
+                  `<option value="${t.id}"${presetTopic?.id === t.id ? ' selected' : ''}>${t.icon} ${esc(pick(t.title))}</option>`
+              )
+              .join('')}</optgroup>`
+        ).join('')}</select></label>
         <label class="field"><span>${s.due}</span><input name="due" type="date"></label>
         <div class="form-step wide"><span>02</span><h3>${s.taskMaterials}</h3></div>
         <label class="field wide"><span>${s.instructions}</span><textarea name="i" maxlength="1500" rows="3">${esc(s.instructionsDefault)}</textarea></label>
@@ -216,7 +224,17 @@ export async function render(ctx) {
       </form>
       <div id="assignment-output" aria-live="polite"></div>
     </section>
-    </div><section class="section" id="teacher-plans"><h2>${s.plans}</h2><p class="muted">${s.plansIntro}</p><div class="topic-grid">${TOPICS.map(t => `<a class="topic-card" href="#/learn/${t.id}"><span class="topic-icon" aria-hidden="true">${t.icon}</span><span class="topic-text"><strong>${esc(pick(t.title))}</strong><small>${t.levels.map(l => esc(pick(PHASES[l]).split('·')[0].trim())).join(' · ')}</small></span></a>`).join('')}</div></section>
+    </div><section class="section" id="teacher-plans"><h2>${s.plans}</h2><p class="muted">${s.plansIntro}</p>${FIELDS.map(
+      f =>
+        `<section class="field-group"><div class="field-head"><span class="field-icon" aria-hidden="true">${f.icon}</span><div><h3>${esc(pick(f.name))}</h3></div></div><div class="topic-grid">${TOPICS.filter(
+          t => t.field === f.id
+        )
+          .map(
+            t =>
+              `<a class="topic-card" href="#/learn/${t.id}"><span class="topic-icon" aria-hidden="true">${t.icon}</span><span class="topic-text"><strong>${esc(pick(t.title))}</strong><small>${t.levels.map(l => esc(pick(PHASES[l]).split('·')[0].trim())).join(' · ')}</small></span></a>`
+          )
+          .join('')}</div></section>`
+    ).join('')}</section>
     <section class="section">${notice(`<strong>🔒 ${s.privacy}.</strong> ${s.privacyText}`)}</section>`;
 
   const form = $('#assignment-form');
@@ -244,10 +262,12 @@ export async function render(ctx) {
     chosen.splice(Number(b.dataset.removeSpecies), 1);
     refreshChips();
   });
-  ctx.on('click', '[data-from-topic]', () => {
-    const topic = findTopic($('[name=tp]').value);
-    if (!topic) return;
-    for (const sci of topic.species) {
+  ctx.on('click', '[data-from-topic]', async () => {
+    const id = $('[name=tp]').value;
+    if (!findTopic(id)) return;
+    const topic = await loadTopic(id);
+    if (!ctx.isCurrent()) return;
+    for (const sci of topic.species || []) {
       const sp = findSpecies({ sci });
       if (sp && chosen.length < 10 && !chosen.some(x => x.id === sp.id))
         chosen.push({ id: sp.id, n: `${pick(sp.name)} (${sp.sci})` });

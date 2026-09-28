@@ -1,12 +1,5 @@
 export default {
   id: 'perkembangbiakan',
-  icon: '🥚',
-  levels: ['sd', 'smp', 'sma'],
-  title: ['Perkembangbiakan & siklus hidup', 'Reproduction & life cycles'],
-  summary: [
-    'Bertelur, melahirkan, bertunas, atau membelah diri — semua cara untuk berlanjut.',
-    'Eggs, live birth, budding or splitting — every way life carries on.',
-  ],
   body: {
     sd: [
       `Semua makhluk hidup berkembang biak agar jenisnya tidak punah.
@@ -66,6 +59,64 @@ Plants alternate generations between haploid gametophytes and diploid sporophyte
 
 Animal strategies range from many offspring with little care (fish, frogs) to few offspring with long care (orangutans give birth only about once every 6–9 years). That slow strategy makes orangutan populations very vulnerable to hunting and habitat loss.`,
     ],
+    kuliah: [
+      `**Mengapa reproduksi seksual bertahan?** Reproduksi seksual memiliki “biaya ganda”: dalam populasi seksual, separuh keturunan adalah jantan yang tidak melahirkan anak, sehingga populasi aseksual secara teori dapat tumbuh dua kali lebih cepat. Penjelasan keuntungan seks meliputi hipotesis **Ratu Merah** (rekombinasi membantu inang selalu “berlari” mendahului parasit yang terus berevolusi), **ratchet Muller** (garis keturunan aseksual menumpuk mutasi merugikan yang tidak dapat dibuang), dan adaptasi yang lebih cepat karena rekombinasi menggabungkan mutasi menguntungkan.
+
+**Partenogenesis** (perkembangan embrio tanpa pembuahan) terjadi pada banyak serangga, beberapa reptil, dan ikan. Komodo betina di kebun binatang pernah menghasilkan anak tanpa jantan (partenogenesis fakultatif); karena sistem penentuan kelamin reptil ini ZW, semua anaknya jantan.
+
+**Sistem penentuan jenis kelamin** beragam: XY pada mamalia, ZW pada burung dan banyak reptil, haplodiploidi pada lebah dan semut (jantan berkembang dari telur yang tidak dibuahi), serta penentuan oleh suhu pada penyu dan buaya.
+
+**Teori sejarah hidup** menjelaskan pertukaran (trade-off) dalam mengalokasikan energi: jumlah dan ukuran keturunan, usia dewasa kelamin, dan umur. Orangutan memiliki salah satu jarak kelahiran terpanjang di antara mamalia, sedangkan ikan dan katak melepaskan ribuan telur tanpa pengasuhan. Pembagian lama “seleksi r dan K” kini dipandang terlalu sederhana dan digantikan analisis demografi yang lebih rinci.
+
+**Pada tumbuhan**: mekanisme inkompatibilitas-diri mencegah penyerbukan sendiri; apomiksis menghasilkan biji tanpa pembuahan; dan banyak pohon dipterokarpa berbuah serentak dalam selang beberapa tahun (*masting*), yang diduga membuat pemakan biji kewalahan sehingga sebagian biji selamat.`,
+      `**Why does sexual reproduction persist?** Sex has a “twofold cost”: in a sexual population, half the offspring are males that bear no young, so an asexual population could in theory grow twice as fast. Explanations for the advantage of sex include the **Red Queen** hypothesis (recombination helps hosts keep “running” ahead of constantly evolving parasites), **Muller’s ratchet** (asexual lineages accumulate harmful mutations they cannot purge) and faster adaptation, because recombination brings beneficial mutations together.
+
+**Parthenogenesis** (embryo development without fertilisation) occurs in many insects and some reptiles and fish. Female Komodo dragons in zoos have produced young without males (facultative parthenogenesis); because this reptile has ZW sex determination, all the young were male.
+
+**Sex-determination systems** vary: XY in mammals, ZW in birds and many reptiles, haplodiploidy in bees and ants (males develop from unfertilised eggs), and temperature-dependent sex determination in turtles and crocodiles.
+
+**Life-history theory** explains trade-offs in allocating energy: number and size of offspring, age at maturity and lifespan. Orangutans have one of the longest birth intervals of any mammal, while fish and frogs release thousands of eggs without parental care. The old “r- and K-selection” split is now seen as too simple and has been replaced by more detailed demographic analysis.
+
+**In plants**: self-incompatibility prevents self-pollination; apomixis produces seeds without fertilisation; and many dipterocarp trees fruit together at intervals of several years (*masting*), which is thought to overwhelm seed-eaters so that some seeds survive.`,
+    ],
+  },
+  key: {
+    sd: [
+      `- Hewan berkembang biak dengan bertelur, melahirkan, atau bertelur-melahirkan.
+- Tumbuhan berkembang biak dengan biji, tunas, umbi, atau spora.
+- Metamorfosis: telur → ulat → kepompong → kupu-kupu.`,
+      `- Animals reproduce by laying eggs, giving birth, or eggs that hatch inside the mother.
+- Plants reproduce by seeds, shoots, tubers or spores.
+- Metamorphosis: egg → caterpillar → pupa → butterfly.`,
+    ],
+    smp: [
+      `- Generatif (seksual) menghasilkan keturunan bervariasi; vegetatif (aseksual) menghasilkan keturunan yang sama dengan induknya.
+- Penyerbukan lalu pembuahan membentuk biji dan buah.
+- Metamorfosis sempurna dan tidak sempurna pada serangga.`,
+      `- Sexual reproduction gives varied offspring; asexual reproduction gives offspring like the parent.
+- Pollination then fertilisation forms seeds and fruits.
+- Complete and incomplete metamorphosis in insects.`,
+    ],
+    sma: [
+      `- Meiosis dan pembuahan acak menghasilkan variasi genetik.
+- Pergiliran keturunan: gametofit (n) dan sporofit (2n).
+- Angiosperma melakukan pembuahan ganda.
+- Strategi reproduksi lambat membuat populasi rentan.`,
+      `- Meiosis and random fertilisation create genetic variation.
+- Alternation of generations: gametophyte (n) and sporophyte (2n).
+- Angiosperms carry out double fertilisation.
+- Slow reproductive strategies make populations vulnerable.`,
+    ],
+    kuliah: [
+      `- Biaya ganda seks diimbangi keuntungan rekombinasi (Ratu Merah, ratchet Muller).
+- Partenogenesis fakultatif terjadi pada komodo.
+- Sistem penentuan kelamin: XY, ZW, haplodiploidi, dan suhu.
+- Teori sejarah hidup menjelaskan pertukaran alokasi energi.`,
+      `- The twofold cost of sex is offset by the benefits of recombination (Red Queen, Muller’s ratchet).
+- Facultative parthenogenesis occurs in Komodo dragons.
+- Sex-determination systems: XY, ZW, haplodiploidy and temperature.
+- Life-history theory explains energy-allocation trade-offs.`,
+    ],
   },
   activity: {
     sd: [
@@ -80,6 +131,10 @@ Animal strategies range from many offspring with little care (fish, frogs) to fe
       'Bandingkan keuntungan dan kerugian reproduksi seksual dan aseksual dalam tabel. Hubungkan dengan budidaya pisang yang seragam secara genetik dan kerentanannya terhadap penyakit.',
       'Tabulate the pros and cons of sexual and asexual reproduction. Link this to genetically uniform banana crops and their vulnerability to disease.',
     ],
+    kuliah: [
+      'Susun tabel demografi (kelangsungan hidup dan fekunditas per umur) untuk dua spesies dengan strategi berbeda dari literatur, misalnya orangutan dan penyu hijau. Hitung laju reproduksi bersih (R₀) dan diskusikan implikasinya bagi konservasi.',
+      'Build life tables (age-specific survival and fecundity) for two species with different strategies from the literature, such as orangutans and green turtles. Calculate the net reproductive rate (R₀) and discuss its conservation implications.',
+    ],
   },
   species: [
     'Danaus plexippus',
@@ -90,6 +145,7 @@ Animal strategies range from many offspring with little care (fish, frogs) to fe
     'Asplenium nidus',
     'Lissachatina fulica',
   ],
+  related: ['reproduksi-manusia', 'pertumbuhan', 'pewarisan', 'serangga'],
   lab: 'mendel',
   quiz: [
     {
@@ -182,6 +238,103 @@ Animal strategies range from many offspring with little care (fish, frogs) to fe
         'Variation raises the chance that some individuals resist the disease.',
       ],
     },
+    {
+      lv: [
+        'kuliah',
+      ],
+      q: [
+        '“Biaya ganda” reproduksi seksual merujuk pada…',
+        'The “twofold cost” of sex refers to…',
+      ],
+      a: [
+        [
+          'Jantan tidak melahirkan anak sehingga pertumbuhan populasi lebih lambat',
+          'Males bear no young, so population growth is slower',
+        ],
+        [
+          'Sel kelamin berukuran dua kali lebih besar',
+          'Sex cells being twice as large',
+        ],
+        [
+          'Dua induk selalu diperlukan untuk setiap sel',
+          'Two parents being needed for every cell',
+        ],
+        [
+          'Meiosis memerlukan dua kali pembelahan',
+          'Meiosis needing two divisions',
+        ],
+      ],
+      c: 0,
+      why: [
+        'Keuntungan rekombinasi harus cukup besar untuk mengimbangi biaya ini.',
+        'The benefits of recombination must be large enough to offset this cost.',
+      ],
+    },
+    {
+      lv: [
+        'kuliah',
+      ],
+      q: [
+        'Anak komodo hasil partenogenesis semuanya jantan karena…',
+        'Komodo young produced by parthenogenesis are all male because…',
+      ],
+      a: [
+        [
+          'Jantan lebih kuat',
+          'Males are stronger',
+        ],
+        [
+          'Komodo memiliki sistem penentuan kelamin ZW',
+          'Komodo dragons have ZW sex determination',
+        ],
+        [
+          'Suhu penetasan selalu tinggi',
+          'Incubation is always hot',
+        ],
+        [
+          'Komodo haplodiploid',
+          'Komodo dragons are haplodiploid',
+        ],
+      ],
+      c: 1,
+      why: [
+        'Pada sistem ZW, telur partenogenetik menghasilkan ZZ (jantan); WW tidak bertahan hidup.',
+        'In a ZW system, parthenogenetic eggs give ZZ (male); WW is not viable.',
+      ],
+    },
+    {
+      lv: [
+        'kuliah',
+        'sma',
+      ],
+      q: [
+        'Pada lebah madu, lebah jantan berkembang dari…',
+        'In honeybees, drones develop from…',
+      ],
+      a: [
+        [
+          'Telur yang tidak dibuahi',
+          'Unfertilised eggs',
+        ],
+        [
+          'Telur yang dibuahi dua sperma',
+          'Eggs fertilised by two sperm',
+        ],
+        [
+          'Larva ratu',
+          'Queen larvae',
+        ],
+        [
+          'Spora',
+          'Spores',
+        ],
+      ],
+      c: 0,
+      why: [
+        'Sistem ini disebut haplodiploidi.',
+        'This system is called haplodiploidy.',
+      ],
+    },
   ],
   teacher: {
     goals: {
@@ -196,6 +349,10 @@ Animal strategies range from many offspring with little care (fish, frogs) to fe
       sma: [
         'Peserta didik dapat menjelaskan peran meiosis dalam variasi dan pergiliran keturunan tumbuhan.',
         'Learners can explain meiosis in variation and plant alternation of generations.',
+      ],
+      kuliah: [
+        'Mahasiswa dapat menganalisis evolusi reproduksi seksual, sistem penentuan kelamin, dan pertukaran sejarah hidup.',
+        'Students can analyse the evolution of sex, sex-determination systems and life-history trade-offs.',
       ],
     },
     time: ['2 × 40 menit + pengamatan 1–2 minggu', '2 × 40 minutes + 1–2 weeks of observation'],
@@ -216,11 +373,48 @@ Animal strategies range from many offspring with little care (fish, frogs) to fe
       ['Jurnal pengamatan pertumbuhan stek.', 'Cutting growth journal.'],
       ['Kuis BioTaxa.', 'BioTaxa quiz.'],
     ],
+    misconceptions: [
+      {
+        wrong: [
+          'Keturunan hasil perkembangbiakan vegetatif selalu persis sama dengan induknya.',
+          'Offspring from asexual reproduction are always exactly like the parent.',
+        ],
+        right: [
+          'Secara genetik hampir sama, tetapi mutasi dan lingkungan tetap dapat menimbulkan perbedaan.',
+          'They are nearly identical genetically, but mutations and the environment can still create differences.',
+        ],
+      },
+      {
+        wrong: [
+          'Semua hewan berkembang biak dengan cara yang sama seperti manusia.',
+          'All animals reproduce the way humans do.',
+        ],
+        right: [
+          'Ada hewan yang bertelur, bertunas, membelah diri, hermafrodit, atau bahkan bereproduksi tanpa pembuahan.',
+          'Some animals lay eggs, bud, split, are hermaphrodites or even reproduce without fertilisation.',
+        ],
+      },
+      {
+        wrong: [
+          'Bunga hanya berfungsi sebagai hiasan.',
+          'Flowers are only decorative.',
+        ],
+        right: [
+          'Bunga adalah alat perkembangbiakan tumbuhan; warna dan aromanya menarik penyerbuk.',
+          'Flowers are a plant’s reproductive organs; their colours and scents attract pollinators.',
+        ],
+      },
+    ],
   },
   read: [
     {
       label: 'OpenStax Biology 2e · Ch. 11 Meiosis and Sexual Reproduction',
       url: 'https://openstax.org/books/biology-2e/pages/11-introduction',
+      lv: 'sma',
+    },
+    {
+      label: 'OpenStax Biology 2e · Ch. 32 Plant Reproduction',
+      url: 'https://openstax.org/books/biology-2e/pages/32-introduction',
       lv: 'sma',
     },
   ],

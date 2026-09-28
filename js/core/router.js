@@ -8,6 +8,7 @@ const pages = {
   tree: () => import('../pages/tree.js'),
   species: () => import('../pages/species.js'),
   learn: () => import('../pages/learn.js'),
+  peta: () => import('../pages/biomap.js'),
   lab: () => import('../pages/lab.js'),
   quiz: () => import('../pages/quiz.js'),
   compare: () => import('../pages/compare.js'),

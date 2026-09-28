@@ -4234,3 +4234,479 @@ textarea:focus-visible {
     padding: 0.6rem 0.6rem;
   }
 }
+
+/* ========== Biology map, lesson layers & knowledge search ========== */
+.table-scroll {
+  overflow-x: auto;
+  max-width: 100%;
+}
+.field-group + .field-group {
+  margin-top: 2rem;
+}
+.field-head {
+  display: flex;
+  gap: 0.8rem;
+  align-items: flex-start;
+  margin-bottom: 0.9rem;
+}
+.field-head h3 {
+  margin: 0;
+  font-size: 1.2rem;
+}
+.field-head p {
+  margin: 0.15rem 0 0;
+}
+.field-icon {
+  font-size: 1.8rem;
+  line-height: 1;
+}
+.version-switch a small {
+  display: inline-block;
+  margin-left: 0.1em;
+  font-weight: 500;
+  opacity: 0.8;
+}
+.key-points {
+  margin-top: 1.5rem;
+  padding: 1rem 1.25rem;
+  border-radius: var(--radius-sm);
+  background: var(--lime);
+  border: 1px solid #dcebb0;
+}
+.key-points h2 {
+  font-size: 1.05rem;
+  margin: 0 0 0.4rem;
+}
+.key-points .prose-list,
+.key-points .prose {
+  margin: 0.2rem 0;
+}
+.related-card h2 {
+  font-size: 1.05rem;
+}
+.related-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.35rem;
+}
+.related-list a {
+  display: flex;
+  gap: 0.45rem;
+  align-items: baseline;
+  text-decoration: none;
+  font-weight: 600;
+}
+.misconception-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 0.7rem;
+}
+.misconception-list li {
+  padding: 0.7rem 0.9rem;
+  border-radius: var(--radius-sm);
+  background: #fff;
+  border: 1px solid #d3def3;
+}
+.misconception-list p {
+  margin: 0.15rem 0;
+}
+.wrong-idea strong {
+  color: var(--danger);
+}
+.right-idea strong {
+  color: var(--green);
+}
+.layer-table {
+  background: #fff;
+  min-width: 560px;
+}
+.layer-table th[scope='row'] {
+  white-space: nowrap;
+}
+.compact-list,
+.layer-table .compact-list {
+  margin: 0;
+  padding-left: 1.1rem;
+}
+.layer-table .compact {
+  margin: 0;
+}
+.chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.5rem;
+}
+.topic-chip {
+  min-height: 2.2rem;
+  padding: 0.35em 0.8em;
+}
+.org-ladder {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0;
+  display: grid;
+  gap: 0.6rem;
+  counter-reset: none;
+}
+.org-step {
+  display: grid;
+  grid-template-columns: auto auto minmax(0, 1fr);
+  gap: 0.8rem;
+  align-items: start;
+  padding: 0.9rem 1.1rem;
+  border-radius: var(--radius-sm);
+  background: #fff;
+  border: 1px solid var(--line);
+}
+.org-step:nth-child(-n + 3) {
+  background: var(--sky);
+}
+.org-step:nth-child(n + 8) {
+  background: var(--soft);
+}
+.org-index {
+  font-weight: 800;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+  padding-top: 0.2rem;
+}
+.org-icon {
+  font-size: 1.7rem;
+  line-height: 1.2;
+}
+.org-text h3 {
+  margin: 0;
+  font-size: 1.1rem;
+}
+.org-text p {
+  margin: 0.2rem 0;
+}
+.field-map,
+.branch-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1rem;
+}
+.field-card h3,
+.branch-card h3 {
+  margin-top: 0;
+  font-size: 1.1rem;
+}
+.field-topics {
+  list-style: none;
+  padding: 0;
+  margin: 0.6rem 0 0;
+  display: grid;
+  gap: 0.5rem;
+}
+.field-topics li {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.3rem;
+}
+.field-topics a {
+  font-weight: 600;
+  text-decoration: none;
+}
+.field-topics .topic-meta {
+  margin-top: 0;
+}
+.branch-card p {
+  margin: 0.3rem 0;
+}
+.coverage-table {
+  background: #fff;
+}
+.coverage-table tr.current th,
+.coverage-table tr.current td {
+  background: var(--cream);
+  font-weight: 700;
+}
+.stat-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin: 1rem 0;
+}
+.stat-list div {
+  padding: 0.7rem 1rem;
+  border-radius: var(--radius-sm);
+  background: var(--soft);
+  border: 1px solid var(--line);
+}
+.stat-list dt {
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+.stat-list dd {
+  margin: 0;
+  font-size: 1.4rem;
+  font-weight: 800;
+}
+.group-counts {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+.group-counts li {
+  padding: 0.3rem 0.7rem;
+  border-radius: 99px;
+  background: #fff;
+  border: 1px solid var(--line);
+  font-size: 0.88rem;
+}
+.knowledge-results {
+  margin: 0 0 1.5rem;
+}
+.knowledge-results h2 {
+  font-size: 1.15rem;
+  margin-bottom: 0.1rem;
+}
+.knowledge-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 0.7rem;
+  margin-top: 0.6rem;
+}
+.knowledge-card {
+  display: flex;
+  gap: 0.7rem;
+  padding: 0.8rem 0.9rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--line);
+  background: #fff;
+  color: var(--ink);
+  text-decoration: none;
+  min-width: 0;
+}
+.knowledge-card:hover {
+  border-color: var(--green);
+  color: var(--ink);
+}
+.knowledge-card > span:last-child {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.knowledge-card small {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--green);
+}
+.knowledge-card .muted {
+  font-size: 0.84rem;
+  line-height: 1.45;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.knowledge-icon {
+  font-size: 1.5rem;
+  line-height: 1.2;
+}
+.mention-line {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  align-items: center;
+  margin-top: 0.9rem;
+}
+.suggest-local .suggest-icon {
+  font-size: 1.3rem;
+  background: var(--lime);
+}
+@media (max-width: 700px) {
+  .org-step {
+    grid-template-columns: auto minmax(0, 1fr);
+    padding: 0.8rem;
+  }
+  .org-index {
+    display: none;
+  }
+  .version-switch a small {
+    display: none;
+  }
+}
+@media print {
+  .key-points,
+  .misconception-list li {
+    break-inside: avoid;
+  }
+  .related-card {
+    display: none;
+  }
+}
+
+/* ========== Genetic code & enzyme labs ========== */
+.sequence-input {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  letter-spacing: 0.08em;
+  word-break: break-all;
+}
+.inline-options {
+  border: 0;
+  padding: 0;
+  margin: 0.6rem 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1.2rem;
+}
+.inline-options legend {
+  font-weight: 700;
+  margin-bottom: 0.3rem;
+}
+.inline-options label {
+  display: inline-flex;
+  gap: 0.35rem;
+  align-items: center;
+}
+.codon-scroll {
+  overflow-x: auto;
+  padding-bottom: 0.4rem;
+  max-width: 100%;
+}
+.codon-row {
+  display: grid;
+  grid-template-columns: 9.5rem max-content;
+  gap: 0.6rem;
+  align-items: center;
+  margin: 0.3rem 0;
+}
+.codon-label {
+  font-size: 0.78rem;
+  color: var(--muted);
+  font-weight: 700;
+}
+.codon-cells {
+  display: flex;
+  gap: 3px;
+}
+.codon {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.82rem;
+  min-width: 2.9em;
+  text-align: center;
+  padding: 0.15rem 0.2rem;
+  border-radius: 5px;
+  background: var(--soft);
+  border: 1px solid var(--line);
+}
+.codon.lead {
+  min-width: 0;
+  background: transparent;
+  border-style: dashed;
+  color: var(--muted);
+}
+.codon-row.mrna .codon {
+  background: var(--sky);
+}
+.codon-row.template .codon {
+  background: #fff;
+}
+.codon.aa {
+  background: var(--lime);
+  font-weight: 700;
+}
+.codon.stop {
+  background: #ffd9cf;
+  color: var(--danger);
+}
+.codon.changed {
+  outline: 2px solid var(--danger);
+  outline-offset: -1px;
+}
+.genetic-output h4 {
+  margin: 0.8rem 0 0.2rem;
+}
+.chart-pair {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin: 0.4rem 0;
+}
+.mini-chart {
+  margin: 0;
+  flex: 1 1 200px;
+  max-width: 280px;
+}
+.mini-chart svg {
+  width: 100%;
+  height: auto;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+}
+.mini-chart .axis {
+  stroke: var(--muted);
+  stroke-width: 1;
+}
+.mini-chart .curve {
+  fill: none;
+  stroke: var(--green);
+  stroke-width: 2.5;
+}
+.mini-chart .dot {
+  fill: var(--danger);
+}
+.mini-chart text {
+  font-size: 10px;
+  fill: var(--muted);
+}
+.mini-chart figcaption {
+  font-size: 0.8rem;
+  color: var(--muted);
+  text-align: center;
+}
+@media (max-width: 480px) {
+  .codon-row {
+    grid-template-columns: 6.5rem max-content;
+  }
+}
+
+/* Phones: the differentiation table becomes one card per level instead of a sideways scroll. */
+@media (max-width: 540px) {
+  .layer-table,
+  .layer-table tbody,
+  .layer-table tr,
+  .layer-table th,
+  .layer-table td {
+    display: block;
+    width: 100%;
+    min-width: 0;
+  }
+  .layer-table thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+  }
+  .layer-table tr {
+    padding: 0.7rem 0.8rem;
+    border-bottom: 1px solid var(--line);
+  }
+  .layer-table th[scope='row'],
+  .layer-table td {
+    padding: 0.2rem 0;
+    border: 0;
+  }
+  .layer-table td::before {
+    content: attr(data-label);
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--muted);
+  }
+}

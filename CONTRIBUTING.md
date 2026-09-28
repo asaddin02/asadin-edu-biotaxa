@@ -73,17 +73,34 @@ Setelah itu, cukup `npm run data:check` untuk memeriksa ulang.
 
 ### Materi dan kuis (`js/data/topics/`)
 
-Satu berkas per topik. Salin topik yang sudah ada sebagai contoh, lalu daftarkan di `js/data/topics/index.js`. Isi per topik:
+Satu berkas per topik berisi isi materi. Metadata ringan (bidang, ikon, jenjang yang disarankan, tingkat organisasi, judul, ringkasan) ada di `js/data/topics/index.js`, sehingga daftar materi, pencarian, dan Peta Biologi tidak perlu memuat seluruh isi. Salin topik yang sudah ada sebagai contoh, lalu tambahkan metadatanya di `index.js` sesuai urutan belajar dalam bidangnya.
 
-| Kolom              | Isi                                                                                                          |
-| ------------------ | ------------------------------------------------------------------------------------------------------------ |
-| `levels`           | Jenjang yang memakai topik ini: `sd`, `smp`, `sma`, `kuliah`                                                 |
-| `body`, `activity` | Teks per jenjang. Mendukung `**tebal**`, daftar `- `, dan `[[istilah]]`                                      |
-| `quiz`             | `{ lv, q, a, c, why }`: jenjang, pertanyaan, pilihan jawaban, indeks jawaban benar (mulai 0), dan penjelasan |
-| `teacher`          | Tujuan per jenjang, alokasi waktu, langkah, dan asesmen untuk mode Guru                                      |
-| `species`          | Nama ilmiah kartu spesies terkait                                                                            |
-| `read`             | Bacaan lanjutan `{ label, url, lv }`                                                                         |
-| `lab`              | ID simulasi terkait di `js/labs/` (opsional)                                                                 |
+Metadata di `js/data/topics/index.js`:
+
+| Kolom              | Isi                                                                           |
+| ------------------ | ----------------------------------------------------------------------------- |
+| `field`            | Salah satu bidang di `FIELDS` (misalnya `sel`, `tubuh`, `ekologi`)            |
+| `levels`           | Jenjang yang disarankan: `sd`, `smp`, `sma`, `kuliah`                         |
+| `org`              | Tingkat organisasi yang dibahas (lihat `ORGANIZATION` di `js/data/biomap.js`) |
+| `title`, `summary` | `[Indonesia, English]`                                                        |
+
+Isi berkas topik:
+
+| Kolom      | Isi                                                                                                                                          |
+| ---------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
+| `body`     | Teks untuk keempat lapisan (`sd`, `smp`, `sma`, `kuliah`). Tulis sesuai jenjang: SD sederhana, SMP standar, SMA lanjutan, kuliah mendalam    |
+| `key`      | Poin kunci per jenjang, berupa daftar `- `                                                                                                   |
+| `activity` | Kegiatan per jenjang                                                                                                                         |
+| `quiz`     | `{ lv, q, a, c, why }`: jenjang, pertanyaan, pilihan jawaban, indeks jawaban benar (mulai 0), dan penjelasan. Teks kuis tidak memakai markup |
+| `teacher`  | `goals` per jenjang, `time`, `steps`, `assess`, dan `misconceptions` (anggapan keliru beserta konsep yang benar)                             |
+| `species`  | Nama ilmiah kartu spesies terkait                                                                                                            |
+| `related`  | ID topik terkait                                                                                                                             |
+| `read`     | Bacaan lanjutan `{ label, url, lv }`; periksa bahwa tautannya hidup                                                                          |
+| `lab`      | ID simulasi terkait di `js/labs/` (opsional)                                                                                                 |
+
+Markup teks materi: paragraf dipisah baris kosong, `**tebal**`, `*miring*`, `[[istilah]]` atau `[[istilah|teks tampil]]`, daftar `- `, dan daftar bernomor `1. `. Satu blok boleh diawali kalimat pengantar lalu diikuti baris daftar.
+
+Jalankan `npm run data:check` setelah menambah materi. Validator memeriksa pasangan bahasa, keempat lapisan, poin kunci, jumlah soal per jenjang, tujuan guru, miskonsepsi, istilah kamus, kartu spesies, dan simulasi yang dirujuk.
 
 ### Kelompok takson dan kehidupan purba
 

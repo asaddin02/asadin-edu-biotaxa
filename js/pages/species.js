@@ -3,7 +3,7 @@ import { S, pick, lang, atLeast, atMost, fmt, fmtDate, byLevel } from '../core/p
 import { isSaved, toggleSaved, trackSpecies } from '../core/userdata.js';
 import { ui, rankLabel } from '../i18n/ui.js';
 import { API, commonNames } from '../services/api.js';
-import { photoMarkup, bindImageFallbacks } from '../services/media.js';
+import { photoMarkup, bindImageFallbacks, curatedPhoto } from '../services/media.js';
 import { describeStatus } from '../services/conservation.js';
 import { createOccurrenceMap } from '../services/map.js';
 import { GROUPS as SP_GROUPS, DIETS, HABITATS, findSpecies } from '../data/species.js';
@@ -429,6 +429,14 @@ function wikiHTML(wiki) {
   return `<p class="prose wiki-text" lang="${esc(wiki.language)}">${esc(text)}</p><p class="source-meta">${s.wikiLabel} · ${esc(String(wiki.language).toUpperCase())} · ${link(page, ui.read)}</p>${wiki.language !== lang ? notice(s.noTranslation) : ''}`;
 }
 
+/** Photos from the sources, or the curated card's own photo when the sources offer none. */
+function photoList(data) {
+  const photos = data?.photo?.photos || [];
+  if (photos.length) return photos;
+  const own = curatedPhoto(state.curated?.photo);
+  return own ? [own] : [];
+}
+
 /* ---------- Main render ---------- */
 function renderPage(data, complete) {
   destroyMap();
@@ -436,7 +444,7 @@ function renderPage(data, complete) {
   const name = nameOf(x);
   const domain = domainOf(x);
   const names = commonNames(data);
-  const photos = data.photo?.photos || [];
+  const photos = photoList(data);
   const sp = state.curated;
   const primary = (sp && pick(sp.name)) || data.photo?.taxon?.preferred_common_name || names[lang][0] || '';
   const inatId = data.photo?.taxon?.id;
@@ -734,7 +742,7 @@ const recordURL = (provider, key) =>
     : `https://www.gbif.org/occurrence/${Number(key)}`;
 
 function openPhoto(index) {
-  const photo = state.data?.photo?.photos?.[index];
+  const photo = photoList(state.data)[index];
   const dialog = $('#photo-dialog');
   if (!photo || !dialog) return;
   $('#dialog-photo').innerHTML =
@@ -833,7 +841,7 @@ export async function render(ctx) {
       name: nameOf(x),
       common: state.curated ? pick(state.curated.name) : state.data.photo?.taxon?.preferred_common_name || '',
       kingdom: x.kingdom || '',
-      photo: state.data.photo?.photos?.[0]?.medium || '',
+      photo: photoList(state.data)[0]?.medium || '',
     });
     if (saved === null) return toast(ui.storageFail);
     b.textContent = saved ? `✓ ${ui.unsave}` : `＋ ${ui.save}`;

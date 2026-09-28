@@ -17,6 +17,7 @@ import {
 import { visualCard, taxonCard, refresh, iconicIcon } from '../components/cards.js';
 import { suggestField } from '../components/suggest.js';
 import { icon, brandImage } from '../components/icons.js';
+import { searchKnowledge, lessonsMentioning } from '../services/localsearch.js';
 
 const s = S({
   title: ['Jelajahi kehidupan', 'Explore life'],
@@ -74,7 +75,42 @@ const s = S({
     'For deeper results, narrow your search or choose another group.',
   ],
   live: ['Data langsung', 'Live data'],
+  knowledge: ['Materi & konsep', 'Lessons & concepts'],
+  knowledgeHint: [
+    'Dari materi, kamus, dan Peta Biologi BioTaxa. Tetap tersedia tanpa internet.',
+    'From BioTaxa’s lessons, glossary and Map of Biology. Available offline too.',
+  ],
+  mentioned: ['Juga dibahas di materi', 'Also discussed in'],
+  typeTopic: ['Materi', 'Lesson'],
+  typeTerm: ['Istilah', 'Term'],
+  typeBranch: ['Cabang biologi', 'Branch of biology'],
+  typeLevel: ['Tingkat organisasi', 'Level of organisation'],
 });
+
+const TYPE_LABEL = { topic: 'typeTopic', term: 'typeTerm', branch: 'typeBranch', level: 'typeLevel' };
+
+/** Lessons, glossary terms and concepts matching the search words. Never blocks species results. */
+async function knowledgeResults(ctx, q) {
+  const box = $('#knowledge');
+  if (!box || !q) return;
+  try {
+    const found = await searchKnowledge(q, { limit: 8 });
+    if (!ctx.isCurrent()) return;
+    const card = x =>
+      `<a class="knowledge-card" href="${esc(x.href)}"><span class="knowledge-icon" aria-hidden="true">${x.icon}</span><span><small>${esc(s[TYPE_LABEL[x.type]] || '')}</small><strong>${esc(x.title)}</strong><span class="muted">${esc(x.sub)}</span></span></a>`;
+    const draw = mentions =>
+      found.length || mentions.length
+        ? `<section class="knowledge-results" aria-labelledby="knowledge-title"><h2 id="knowledge-title">${s.knowledge}</h2><p class="muted small">${s.knowledgeHint}</p>${found.length ? `<div class="knowledge-grid">${found.map(card).join('')}</div>` : ''}${mentions.length ? `<p class="mention-line"><strong>${s.mentioned}:</strong> ${mentions.map(m => `<a class="chip" href="${esc(m.href)}"><span aria-hidden="true">${m.icon}</span> ${esc(m.title)}</a>`).join(' ')}</p>` : ''}</section>`
+        : '';
+    box.innerHTML = draw([]);
+    const mentions = await lessonsMentioning(q, {
+      exclude: found.filter(x => x.type === 'topic').map(x => x.id),
+    }).catch(() => []);
+    if (ctx.isCurrent()) box.innerHTML = draw(mentions);
+  } catch {
+    /* Species search still works without the knowledge index. */
+  }
+}
 
 export const title = () => s.title;
 
@@ -119,6 +155,7 @@ export async function render(ctx) {
       <span class="live-label"><i class="live-dot"></i> ${s.live} · ${source === 'visual' ? 'iNaturalist' : 'GBIF'}</span>
     </div>
     ${taxon ? `<div class="filter-chip-row"><span class="filter-chip">${s.browsing}: <strong>${esc(tname || taxon)}</strong> <a href="${link({ taxon: '', tname: '', page: '' })}" aria-label="${s.clear}">×</a></span></div>` : ''}
+    <div id="knowledge"></div>
     <div id="matched-groups"></div>
     <div id="results" aria-live="polite">${loading()}</div>
     <p class="catalog-footnote">${source === 'index' ? s.indexHint : q ? s.searchHint : scope === 'id' ? s.galleryHintId : s.galleryHintWorld}</p></div></div>`;
@@ -138,6 +175,7 @@ export async function render(ctx) {
   });
 
   const results = $('#results');
+  if (q) knowledgeResults(ctx, q);
   try {
     if (source === 'index') await indexResults(ctx, { q, page, kingdom, results, link });
     else if (q) await searchResults(ctx, { q, taxonId: taxon || g?.taxon || '', results, link });

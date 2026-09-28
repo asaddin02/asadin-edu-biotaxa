@@ -164,6 +164,99 @@ main[data-page='search'] > .search-form {
 .learn-workspace .topic-grid {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
+.lesson-catalog > .section-head h2 {
+  font-size: 1.8rem;
+}
+.mode-banner .actions {
+  margin: 0;
+  gap: 0.8rem;
+}
+.catalog-tools {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr) auto;
+  gap: 0.8rem;
+  align-items: end;
+  padding: 1.1rem;
+  margin: 1.2rem 0 1.7rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: #fff;
+}
+.catalog-tools > * {
+  min-width: 0;
+}
+.catalog-tools label {
+  display: block;
+  margin-bottom: 0.4rem;
+  font-size: 0.85rem;
+  font-weight: 650;
+}
+.catalog-tools select,
+.catalog-tools input {
+  width: 100%;
+  min-width: 0;
+  min-height: 44px;
+  font-size: 0.9rem;
+}
+.catalog-search > div {
+  position: relative;
+}
+.catalog-search .icon {
+  position: absolute;
+  top: 50%;
+  left: 0.8rem;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: var(--muted);
+}
+.catalog-search input {
+  padding-left: 2.5rem;
+}
+.catalog-count {
+  grid-column: 1 / -1;
+  margin: 0;
+  padding-top: 0.7rem;
+  border-top: 1px solid var(--line);
+}
+.catalog-empty {
+  padding: 2rem 1rem;
+  text-align: center;
+  border: 1px dashed var(--line);
+  border-radius: var(--radius);
+  background: var(--soft);
+}
+.catalog-empty h3 {
+  margin-bottom: 0.4rem;
+}
+.lesson-catalog .field-group + .field-group {
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--line);
+}
+.lesson-catalog .field-icon {
+  display: grid;
+  place-items: center;
+  flex: 0 0 2.8rem;
+  height: 2.8rem;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--cream);
+  font-size: 1.4rem;
+}
+.lesson-catalog .topic-card {
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 0.9rem;
+  padding: 1.1rem;
+}
+.lesson-catalog .topic-icon {
+  flex: 0 0 2.4rem;
+  width: 2.4rem;
+  height: 2.4rem;
+  font-size: 1.4rem;
+}
+.lesson-catalog .topic-text {
+  min-width: 0;
+}
 .learn-workspace .action-grid {
   grid-template-columns: 1fr;
 }
@@ -199,7 +292,8 @@ main[data-page='search'] > .search-form {
   position: sticky;
   top: 6rem;
 }
-.topic-body .prose {
+.topic-body .prose,
+.topic-body .prose-list {
   max-width: 65ch;
 }
 .topic-card {
@@ -283,6 +377,12 @@ main[data-page='search'] > .search-form {
 }
 .lab-experiment > * {
   min-width: 0;
+}
+.lab-experiment-sequence {
+  grid-template-columns: minmax(0, 1fr);
+}
+.lab-experiment-sequence #lab-panel {
+  max-width: 65ch;
 }
 #lab-output {
   padding: 1rem;
@@ -631,6 +731,107 @@ main[data-page='tugas'] {
   font-weight: 750;
 }
 
+/* Biology map: a persistent guide beside the atlas, with a single reading order. */
+.biomap-workspace {
+  display: grid;
+  grid-template-columns: 220px minmax(0, 1fr);
+  gap: 2rem;
+  align-items: start;
+}
+.biomap-workspace > * {
+  min-width: 0;
+}
+.biomap-navigation {
+  position: sticky;
+  top: 6rem;
+  max-height: calc(100dvh - 7rem);
+  overflow-y: auto;
+  padding: 1rem;
+  background: var(--soft);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+.biomap-navigation .section-nav {
+  display: grid;
+  margin: 0 0 1rem;
+}
+.biomap-navigation .section-nav > .eyebrow {
+  margin: 0 0 0.5rem;
+}
+.biomap-navigation .btn {
+  width: 100%;
+}
+.biomap-content > .section:first-child {
+  padding-top: 0;
+}
+.biomap-content .section-head h2 {
+  font-size: clamp(1.6rem, 2.8vw, 2.2rem);
+}
+.biomap-content .field-map,
+.biomap-content .branch-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.biomap-content .card {
+  min-width: 0;
+  padding: 1.3rem;
+}
+.biomap-content .field-card {
+  border-top: 4px solid var(--green);
+}
+.biomap-content .field-topics li {
+  display: grid;
+  gap: 0.35rem;
+  padding: 0.65rem 0;
+  border-bottom: 1px solid var(--line);
+}
+.biomap-content .field-topics li:last-child {
+  border: 0;
+}
+.biomap-content .org-step {
+  padding: 1.3rem;
+  border-radius: var(--radius);
+}
+.org-index {
+  min-width: 2rem;
+}
+.org-more {
+  margin-top: 0.6rem;
+}
+.org-more summary {
+  width: fit-content;
+  min-height: 44px;
+  padding: 0.6rem 0;
+  font-size: 0.85rem;
+  font-weight: 650;
+  color: var(--green);
+  cursor: pointer;
+}
+.biomap-content .coverage-table {
+  width: 100%;
+  table-layout: fixed;
+  font-size: 0.9rem;
+}
+.biomap-content .coverage-table th,
+.biomap-content .coverage-table td {
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+.biomap-content .stat-list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+.biomap-content .stat-list div {
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: end;
+  padding: 1rem;
+}
+.biomap-content .stat-list dd {
+  font-family: var(--serif);
+  font-size: 2.2rem;
+  font-weight: 500;
+}
+
 /* Tablet: controls become compact rows; reading panels retain useful width. */
 @media (max-width: 1100px) {
   .explore-workspace,
@@ -651,6 +852,20 @@ main[data-page='tugas'] {
   }
   .learn-workspace .topic-grid {
     grid-template-columns: 1fr;
+  }
+  .catalog-tools {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+  .catalog-search {
+    grid-column: 1 / -1;
+  }
+  .biomap-workspace {
+    grid-template-columns: 190px minmax(0, 1fr);
+    gap: 1rem;
+  }
+  .biomap-content .field-map,
+  .biomap-content .branch-grid {
+    grid-template-columns: minmax(0, 1fr);
   }
   .lab-experiment,
   .lab-guide {
@@ -696,6 +911,7 @@ main[data-page='tugas'] {
   .nearby-workspace,
   .learn-workspace,
   .quiz-workspace,
+  .biomap-workspace,
   .topic-layout {
     grid-template-columns: 1fr;
   }
@@ -707,6 +923,7 @@ main[data-page='tugas'] {
   .saved-workspace > .tabs-nav,
   .nearby-tools,
   .topic-side,
+  .biomap-navigation,
   .quiz-workspace > .feature-card {
     position: static;
   }
@@ -730,13 +947,30 @@ main[data-page='tugas'] {
     flex-shrink: 0;
   }
   .lab-tabs {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    gap: 0.5rem;
+    padding: 0.3rem 0.2rem 0.8rem;
+    scroll-padding-inline: 0.2rem;
   }
   .lab-tabs button {
-    flex-direction: column;
-    align-items: flex-start;
+    flex: 0 0 auto;
+    max-width: 80%;
+    min-height: 48px;
     font-size: 0.85rem;
+  }
+  .biomap-navigation {
+    max-height: none;
+  }
+  .biomap-navigation .section-nav {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .biomap-navigation .section-nav > .eyebrow {
+    grid-column: 1 / -1;
+  }
+  .biomap-navigation .btn {
+    width: auto;
   }
   .saved-workspace > .tabs-nav {
     display: grid;
@@ -852,6 +1086,23 @@ main[data-page='tugas'] {
   }
 }
 @media (max-width: 540px) {
+  .biomap-content .org-step {
+    padding: 1rem;
+  }
+  .biomap-navigation .section-nav,
+  .biomap-content .stat-list {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .biomap-content .stat-list div {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+  .biomap-content .coverage-table th,
+  .biomap-content .coverage-table td {
+    padding: 0.6rem 0.4rem;
+  }
   .page-head h1,
   .explore-heading h1 {
     font-size: clamp(1.8rem, 8vw, 2.4rem);

@@ -1,12 +1,5 @@
 export default {
   id: 'adaptasi',
-  icon: '🦎',
-  levels: ['sd', 'smp', 'sma'],
-  title: ['Adaptasi', 'Adaptation'],
-  summary: [
-    'Paruh, kulit, perilaku: cara makhluk hidup cocok dengan tempat tinggalnya.',
-    'Beaks, skins and behaviours: how living things fit their homes.',
-  ],
   body: {
     sd: [
       `Setiap makhluk hidup punya cara untuk bertahan di tempat tinggalnya. Cara ini disebut [[adaptasi]].
@@ -51,7 +44,7 @@ An example of [[mimikri|mimicry]]: atlas moth wing tips look like snake heads to
 Adaptations do not appear because organisms “want” to change. They build up over many generations through [[seleksi alam|natural selection]].`,
     ],
     sma: [
-      `Adaptasi adalah hasil [[seleksi alam]]: variasi yang diwariskan membuat sebagian individu lebih berhasil bereproduksi di lingkungan tertentu. Karena itu, adaptasi selalu relatif terhadap lingkungan—kamuflase gelap menguntungkan di batang pohon berjelaga tetapi merugikan di batang berlumut pucat.
+      `Adaptasi adalah hasil [[seleksi alam]]: variasi yang diwariskan membuat sebagian individu lebih berhasil bereproduksi di lingkungan tertentu. Karena itu, adaptasi selalu relatif terhadap lingkungan—kamuflase gelap menguntungkan di batang pohon berjelaga tetapi merugikan di batang pohon yang berlumut kerak pucat.
 
 Perlu dibedakan adaptasi (hasil seleksi) dari aklimatisasi (penyesuaian individu dalam hidupnya, misalnya peningkatan sel darah merah di dataran tinggi) dan dari eksaptasi (ciri yang awalnya berfungsi lain, seperti bulu dinosaurus yang kemudian berguna untuk terbang).
 
@@ -65,6 +58,64 @@ Distinguish adaptation (the result of selection) from acclimatisation (an indivi
 Convergent evolution produces similar adaptations in unrelated groups: bat and bird wings (analogous organs), or the streamlined bodies of dolphins and sharks. By contrast, [[homologi|homologous]] structures like the human arm and bat wing come from the same ancestral structure.
 
 Not every trait is an adaptation. Some arise through genetic drift or developmental constraints.`,
+    ],
+    kuliah: [
+      `**Menguji adaptasi**: tidak setiap ciri adalah adaptasi. Gould dan Lewontin (1979) mengkritik kebiasaan menyusun cerita adaptif tanpa menguji alternatif, seperti hanyutan genetik, batasan perkembangan, atau ciri yang muncul sebagai efek samping (*spandrel*). Hipotesis adaptasi diuji melalui eksperimen (mengubah ciri dan mengukur kebugaran), pengukuran seleksi di alam, dan **metode komparatif** yang memperhitungkan kekerabatan antarspesies (misalnya *phylogenetic independent contrasts*), karena spesies yang berkerabat tidak dapat dianggap sebagai data yang saling bebas.
+
+**Plastisitas fenotipe** adalah kemampuan satu genotipe menghasilkan fenotipe berbeda di lingkungan berbeda; hubungannya digambarkan dengan norma reaksi. Plastisitas sendiri dapat berevolusi, dan kadang ciri yang awalnya plastis menjadi tetap secara genetik (asimilasi genetik).
+
+**Konvergensi** dapat terjadi hingga tingkat molekuler; misalnya perubahan asam amino yang serupa pada protein prestin di telinga kelelawar pemakan serangga dan lumba-lumba, yang sama-sama berekolokasi.
+
+**Adaptasi di pulau**: aturan pulau menggambarkan kecenderungan hewan besar mengecil (misalnya *Stegodon* kerdil di Flores) dan hewan kecil membesar (tikus raksasa Flores). Namun setiap kasus perlu diuji: bukti fosil menunjukkan komodo berasal dari garis keturunan biawak besar yang juga pernah hidup di Australia, sehingga ukurannya bukan sekadar hasil gigantisme pulau.
+
+**Evolusi cepat**: adaptasi dapat teramati dalam hitungan tahun. Pada burung finch Darwin di Galápagos, ukuran paruh bergeser setelah kekeringan mengubah jenis biji yang tersedia; resistansi pestisida dan antibiotik adalah contoh sehari-hari. Pemahaman ini penting untuk memperkirakan apakah populasi dapat beradaptasi terhadap perubahan iklim yang cepat, atau harus berpindah, atau punah.`,
+      `**Testing adaptation**: not every trait is an adaptation. Gould and Lewontin (1979) criticised the habit of telling adaptive stories without testing alternatives such as genetic drift, developmental constraints or traits arising as by-products (*spandrels*). Adaptive hypotheses are tested by experiments (changing a trait and measuring fitness), measuring selection in the wild, and the **comparative method**, which accounts for relatedness among species (for example phylogenetic independent contrasts), because related species are not independent data points.
+
+**Phenotypic plasticity** is the ability of one genotype to produce different phenotypes in different environments, described by reaction norms. Plasticity itself can evolve, and sometimes a trait that was plastic becomes genetically fixed (genetic assimilation).
+
+**Convergence** can reach the molecular level; for example, similar amino-acid changes in the prestin protein of the inner ear in insect-eating bats and dolphins, which both echolocate.
+
+**Island adaptation**: the island rule describes a tendency for large animals to shrink (such as dwarf *Stegodon* on Flores) and small animals to grow larger (the Flores giant rat). But each case needs testing: fossil evidence shows the Komodo dragon belongs to a lineage of large monitors that also lived in Australia, so its size is not simply island gigantism.
+
+**Rapid evolution**: adaptation can be seen within years. In Darwin’s finches on the Galápagos, beak size shifted after droughts changed the available seeds; pesticide and antibiotic resistance are everyday examples. This understanding matters for predicting whether populations can adapt to rapid climate change, or must move, or go extinct.`,
+    ],
+  },
+  key: {
+    sd: [
+      `- Adaptasi adalah cara makhluk hidup bertahan di tempat tinggalnya.
+- Contoh: kamuflase, cicak memutus ekor, kaktus berdaun duri.
+- Setiap tempat punya tantangan yang berbeda.`,
+      `- Adaptation is how living things survive where they live.
+- Examples: camouflage, a gecko dropping its tail, a cactus with spines for leaves.
+- Every place has different challenges.`,
+    ],
+    smp: [
+      `- Tiga jenis adaptasi: morfologi, fisiologi, dan tingkah laku.
+- Mimikri dan kamuflase melindungi dari pemangsa.
+- Adaptasi terbentuk melalui seleksi alam, bukan karena keinginan.`,
+      `- Three types: morphological, physiological and behavioural.
+- Mimicry and camouflage protect against predators.
+- Adaptations form through natural selection, not by wanting to change.`,
+    ],
+    sma: [
+      `- Adaptasi selalu relatif terhadap lingkungan tertentu.
+- Bedakan adaptasi, aklimatisasi, dan eksaptasi.
+- Organ analog muncul lewat konvergensi; organ homolog berasal dari leluhur yang sama.
+- Tidak semua ciri adalah adaptasi.`,
+      `- Adaptations are always relative to a particular environment.
+- Distinguish adaptation, acclimatisation and exaptation.
+- Analogous organs arise by convergence; homologous organs share an ancestor.
+- Not every trait is an adaptation.`,
+    ],
+    kuliah: [
+      `- Uji hipotesis adaptasi dengan eksperimen dan metode komparatif filogenetik.
+- Plastisitas fenotipe dan norma reaksi dapat berevolusi.
+- Konvergensi dapat terjadi hingga tingkat molekuler.
+- Aturan pulau perlu diuji per kasus (komodo, Stegodon).`,
+      `- Test adaptive hypotheses with experiments and phylogenetic comparative methods.
+- Phenotypic plasticity and reaction norms can evolve.
+- Convergence can reach the molecular level.
+- The island rule needs testing case by case (Komodo, Stegodon).`,
     ],
   },
   activity: {
@@ -80,16 +131,13 @@ Not every trait is an adaptation. Some arise through genetic drift or developmen
       'Jalankan simulasi Seleksi alam di Laboratorium BioTaxa pada lingkungan bersih dan tercemar. Jelaskan mengapa warna yang “unggul” berubah.',
       'Run the BioTaxa Natural selection simulation in clean and polluted environments. Explain why the “winning” colour changes.',
     ],
+    kuliah: [
+      'Pilih satu klaim adaptasi yang populer (misalnya fungsi warna mencolok pada katak). Rancang pengujian yang mempertimbangkan penjelasan alternatif dan kekerabatan spesies, termasuk data yang diperlukan dan hasil yang akan membantah hipotesis.',
+      'Pick a popular adaptive claim (such as the function of bright colours in frogs). Design a test that considers alternative explanations and species relatedness, including the data needed and results that would refute the hypothesis.',
+    ],
   },
-  species: [
-    'Hemidactylus platyurus',
-    'Attacus atlas',
-    'Nepenthes gracilis',
-    'Rhizophora mucronata',
-    'Tursiops truncatus',
-    'Draco volans',
-    'Nasalis larvatus',
-  ],
+  species: ['Hemidactylus platyurus', 'Attacus atlas', 'Nepenthes gracilis', 'Rhizophora mucronata', 'Tursiops truncatus', 'Draco volans', 'Nasalis larvatus', 'Periophthalmus argentilineatus'],
+  related: ['evolusi', 'perilaku', 'ekosistem', 'keanekaragaman'],
   lab: 'selection',
   quiz: [
     {
@@ -182,6 +230,103 @@ Not every trait is an adaptation. Some arise through genetic drift or developmen
         'Flight evolved separately, even though the arm bones are homologous.',
       ],
     },
+    {
+      lv: [
+        'kuliah',
+      ],
+      q: [
+        'Metode komparatif filogenetik diperlukan saat menguji adaptasi antarspesies karena…',
+        'Phylogenetic comparative methods are needed when testing adaptation across species because…',
+      ],
+      a: [
+        [
+          'Spesies yang berkerabat bukan data yang saling bebas',
+          'Related species are not independent data points',
+        ],
+        [
+          'Semua spesies berevolusi dengan laju sama',
+          'All species evolve at the same rate',
+        ],
+        [
+          'Adaptasi tidak diwariskan',
+          'Adaptations are not inherited',
+        ],
+        [
+          'Data fosil tidak ada',
+          'There are no fossil data',
+        ],
+      ],
+      c: 0,
+      why: [
+        'Kemiripan bisa diwarisi dari leluhur bersama, bukan hasil seleksi yang terpisah.',
+        'Similarity may be inherited from a shared ancestor rather than separate selection.',
+      ],
+    },
+    {
+      lv: [
+        'kuliah',
+      ],
+      q: [
+        'Plastisitas fenotipe adalah…',
+        'Phenotypic plasticity is…',
+      ],
+      a: [
+        [
+          'Mutasi pada satu gen',
+          'A mutation in one gene',
+        ],
+        [
+          'Kemampuan satu genotipe menghasilkan fenotipe berbeda di lingkungan berbeda',
+          'One genotype producing different phenotypes in different environments',
+        ],
+        [
+          'Hilangnya variasi genetik',
+          'Loss of genetic variation',
+        ],
+        [
+          'Perkawinan antarspesies',
+          'Mating between species',
+        ],
+      ],
+      c: 1,
+      why: [
+        'Hubungan ini digambarkan dengan norma reaksi.',
+        'The relationship is described by a reaction norm.',
+      ],
+    },
+    {
+      lv: [
+        'kuliah',
+        'sma',
+      ],
+      q: [
+        'Ciri yang awalnya berfungsi lain lalu dimanfaatkan untuk fungsi baru disebut…',
+        'A trait that evolved for one role and was later co-opted for another is an…',
+      ],
+      a: [
+        [
+          'Eksaptasi',
+          'Exaptation',
+        ],
+        [
+          'Aklimatisasi',
+          'Acclimatisation',
+        ],
+        [
+          'Homologi',
+          'Homology',
+        ],
+        [
+          'Mimikri',
+          'Mimicry',
+        ],
+      ],
+      c: 0,
+      why: [
+        'Contohnya bulu yang kemudian dipakai untuk terbang.',
+        'An example is feathers later used for flight.',
+      ],
+    },
   ],
   teacher: {
     goals: {
@@ -196,6 +341,10 @@ Not every trait is an adaptation. Some arise through genetic drift or developmen
       sma: [
         'Peserta didik dapat menjelaskan adaptasi sebagai hasil seleksi alam dan membedakannya dari aklimatisasi.',
         'Learners can explain adaptation as a product of selection and distinguish it from acclimatisation.',
+      ],
+      kuliah: [
+        'Mahasiswa dapat merancang pengujian hipotesis adaptasi dan membedakan adaptasi dari plastisitas, hanyutan, serta batasan perkembangan.',
+        'Students can design tests of adaptive hypotheses and distinguish adaptation from plasticity, drift and developmental constraints.',
       ],
     },
     time: ['2 × 40 menit', '2 × 40 minutes'],
@@ -219,12 +368,49 @@ Not every trait is an adaptation. Some arise through genetic drift or developmen
       ],
       ['Kuis BioTaxa.', 'BioTaxa quiz.'],
     ],
+    misconceptions: [
+      {
+        wrong: [
+          'Hewan beradaptasi karena mereka ingin atau perlu berubah.',
+          'Animals adapt because they want or need to change.',
+        ],
+        right: [
+          'Adaptasi terbentuk karena individu dengan variasi yang menguntungkan lebih banyak berketurunan, bukan karena keinginan.',
+          'Adaptations form because individuals with helpful variation leave more offspring, not because of wanting.',
+        ],
+      },
+      {
+        wrong: [
+          'Individu dapat mewariskan perubahan yang didapat selama hidupnya.',
+          'Individuals pass on changes gained during their lives.',
+        ],
+        right: [
+          'Otot yang terlatih atau ekor yang terputus tidak diwariskan; yang diwariskan adalah variasi genetik.',
+          'Trained muscles or a lost tail are not inherited; genetic variation is.',
+        ],
+      },
+      {
+        wrong: [
+          'Adaptasi selalu sempurna.',
+          'Adaptations are always perfect.',
+        ],
+        right: [
+          'Adaptasi adalah kompromi yang dibatasi sejarah evolusi dan kebutuhan yang saling bertentangan.',
+          'Adaptations are compromises limited by evolutionary history and competing needs.',
+        ],
+      },
+    ],
   },
   read: [
     {
       label: 'OpenStax Biology 2e · 18.1 Understanding Evolution',
       url: 'https://openstax.org/books/biology-2e/pages/18-1-understanding-evolution',
       lv: 'sma',
+    },
+    {
+      label: 'OpenStax Biology 2e · Ch. 19 The Evolution of Populations',
+      url: 'https://openstax.org/books/biology-2e/pages/19-introduction',
+      lv: 'kuliah',
     },
   ],
 };

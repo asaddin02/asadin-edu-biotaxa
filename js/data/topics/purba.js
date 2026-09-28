@@ -1,12 +1,5 @@
 export default {
   id: 'purba',
-  icon: '🦖',
-  levels: ['sd', 'smp', 'sma'],
-  title: ['Fosil & kehidupan purba', 'Fossils & prehistoric life'],
-  summary: [
-    'Dinosaurus, trilobit, dan manusia purba Jawa: membaca kisah bumi dari batuan.',
-    'Dinosaurs, trilobites and ancient humans of Java: reading Earth’s story in rock.',
-  ],
   body: {
     sd: [
       `Jauh sebelum ada manusia, bumi dihuni makhluk yang kini sudah [[kepunahan|punah]], seperti dinosaurus. Bagaimana kita tahu? Dari [[fosil]]!
@@ -38,7 +31,7 @@ Visit the **Prehistoric life** page in BioTaxa to explore Earth’s timeline.`,
       `[[fosil|Fosil]] terbentuk ketika sisa makhluk hidup cepat tertimbun sedimen (lumpur, pasir, abu vulkanik), lalu mineral menggantikan bagian kerasnya selama jutaan tahun. Bagian lunak jarang menjadi fosil, sehingga catatan fosil tidak lengkap.
 
 Ilmuwan membagi sejarah bumi dalam skala waktu geologi. Beberapa tonggak penting:
-- **± 3,5 miliar tahun lalu:** jejak kehidupan mikroba tertua (stromatolit dari [[sianobakteri]]).
+- **± 3,5 miliar tahun lalu:** jejak kehidupan mikroba tertua, termasuk stromatolit yang dibentuk komunitas mikroba. Sekitar 2,4 miliar tahun lalu, [[sianobakteri]] mulai mengisi udara dengan oksigen.
 - **Kambrium (± 539 juta tahun lalu):** hewan bercangkang dan trilobit berkembang pesat.
 - **Devon:** ikan beragam; hewan bertulang belakang mulai naik ke darat.
 - **Trias–Kapur:** zaman dinosaurus; muncul mamalia dan burung pertama.
@@ -51,7 +44,7 @@ Umur fosil diketahui dari lapisan batuan (lapisan bawah umumnya lebih tua) dan d
       `[[fosil|Fossils]] form when remains are quickly buried by sediment (mud, sand, volcanic ash) and minerals replace hard parts over millions of years. Soft parts rarely fossilise, so the record is incomplete.
 
 Scientists divide Earth’s history into the geologic time scale. Key milestones:
-- **~3.5 billion years ago:** the oldest traces of microbial life (stromatolites built by [[sianobakteri|cyanobacteria]]).
+- **~3.5 billion years ago:** the oldest traces of microbial life, including stromatolites built by microbial communities. From about 2.4 billion years ago, [[sianobakteri|cyanobacteria]] began filling the air with oxygen.
 - **Cambrian (~539 million years ago):** shelled animals and trilobites diversify.
 - **Devonian:** fish flourish; vertebrates begin moving onto land.
 - **Triassic–Cretaceous:** the age of dinosaurs; the first mammals and birds appear.
@@ -78,6 +71,66 @@ Dating uses stratigraphy, biostratigraphy (index fossils such as ammonites and f
 
 The Paleobiology Database (PBDB) data shown in BioTaxa are age ranges of fossil records. They can change with new finds and revised dates.`,
     ],
+    kuliah: [
+      `**Tafonomi** mempelajari bagaimana sisa makhluk hidup menjadi fosil. Catatan fosil sangat bias: organisme bercangkang atau bertulang di lingkungan yang cepat tertimbun sedimen jauh lebih mungkin terawetkan. Situs dengan pengawetan luar biasa (*Lagerstätten*) seperti Burgess Shale dan Chengjiang menyimpan jaringan lunak dan membuka jendela ke keragaman Kambrium. Karena kemunculan pertama dan terakhir suatu takson dalam catatan fosil jarang tepat sama dengan waktu asal dan punahnya, kepunahan yang tiba-tiba dapat tampak bertahap (efek Signor–Lipps).
+
+**Penanggalan** memakai prinsip stratigrafi, biostratigrafi, dan penanggalan radiometrik (misalnya U–Pb pada kristal zirkon dan ⁴⁰Ar/³⁹Ar pada batuan vulkanik). Jam molekuler yang dikalibrasi fosil kadang memberi umur percabangan jauh lebih tua daripada fosil tertua, sebagian karena fosil awal sulit ditemukan dan dikenali.
+
+**Kepunahan massal**: kepunahan akhir Perm (sekitar 252 juta tahun lalu), yang terbesar, dikaitkan dengan letusan besar Siberian Traps, pemanasan, dan pengasaman laut. Kepunahan akhir Kapur (66 juta tahun lalu) dikaitkan terutama dengan tumbukan asteroid Chicxulub, sedangkan peran vulkanisme Deccan Traps masih diperdebatkan. Laju kepunahan masa kini diperkirakan puluhan hingga ratusan kali laju latar belakang, sehingga sebagian ilmuwan menyebutnya awal kepunahan massal keenam.
+
+**Paleoantropologi Indonesia**: fosil *Homo erectus* ditemukan di Trinil (Eugène Dubois, 1891), Sangiran, dan Ngandong; penanggalan terbaru menempatkan populasi Ngandong sekitar 117–108 ribu tahun lalu, di antara yang termuda untuk spesies ini. *Homo floresiensis* dari Liang Bua diperkirakan hidup sekitar 100–60 ribu tahun lalu, sedangkan fosil hominin yang lebih tua di Mata Menge, Flores, berumur sekitar 700 ribu tahun. Lukisan gua di Sulawesi, termasuk yang ditanggali setidaknya 51 ribu tahun, termasuk seni figuratif tertua yang diketahui. Wallacea menjadi jalur penting penyebaran manusia menuju Australia dan Papua (Sahul).
+
+**Data PBDB** yang ditampilkan BioTaxa berupa kumpulan catatan kemunculan fosil. Analisis keragaman masa lalu perlu mengoreksi bias pengambilan sampel, misalnya perbedaan luas singkapan batuan dan upaya penelitian antarwilayah.`,
+      `**Taphonomy** studies how remains become fossils. The fossil record is strongly biased: shelled or boned organisms in environments where sediment buries them quickly are far more likely to be preserved. Sites of exceptional preservation (*Lagerstätten*) such as the Burgess Shale and Chengjiang keep soft tissues and open a window onto Cambrian diversity. Because a taxon’s first and last appearances in the record rarely match its true origin and extinction, a sudden extinction can look gradual (the Signor–Lipps effect).
+
+**Dating** uses stratigraphic principles, biostratigraphy and radiometric dating (such as U–Pb on zircon crystals and ⁴⁰Ar/³⁹Ar on volcanic rocks). Fossil-calibrated molecular clocks sometimes give divergence times much older than the oldest fossils, partly because early fossils are hard to find and recognise.
+
+**Mass extinctions**: the end-Permian extinction (about 252 million years ago), the largest, is linked to huge Siberian Traps eruptions, warming and ocean acidification. The end-Cretaceous extinction (66 million years ago) is linked mainly to the Chicxulub asteroid impact, while the role of Deccan Traps volcanism is still debated. Today’s extinction rates are estimated at tens to hundreds of times the background rate, so some scientists speak of the start of a sixth mass extinction.
+
+**Indonesian palaeoanthropology**: *Homo erectus* fossils come from Trinil (Eugène Dubois, 1891), Sangiran and Ngandong; recent dating puts the Ngandong population at about 117–108 thousand years ago, among the youngest for the species. *Homo floresiensis* from Liang Bua is thought to have lived about 100–60 thousand years ago, while older hominin fossils at Mata Menge, Flores, are about 700 thousand years old. Cave paintings in Sulawesi, including one dated to at least 51 thousand years ago, are among the oldest known figurative art. Wallacea was a key route for human dispersal to Australia and New Guinea (Sahul).
+
+**PBDB data** shown in BioTaxa are collections of fossil occurrence records. Analyses of past diversity must correct for sampling bias, such as differences in rock outcrop area and research effort between regions.`,
+    ],
+  },
+  key: {
+    sd: [
+      `- Fosil adalah sisa atau jejak makhluk hidup purba di batuan.
+- Dinosaurus sudah punah, tetapi burung adalah kerabatnya.
+- Indonesia memiliki fosil manusia purba Jawa dan Flores.`,
+      `- Fossils are remains or traces of ancient life in rock.
+- Dinosaurs are extinct, but birds are their relatives.
+- Indonesia has fossils of ancient humans from Java and Flores.`,
+    ],
+    smp: [
+      `- Fosil terbentuk bila sisa makhluk hidup cepat tertimbun sedimen.
+- Catatan fosil tidak lengkap karena bagian lunak jarang terawetkan.
+- Skala waktu geologi: Kambrium, Devon, Trias–Kapur, hingga Kuarter.
+- Umur fosil ditentukan dari lapisan batuan dan penanggalan radioaktif.`,
+      `- Fossils form when remains are quickly buried by sediment.
+- The fossil record is incomplete because soft parts rarely survive.
+- The geological time scale: Cambrian, Devonian, Triassic–Cretaceous, up to the Quaternary.
+- Fossil ages come from rock layers and radiometric dating.`,
+    ],
+    sma: [
+      `- Lima kepunahan massal besar; akhir Perm yang terbesar.
+- Fosil transisi: Tiktaalik, Archaeopteryx, paus berkaki.
+- Penanggalan: stratigrafi, biostratigrafi, dan radiometrik.
+- Sangiran adalah Situs Warisan Dunia UNESCO.`,
+      `- Five big mass extinctions; the end-Permian was the largest.
+- Transitional fossils: Tiktaalik, Archaeopteryx, legged whales.
+- Dating: stratigraphy, biostratigraphy and radiometric methods.
+- Sangiran is a UNESCO World Heritage Site.`,
+    ],
+    kuliah: [
+      `- Tafonomi dan efek Signor–Lipps membentuk bias catatan fosil.
+- Kepunahan akhir Perm dikaitkan dengan Siberian Traps; akhir Kapur dengan tumbukan Chicxulub.
+- Ngandong (sekitar 117–108 ribu tahun) dan Liang Bua adalah situs kunci hominin Indonesia.
+- Data PBDB perlu dikoreksi bias pengambilan sampel.`,
+      `- Taphonomy and the Signor–Lipps effect bias the fossil record.
+- The end-Permian extinction is linked to the Siberian Traps; the end-Cretaceous to the Chicxulub impact.
+- Ngandong (about 117–108 thousand years) and Liang Bua are key Indonesian hominin sites.
+- PBDB data need correction for sampling bias.`,
+    ],
   },
   activity: {
     sd: [
@@ -92,6 +145,10 @@ The Paleobiology Database (PBDB) data shown in BioTaxa are age ranges of fossil 
       'Bandingkan rentang umur fosil di BioTaxa (data PBDB) untuk Tyrannosaurus, Triceratops, dan Velociraptor. Apakah ketiganya pernah hidup sezaman? Jelaskan ketidakpastian datanya.',
       'Compare PBDB age ranges in BioTaxa for Tyrannosaurus, Triceratops and Velociraptor. Could they have lived at the same time? Discuss data uncertainty.',
     ],
+    kuliah: [
+      'Unduh catatan fosil satu kelompok (misalnya Proboscidea) dari PBDB melalui halaman Kehidupan purba. Plot jumlah catatan per interval waktu, lalu diskusikan apakah pola itu mencerminkan keragaman sebenarnya atau bias pengambilan sampel.',
+      'Download fossil records for one group (such as Proboscidea) from PBDB via the Prehistoric life page. Plot records per time interval, then discuss whether the pattern reflects true diversity or sampling bias.',
+    ],
   },
   species: [
     'Latimeria menadoensis',
@@ -100,6 +157,7 @@ The Paleobiology Database (PBDB) data shown in BioTaxa are age ranges of fossil 
     'Dicerorhinus sumatrensis',
     'Homo sapiens',
   ],
+  related: ['evolusi', 'klasifikasi', 'vertebrata', 'dunia-tumbuhan'],
   lab: 'scale',
   quiz: [
     {
@@ -189,6 +247,103 @@ The Paleobiology Database (PBDB) data shown in BioTaxa are age ranges of fossil 
         'It had feathers and wings but also teeth and a bony tail.',
       ],
     },
+    {
+      lv: [
+        'kuliah',
+      ],
+      q: [
+        'Efek Signor–Lipps menjelaskan bahwa…',
+        'The Signor–Lipps effect explains that…',
+      ],
+      a: [
+        [
+          'Kepunahan yang tiba-tiba dapat tampak bertahap dalam catatan fosil',
+          'A sudden extinction can look gradual in the fossil record',
+        ],
+        [
+          'Semua fosil berumur sama',
+          'All fossils are the same age',
+        ],
+        [
+          'Fosil selalu menyimpan DNA',
+          'Fossils always preserve DNA',
+        ],
+        [
+          'Kepunahan tidak pernah terjadi',
+          'Extinctions never happen',
+        ],
+      ],
+      c: 0,
+      why: [
+        'Fosil terakhir yang ditemukan jarang tepat pada saat takson itu benar-benar punah.',
+        'The last fossil found rarely marks the exact moment a taxon died out.',
+      ],
+    },
+    {
+      lv: [
+        'kuliah',
+      ],
+      q: [
+        'Kepunahan massal akhir Perm terutama dikaitkan dengan…',
+        'The end-Permian mass extinction is mainly linked to…',
+      ],
+      a: [
+        [
+          'Letusan besar Siberian Traps',
+          'Massive Siberian Traps eruptions',
+        ],
+        [
+          'Tumbukan asteroid Chicxulub',
+          'The Chicxulub asteroid impact',
+        ],
+        [
+          'Zaman es Kuarter',
+          'The Quaternary ice ages',
+        ],
+        [
+          'Perburuan manusia',
+          'Human hunting',
+        ],
+      ],
+      c: 0,
+      why: [
+        'Tumbukan Chicxulub dikaitkan dengan kepunahan akhir Kapur, 66 juta tahun lalu.',
+        'The Chicxulub impact is linked to the end-Cretaceous extinction, 66 million years ago.',
+      ],
+    },
+    {
+      lv: [
+        'kuliah',
+        'sma',
+      ],
+      q: [
+        'Penanggalan radiometrik ⁴⁰Ar/³⁹Ar paling tepat diterapkan pada…',
+        '⁴⁰Ar/³⁹Ar radiometric dating is best applied to…',
+      ],
+      a: [
+        [
+          'Batuan vulkanik di sekitar fosil',
+          'Volcanic rock around fossils',
+        ],
+        [
+          'Tulang secara langsung',
+          'Bone directly',
+        ],
+        [
+          'Daun kering',
+          'Dry leaves',
+        ],
+        [
+          'Air laut',
+          'Seawater',
+        ],
+      ],
+      c: 0,
+      why: [
+        'Mineral vulkanik “mengunci jam” saat batuan mendingin.',
+        'Volcanic minerals “start the clock” when the rock cools.',
+      ],
+    },
   ],
   teacher: {
     goals: {
@@ -203,6 +358,10 @@ The Paleobiology Database (PBDB) data shown in BioTaxa are age ranges of fossil 
       sma: [
         'Peserta didik dapat menafsirkan data umur fosil dan menjelaskan kepunahan massal serta fosil transisi.',
         'Learners can interpret fossil age data and explain mass extinctions and transitional fossils.',
+      ],
+      kuliah: [
+        'Mahasiswa dapat menilai bias catatan fosil, menafsirkan data penanggalan, dan menganalisis bukti paleoantropologi Indonesia.',
+        'Students can assess fossil-record bias, interpret dating evidence and analyse Indonesian palaeoanthropological evidence.',
       ],
     },
     time: ['2 × 40 menit', '2 × 40 minutes'],
@@ -223,6 +382,38 @@ The Paleobiology Database (PBDB) data shown in BioTaxa are age ranges of fossil 
       ['Garis waktu dengan skala.', 'A scaled timeline.'],
       ['Kuis BioTaxa.', 'BioTaxa quiz.'],
     ],
+    misconceptions: [
+      {
+        wrong: [
+          'Manusia pernah hidup bersama dinosaurus.',
+          'Humans lived alongside dinosaurs.',
+        ],
+        right: [
+          'Dinosaurus non-burung punah sekitar 66 juta tahun lalu, sedangkan genus Homo muncul sekitar 2–3 juta tahun lalu.',
+          'Non-avian dinosaurs died out about 66 million years ago, while the genus Homo appeared about 2–3 million years ago.',
+        ],
+      },
+      {
+        wrong: [
+          'Semua makhluk purba yang besar adalah dinosaurus.',
+          'Every big prehistoric animal was a dinosaur.',
+        ],
+        right: [
+          'Pteranodon (reptil terbang), mosasaurus (reptil laut), dan mamut (mamalia) bukan dinosaurus.',
+          'Pteranodon (a flying reptile), mosasaurs (marine reptiles) and mammoths (mammals) were not dinosaurs.',
+        ],
+      },
+      {
+        wrong: [
+          'Fosil adalah tulang asli hewan purba.',
+          'Fossils are the original bones of ancient animals.',
+        ],
+        right: [
+          'Pada banyak fosil, bahan asli telah digantikan mineral, sehingga fosil berupa batuan yang mempertahankan bentuknya.',
+          'In many fossils the original material has been replaced by minerals, leaving rock that keeps the shape.',
+        ],
+      },
+    ],
   },
   read: [
     {
@@ -232,5 +423,15 @@ The Paleobiology Database (PBDB) data shown in BioTaxa are age ranges of fossil 
     },
     { label: 'Paleobiology Database', url: 'https://paleobiodb.org/', lv: 'sma' },
     { label: 'UNESCO · Sangiran Early Man Site', url: 'https://whc.unesco.org/en/list/593', lv: 'sma' },
+    {
+      label: 'OpenStax Biology 2e · Ch. 20 Phylogenies and the History of Life',
+      url: 'https://openstax.org/books/biology-2e/pages/20-introduction',
+      lv: 'kuliah',
+    },
+    {
+      label: 'Paleobiology Database (PBDB)',
+      url: 'https://paleobiodb.org/',
+      lv: 'kuliah',
+    },
   ],
 };

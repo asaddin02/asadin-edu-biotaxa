@@ -5,11 +5,16 @@ import { API } from '../services/api.js';
 import { licenseAllowed } from '../services/media.js';
 import { rankLabel } from '../i18n/ui.js';
 import { icon } from './icons.js';
+import { searchKnowledge } from '../services/localsearch.js';
 
 const s = S({
   none: ['Tidak ada saran. Tekan Enter untuk mencari.', 'No suggestions. Press Enter to search.'],
   group: ['Kelompok', 'Group'],
   hint: ['Saran nama', 'Name suggestions'],
+  topic: ['Materi', 'Lesson'],
+  term: ['Istilah', 'Term'],
+  branch: ['Cabang biologi', 'Branch of biology'],
+  level: ['Tingkat organisasi', 'Level of organisation'],
 });
 
 let seq = 0;
@@ -58,23 +63,34 @@ function thumb(t) {
     : `<span class="suggest-icon" aria-hidden="true">${icon(t.rank === 'species' ? 'leaf' : 'tree')}</span>`;
 }
 
-function render(input, results) {
+function localOption(id, x, i) {
+  return `<li id="${id}-opt-${i}" role="option" aria-selected="false" data-index="${i}" data-href="${esc(x.href)}" class="suggest-local">
+    <span class="suggest-icon" aria-hidden="true">${x.icon}</span><span class="suggest-text"><strong>${esc(x.title)}</strong><em>${esc(x.sub)}</em></span>
+    <span class="suggest-rank is-group">${esc(s[x.type])}</span></li>`;
+}
+
+function render(input, results, local = []) {
   const list = listFor(input);
   if (!list) return;
   const id = input.id;
-  list.innerHTML = results.length
-    ? results
-        .map((t, i) => {
-          const common = t.preferred_common_name;
-          const isSpecies = ['species', 'subspecies', 'variety', 'form', 'hybrid', 'complex'].includes(
-            t.rank
-          );
-          return `<li id="${id}-opt-${i}" role="option" aria-selected="false" data-index="${i}" data-id="${Number(t.id)}" data-rank="${esc(t.rank)}" data-name="${esc(t.name)}" data-common="${esc(common || '')}">
+  const own = local.map((x, i) => localOption(id, x, i)).join('');
+  const offset = local.length;
+  list.innerHTML =
+    results.length || local.length
+      ? own +
+        results
+          .map((t, j) => {
+            const i = j + offset;
+            const common = t.preferred_common_name;
+            const isSpecies = ['species', 'subspecies', 'variety', 'form', 'hybrid', 'complex'].includes(
+              t.rank
+            );
+            return `<li id="${id}-opt-${i}" role="option" aria-selected="false" data-index="${i}" data-id="${Number(t.id)}" data-rank="${esc(t.rank)}" data-name="${esc(t.name)}" data-common="${esc(common || '')}">
             ${thumb(t)}<span class="suggest-text"><strong>${esc(common || t.name)}</strong><em>${esc(t.name)}</em></span>
             <span class="suggest-rank${isSpecies ? '' : ' is-group'}">${esc(isSpecies ? rankLabel(t.rank) : `${s.group} · ${rankLabel(t.rank)}`)}</span></li>`;
-        })
-        .join('')
-    : `<li class="suggest-empty" role="presentation">${s.none}</li>`;
+          })
+          .join('')
+      : `<li class="suggest-empty" role="presentation">${s.none}</li>`;
   list.hidden = false;
   input.setAttribute('aria-expanded', 'true');
 }
@@ -87,14 +103,19 @@ export function handleSuggestInput(input) {
     close(input);
     return;
   }
+  // Two letters match too many lessons and terms; organism names still suggest from two.
+  const navigate = input.dataset.suggest === 'navigate' && q.length >= 3;
   timer = setTimeout(async () => {
-    try {
-      const data = await API.autocomplete(q, { rank: input.dataset.suggestRank || '', perPage: 8 });
-      if (mySeq !== seq || document.activeElement !== input) return;
-      render(input, data.results || []);
-    } catch {
-      if (mySeq === seq) close(input);
-    }
+    // Lessons and terms come from BioTaxa itself, so they still appear offline.
+    const [remote, local] = await Promise.allSettled([
+      API.autocomplete(q, { rank: input.dataset.suggestRank || '', perPage: 8 }),
+      navigate ? searchKnowledge(q, { limit: 3, minScore: 60 }) : Promise.resolve([]),
+    ]);
+    if (mySeq !== seq || document.activeElement !== input) return;
+    const names = remote.status === 'fulfilled' ? remote.value.results || [] : [];
+    const own = local.status === 'fulfilled' ? local.value : [];
+    if (remote.status === 'rejected' && !own.length) close(input);
+    else render(input, names, own);
   }, 350);
 }
 
@@ -112,6 +133,12 @@ function highlight(input, index) {
 }
 
 export function choose(input, option) {
+  if (option.dataset.href) {
+    close(input);
+    seq++;
+    location.hash = option.dataset.href;
+    return;
+  }
   const item = {
     id: Number(option.dataset.id),
     rank: option.dataset.rank,

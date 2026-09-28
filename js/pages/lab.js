@@ -14,8 +14,10 @@ import mendel from '../labs/mendel.js';
 import selection from '../labs/selection.js';
 import scale from '../labs/scale.js';
 import lever from '../labs/lever.js';
+import enzyme from '../labs/enzyme.js';
+import genetic from '../labs/genetic.js';
 
-const LABS = [photosynthesis, food, osmosis, mendel, selection, scale, lever];
+const LABS = [photosynthesis, food, osmosis, enzyme, mendel, genetic, selection, scale, lever];
 
 const s = S({
   title: ['Laboratorium', 'Laboratory'],
@@ -125,7 +127,7 @@ function renderLab(ctx) {
       .join('')}</div>
     <div class="lab-content"><section class="lab-grid">
       <div class="card lab-card"><span class="eyebrow">${s.model}</span><h2>${lab.icon} ${esc(pick(lab.title))}</h2>
-        <div class="lab-experiment"><div id="lab-panel">${lab.panel ? lab.panel(values) : ''}${(lab.controls || []).map(control).join('')}</div>
+        <div class="lab-experiment${lab.id === 'genetic' ? ' lab-experiment-sequence' : ''}"><div id="lab-panel">${lab.panel ? lab.panel(values) : ''}${(lab.controls || []).map(control).join('')}</div>
         <div id="lab-output" aria-live="polite">${outputHTML()}</div></div></div>
       <div class="card lab-guide"><div><h3>${s.about}</h3>${rich(pick(lab.intro))}
         ${lab.refs ? `<p class="source-meta">${s.refs}: ${lab.refs.map(r => `<a href="${esc(r.url)}" target="_blank" rel="noopener noreferrer">${esc(r.label)} ↗</a>`).join(' · ')}</p>` : ''}
@@ -140,6 +142,11 @@ function renderLab(ctx) {
   renderLog();
   refresh(main);
   trackLab(lab.id);
+  const tabs = main.querySelector('.lab-tabs');
+  const selected = tabs.querySelector('[aria-pressed="true"]');
+  if (tabs.scrollWidth > tabs.clientWidth) {
+    tabs.scrollLeft += selected.getBoundingClientRect().left - tabs.getBoundingClientRect().left;
+  }
 }
 
 export async function render(ctx) {
@@ -171,7 +178,7 @@ export async function render(ctx) {
     history.replaceState(null, '', `#/lab/${active.id}`);
     renderLab(ctx);
     bindLab(active);
-    $(`[data-lab="${active.id}"]`)?.focus();
+    $(`[data-lab="${active.id}"]`)?.focus({ preventScroll: true });
   });
   ctx.on('input', '[data-lab-control]', (e, input) => {
     values[input.id] = Number(input.value);
@@ -179,8 +186,11 @@ export async function render(ctx) {
     renderOutput();
   });
   ctx.on('change', '[data-lab-select]', (e, input) => {
-    values[input.dataset.labSelect] =
-      input.type === 'radio' ? input.value : /^\d+$/.test(input.value) ? Number(input.value) : input.value;
+    const key = input.dataset.labSelect;
+    const text = input.type === 'radio' || input.tagName === 'TEXTAREA' || input.type === 'text';
+    values[key] = text ? input.value : /^\d+$/.test(input.value) ? Number(input.value) : input.value;
+    // A lab may keep related settings in step, e.g. an example choice and its sequence.
+    active.onSelect?.(key, values);
     saveValues();
     const panel = $('#lab-panel');
     if (panel && active.panel && input.dataset.labSelect !== 'n') {
