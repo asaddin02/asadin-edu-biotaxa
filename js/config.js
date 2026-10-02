@@ -15,8 +15,8 @@ export const config = {
   donateURL: '',
   // Optional regional channels. Only configured HTTPS links appear; no geolocation required.
   // Local: your approved Indonesian provider page. International: e.g. your Ko-fi page.
-  donateLocalURL: '',
-  donateInternationalURL: '',
+  donateLocalURL: 'https://saweria.co/asadin02',
+  donateInternationalURL: 'https://ko-fi.com/asadin02',
 
   // iNaturalist place used for the "Indonesia" gallery scope and for Indonesian common names.
   indonesiaPlaceId: 6966,

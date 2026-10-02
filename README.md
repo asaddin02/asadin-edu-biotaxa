@@ -2,6 +2,8 @@
 
 **Atlas makhluk hidup yang terbuka, gratis, dan dwibahasa (Indonesia/English) untuk siswa SD sampai mahasiswa, serta guru.** Jelajahi jutaan spesies dari GBIF dan iNaturalist, pelajari materi Kurikulum Merdeka, coba simulasi laboratorium, dan bawa kelas belajar di luar ruangan.
 
+**Lanjut dari PC lain:** baca [serah terima 2 Oktober 2026](docs/HANDOFF-2026-10-02.md) untuk aksi hari ini, posisi terakhir Claude, target, dan pekerjaan konten yang tersisa.
+
 ![Beranda BioTaxa](docs/screenshots/preview-home.png)
 
 <p>
