@@ -78,15 +78,15 @@ export function donationURL(value = config.donateURL) {
 export const title = () => s.title;
 export async function render(ctx) {
   const channels = [
-    { label: s.local, url: donationURL(config.donateLocalURL || '') },
-    { label: s.international, url: donationURL(config.donateInternationalURL || '') },
+    { provider: 'Saweria', label: s.local, url: donationURL(config.donateLocalURL || '') },
+    { provider: 'Ko-fi', label: s.international, url: donationURL(config.donateInternationalURL || '') },
   ].filter(channel => channel.url);
   // Preserve existing deployments configured with the original single destination.
   if (!channels.length && donationURL()) channels.push({ label: s.donate, url: donationURL() });
   ctx.main.innerHTML = `${pageHead(s.heading, s.intro, 'BIOTAXA / SUPPORT')}
     <div class="support-grid">
       <section class="card support-donation">${brandImage('support-mark')}<h2>${s.donate}</h2><p>${s.purpose}</p>
-        ${channels.length ? `<h3>${s.choose}</h3><p class="muted small">${s.channelHint}</p><div class="support-channels">${channels.map(channel => `<article class="support-channel"><h4>${channel.label}</h4><a class="btn" data-donate href="${esc(channel.url)}" target="_blank" rel="noopener noreferrer">${s.action} ↗<span class="sr-only"> — ${channel.label}</span></a><p class="source-meta">${esc(new URL(channel.url).hostname)}</p></article>`).join('')}</div><p class="muted small">${s.external}</p>` : `<div class="notice"><strong>${s.pending}</strong><p>${s.pendingText}</p></div>`}
+        ${channels.length ? `<h3>${s.choose}</h3><p class="muted small">${s.channelHint}</p><div class="support-channels">${channels.map(channel => `<article class="support-channel"><h4>${channel.provider || channel.label}</h4><p>${channel.label}</p><a class="btn" data-donate href="${esc(channel.url)}" target="_blank" rel="noopener noreferrer">${s.action} ↗<span class="sr-only"> — ${channel.label}</span></a><p class="source-meta">${esc(new URL(channel.url).hostname)}</p></article>`).join('')}</div><p class="muted small">${s.external}</p>` : `<div class="notice"><strong>${s.pending}</strong><p>${s.pendingText}</p></div>`}
       </section>
       <aside class="card support-promise"><span class="eyebrow">BIOTAXA · ASADIN EDU</span><h2>${s.free}</h2><p>${s.freeText}</p><a class="btn secondary" href="#/learn">${s.back} →</a></aside>
     </div>
